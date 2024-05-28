@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "586622428306",
+    "project_id": "proyectonovus-b43bc",
+    "storage_bucket": "proyectonovus-b43bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586622428306:android:6dda8acbb9f7b3e697b24b",
+        "android_client_info": {
+          "package_name": "com.example.novusproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATOs_R41hH0EmdNk36LnTp_CwyJ1RIb-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
