@@ -13,6 +13,15 @@
         android:theme="@style/Theme.NovusProject"
         tools:targetApi="31">
         <activity
+            android:name=".AvatarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MapaActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoggedActivity"
             android:exported="false" />
         <activity
