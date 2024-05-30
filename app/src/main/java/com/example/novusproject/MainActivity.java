@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageSwitcher;
-import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Referencia a botones usando el ID
-        botonInicio = findViewById(R.id.button_inicio);
+        botonInicio = findViewById(R.id.buttonPlay);
         botonRegistro = findViewById(R.id.button_registro);
 
         botonInicio.setOnClickListener(new View.OnClickListener() {

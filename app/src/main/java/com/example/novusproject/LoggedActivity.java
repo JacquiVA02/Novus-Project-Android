@@ -3,7 +3,9 @@ package com.example.novusproject;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,7 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoggedActivity extends AppCompatActivity {
 
-    ImageView btn_logout;
+    ImageView imageLogout;
+    Button btn_play;
     FirebaseAuth mAuth;
 
     @Override
@@ -29,9 +32,20 @@ public class LoggedActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        btn_logout = findViewById(R.id.buttonLogout);
+        imageLogout = findViewById(R.id.imageLogout);
+        btn_play = findViewById(R.id.buttonPlay);
 
-        btn_logout.setOnClickListener(new View.OnClickListener() {
+        btn_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("LoggedActivity", "Botón Play clicado");
+                Intent intent = new Intent(LoggedActivity.this, MapaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        imageLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Crear el AlertDialog

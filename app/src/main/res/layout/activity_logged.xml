@@ -8,7 +8,7 @@
     tools:context=".LoggedActivity">
 
     <Button
-        android:id="@+id/button_inicio"
+        android:id="@+id/buttonPlay"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginBottom="100dp"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.173" />
 
     <ImageView
-        android:id="@+id/buttonLogout"
+        android:id="@+id/imageLogout"
         android:layout_width="44dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
