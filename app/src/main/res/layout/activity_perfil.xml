@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/buttonBackMap"
+        android:id="@+id/buttonBackProfile"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="15dp"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.022">
 
         <Button
-            android:id="@+id/buttonMapMap"
+            android:id="@+id/buttonMapProfile"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -99,7 +99,7 @@
             android:layout_weight="0.2" />
 
         <Button
-            android:id="@+id/buttonAvatarMap"
+            android:id="@+id/buttonAvatarProfile"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -111,7 +111,7 @@
             android:layout_weight="0.2" />
 
         <Button
-            android:id="@+id/buttonShopMap"
+            android:id="@+id/buttonShopProfile"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"

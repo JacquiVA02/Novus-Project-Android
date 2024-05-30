@@ -24,15 +24,23 @@ public class MapaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mapa);
 
         btn_profile = findViewById(R.id.buttonProfile);
-        btn_back = findViewById(R.id.buttonBackMap);
-        btn_map = findViewById(R.id.buttonMapMap);
-        btn_avatar = findViewById(R.id.buttonAvatarMap);
-        btn_shop = findViewById(R.id.buttonShopMap);
+        btn_back = findViewById(R.id.buttonBackProfile);
+        btn_map = findViewById(R.id.buttonMapProfile);
+        btn_avatar = findViewById(R.id.buttonAvatarProfile);
+        btn_shop = findViewById(R.id.buttonShopProfile);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapaActivity.this, LoggedActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, TiendaActivity.class);
                 startActivity(intent);
             }
         });
