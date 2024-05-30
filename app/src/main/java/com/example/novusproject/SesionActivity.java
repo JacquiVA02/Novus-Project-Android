@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SesionActivity extends AppCompatActivity {
 
@@ -89,5 +90,15 @@ public class SesionActivity extends AppCompatActivity {
                 Toast.makeText(SesionActivity.this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null){
+            startActivity(new Intent(SesionActivity.this, LoggedActivity.class));
+            finish();
+        }
     }
 }
