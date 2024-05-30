@@ -45,11 +45,11 @@ public class RegistroActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         botonAtras = findViewById(R.id.buttonBackSesion);
-        btn_registro = findViewById(R.id.buttonRegistrar);
+        btn_registro = findViewById(R.id.buttonIniciar);
         nombre = findViewById(R.id.nombreRegistro);
         apellidos = findViewById(R.id.apellidosRegistro);
-        email = findViewById(R.id.emailRegistro);
-        contrasena = findViewById(R.id.passwordRegistro);
+        email = findViewById(R.id.emailSesion);
+        contrasena = findViewById(R.id.passwordSesion);
 
         botonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
