@@ -46,9 +46,9 @@ public class MapaActivity extends AppCompatActivity {
 
         btn_profile = findViewById(R.id.buttonProfile);
         btn_back = findViewById(R.id.buttonBackProfile);
-        btn_map = findViewById(R.id.buttonMapProfile);
-        btn_avatar = findViewById(R.id.buttonAvatarProfile);
-        btn_shop = findViewById(R.id.buttonShopProfile);
+        btn_map = findViewById(R.id.buttonMapShop);
+        btn_avatar = findViewById(R.id.buttonAvatarShop);
+        btn_shop = findViewById(R.id.buttonShopShop);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
