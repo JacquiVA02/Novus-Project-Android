@@ -54,7 +54,7 @@ public class RegistroActivity extends AppCompatActivity {
         botonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+                Intent intent = new Intent(RegistroActivity.this, FirstActivity.class);
                 startActivity(intent);
             }
         });
@@ -104,7 +104,7 @@ public class RegistroActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void unused) {
                             finish();
-                            startActivity(new Intent(RegistroActivity.this, LoggedActivity.class));
+                            startActivity(new Intent(RegistroActivity.this, MainActivity.class));
                             Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {

@@ -29,7 +29,6 @@ public class SesionActivity extends AppCompatActivity {
     EditText email, password;
     FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,7 @@ public class SesionActivity extends AppCompatActivity {
         botonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SesionActivity.this, MainActivity.class);
+                Intent intent = new Intent(SesionActivity.this, FirstActivity.class);
                 startActivity(intent);
             }
         });
@@ -57,7 +56,7 @@ public class SesionActivity extends AppCompatActivity {
                 String emailUser = email.getText().toString().trim();
                 String passUser = password.getText().toString().trim();
 
-                if (emailUser.isEmpty() && passUser.isEmpty()){
+                if (emailUser.isEmpty() || passUser.isEmpty()) {
                     Toast.makeText(SesionActivity.this, "Ingrese los datos", Toast.LENGTH_SHORT).show();
                 } else {
                     loginUser(emailUser, passUser);
@@ -76,18 +75,19 @@ public class SesionActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
+                    // Usuario autenticado correctamente
                     finish();
-                    startActivity(new Intent(SesionActivity.this, LoggedActivity.class));
+                    startActivity(new Intent(SesionActivity.this, MainActivity.class));
                     Toast.makeText(SesionActivity.this, "Bienvenid@", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(SesionActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SesionActivity.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SesionActivity.this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SesionActivity.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -96,8 +96,8 @@ public class SesionActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null){
-            startActivity(new Intent(SesionActivity.this, LoggedActivity.class));
+        if (user != null) {
+            startActivity(new Intent(SesionActivity.this, MainActivity.class));
             finish();
         }
     }

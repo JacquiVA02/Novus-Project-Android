@@ -25,7 +25,7 @@
             android:name=".MapaActivity"
             android:exported="false" />
         <activity
-            android:name=".LoggedActivity"
+            android:name=".FirstActivity"
             android:exported="false" />
         <activity
             android:name=".SesionActivity"
