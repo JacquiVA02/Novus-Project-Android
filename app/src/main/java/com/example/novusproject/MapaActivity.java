@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -129,12 +130,23 @@ public class MapaActivity extends AppCompatActivity {
                                     Ac1.setText(String.valueOf(value1));
                                     Ac2.setText(String.valueOf(value2));
                                     Ac3.setText(String.valueOf(value3));
+
+                                    String profileImageUrl = snapshot.getString("profileImageUrl");
+                                    if (profileImageUrl != null) {
+                                        Glide.with(MapaActivity.this)
+                                                .load(profileImageUrl)
+                                                .fitCenter()
+                                                .centerInside()
+                                                .circleCrop() // Esta línea hace que la imagen sea redonda
+                                                .into(btn_profile);
+                                    }
                                 } else {
                                     Log.d("Firestore", "Campo 'monedas' no encontrado");
                                 }
                             } else {
                                 Log.d("Firestore", "Current data: null");
                             }
+
                         }
                     });
         }

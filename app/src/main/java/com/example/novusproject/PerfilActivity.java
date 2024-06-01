@@ -20,6 +20,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,6 +56,7 @@ public class PerfilActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference();
+        mProgressDialog = new ProgressDialog(this);
 
         profile = findViewById(R.id.imageViewProfileProfile);
 
@@ -117,6 +119,16 @@ public class PerfilActivity extends AppCompatActivity {
                             if (snapshot != null && snapshot.exists()) {
                                 String value = snapshot.getString("nombre");
                                 nombreUsuario.setText(value);
+
+                                String profileImageUrl = snapshot.getString("profileImageUrl");
+                                if (profileImageUrl != null) {
+                                    Glide.with(PerfilActivity.this)
+                                            .load(profileImageUrl)
+                                            .fitCenter()
+                                            .centerInside()
+                                            .circleCrop() // Esta línea hace que la imagen sea redonda
+                                            .into(profile);
+                                }
                             } else {
                                 Log.d("Firestore", "Current data: null");
                             }
@@ -125,28 +137,103 @@ public class PerfilActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == GALLEY_INTENT && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri uri = data.getData();
-            StorageReference filePath = mStorage.child("fotos").child(uri.getLastPathSegment());
 
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(PerfilActivity.this, "Foto subida exitosamente", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(PerfilActivity.this, "Error al subir la foto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Error al subir la foto", e);
-                }
-            });
+            mProgressDialog.setTitle("Subiendo...");
+            mProgressDialog.setMessage("Subiendo foto de perfil");
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+
+            Uri uri = data.getData();
+            FirebaseUser user = mAuth.getCurrentUser();
+            if (user != null) {
+                String userId = user.getUid();
+                StorageReference filePath = mStorage.child("fotos").child(userId);
+
+                // Eliminar la imagen existente
+                filePath.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Subir la nueva imagen
+                        uploadNewImage(uri, filePath, userId);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Manejar el error si no se pudo eliminar la imagen anterior
+                        Log.e(TAG, "Error al eliminar la imagen anterior", e);
+                        // Intentar subir la nueva imagen de todos modos
+                        uploadNewImage(uri, filePath, userId);
+                    }
+                });
+            } else {
+                Toast.makeText(this, "Usuario no autenticado", Toast.LENGTH_SHORT).show();
+                mProgressDialog.dismiss();
+            }
         } else {
             Toast.makeText(this, "No se seleccionó ninguna imagen", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void uploadNewImage(Uri uri, StorageReference filePath, String userId) {
+        filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        String downloadUrl = uri.toString();
+
+                        // Guardar la URL en Firestore
+                        db.collection("Usuario").document(userId)
+                                .update("profileImageUrl", downloadUrl)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Glide.with(PerfilActivity.this)
+                                                .load(downloadUrl)
+                                                .fitCenter()
+                                                .centerCrop()
+                                                .circleCrop() // Esta línea hace que la imagen sea redonda
+                                                .into(profile);
+
+                                        Toast.makeText(PerfilActivity.this, "Foto subida exitosamente", Toast.LENGTH_SHORT).show();
+                                        mProgressDialog.dismiss();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(PerfilActivity.this, "Error al guardar la URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Log.e(TAG, "Error al guardar la URL", e);
+                                        mProgressDialog.dismiss();
+                                    }
+                                });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(PerfilActivity.this, "Error al obtener la URL de descarga: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error al obtener la URL de descarga", e);
+                        mProgressDialog.dismiss();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PerfilActivity.this, "Error al subir la foto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error al subir la foto", e);
+                mProgressDialog.dismiss();
+            }
+        });
+    }
+
+
+
+
 }

@@ -63,13 +63,16 @@
     <ImageView
         android:id="@+id/imageViewProfileProfile"
         android:layout_width="190dp"
-        android:layout_height="177dp"
+        android:layout_height="190dp"
         android:layout_marginTop="130dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"
+        android:background="@drawable/rounded_profile"
+        android:scaleType="centerCrop" />
+
 
     <TextView
         android:id="@+id/textView9"
