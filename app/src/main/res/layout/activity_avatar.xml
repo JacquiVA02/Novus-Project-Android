@@ -103,11 +103,13 @@
         android:layout_weight="0.2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:paddingLeft="30sp"
         android:paddingTop="10dp"
+        android:paddingRight="30sp"
         android:paddingBottom="10dp"
         android:text="Editar"
         android:textSize="20sp"

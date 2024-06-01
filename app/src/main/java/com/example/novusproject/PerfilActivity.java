@@ -55,7 +55,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         nombreUsuario = findViewById(R.id.nameUser);
 
-        btn_back = findViewById(R.id.buttonBackProfile);
+        btn_back = findViewById(R.id.buttonBackEdit);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

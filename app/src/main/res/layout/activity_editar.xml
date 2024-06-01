@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/buttonBackProfile"
+        android:id="@+id/buttonBackEdit"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="15dp"
@@ -108,5 +108,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="1.0"></LinearLayout>
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/imageViewHat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:paddingTop="2sp"
+            android:paddingBottom="2sp"
+            app:srcCompat="@drawable/hat" />
+
+        <ImageView
+            android:id="@+id/imageViewGlasses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/glasses" />
+
+        <ImageView
+            android:id="@+id/imageViewShirt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            app:srcCompat="@drawable/shirt" />
+
+        <ImageView
+            android:id="@+id/imageViewShoe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="2sp"
+            android:paddingBottom="2sp"
+            app:srcCompat="@drawable/shoe" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

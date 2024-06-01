@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class AvatarActivity extends AppCompatActivity {
 
-    Button btn_map, btn_avatar, btn_shop;
+    Button btn_map, btn_avatar, btn_shop, btn_edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,15 @@ public class AvatarActivity extends AppCompatActivity {
         btn_map = findViewById(R.id.buttonMapShop);
         btn_avatar = findViewById(R.id.buttonAvatarShop);
         btn_shop = findViewById(R.id.buttonShopShop);
+        btn_edit = findViewById(R.id.buttonEdit);
+
+        btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AvatarActivity.this, EditarActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_map.setOnClickListener(new View.OnClickListener() {
             @Override

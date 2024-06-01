@@ -37,7 +37,7 @@ public class SesionActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        botonAtras = findViewById(R.id.buttonBackProfile);
+        botonAtras = findViewById(R.id.buttonBackEdit);
         btn_iniciar = findViewById(R.id.buttonIniciar);
         email = findViewById(R.id.emailSesion);
         password = findViewById(R.id.passwordSesion);
