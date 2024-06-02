@@ -5,12 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapaActivity">
+    tools:context=".FirstIslandActivity">
 
     <TextView
         android:id="@+id/text0"
         android:layout_width="411dp"
-        android:layout_height="138dp"
+        android:layout_height="110dp"
         android:background="#0B1741"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,108 +19,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/buttonBackFirstIsland"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:rotation="179"
-        android:rotationX="1"
-        android:rotationY="1"
-        app:layout_constraintBottom_toBottomOf="@+id/text0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.002"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/back" />
-
-    <TextView
-        android:id="@+id/text0"
-        android:layout_width="413dp"
-        android:layout_height="117dp"
-        android:background="#0B1741"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/text0"
-        app:layout_constraintTop_toTopOf="@+id/text0"
-        app:layout_constraintVertical_bias="0.022">
-
-        <Button
-            android:id="@+id/buttonMapFIrst"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="Mapa" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
-
-        <Button
-            android:id="@+id/buttonAvatarFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="Avatar" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
-
-        <Button
-            android:id="@+id/buttonShopFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="Tienda" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/buttonProfile"
-        android:layout_width="112dp"
-        android:layout_height="112dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/profile" />
-
     <LinearLayout
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/text0"
@@ -155,7 +57,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="180dp"
         android:layout_height="30dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -220,15 +122,79 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonIsland1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+    <ImageView
+        android:id="@+id/buttonBackFirstIsland"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:rotation="179"
+        android:rotationX="1"
+        android:rotationY="1"
+        app:layout_constraintBottom_toBottomOf="@+id/text0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.002"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/text0"
+        android:layout_width="413dp"
+        android:layout_height="117dp"
+        android:background="#0B1741"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
-        app:layout_constraintVertical_bias="0.368" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/text0"
+        app:layout_constraintTop_toTopOf="@+id/text0"
+        app:layout_constraintVertical_bias="0.022">
+
+        <Button
+            android:id="@+id/buttonMapFIrst"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Mapa" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+        <Button
+            android:id="@+id/buttonAvatarFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Avatar" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+        <Button
+            android:id="@+id/buttonShopFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Tienda" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

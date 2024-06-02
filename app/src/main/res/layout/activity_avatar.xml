@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.022">
 
         <Button
-            android:id="@+id/buttonMapShop"
+            android:id="@+id/buttonMapFIrst"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -58,7 +58,7 @@
             android:layout_weight="0.2" />
 
         <Button
-            android:id="@+id/buttonAvatarShop"
+            android:id="@+id/buttonAvatarFirst"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -70,7 +70,7 @@
             android:layout_weight="0.2" />
 
         <Button
-            android:id="@+id/buttonShopShop"
+            android:id="@+id/buttonShopFirst"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"

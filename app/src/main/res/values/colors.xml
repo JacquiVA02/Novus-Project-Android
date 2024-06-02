@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="fondoIcon">#DFDFDF</color>
+    <color name="fondoComodin">#8E8E8E</color>
 </resources>

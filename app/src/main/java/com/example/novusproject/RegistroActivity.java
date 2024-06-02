@@ -44,7 +44,7 @@ public class RegistroActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        botonAtras = findViewById(R.id.buttonBackEdit);
+        botonAtras = findViewById(R.id.buttonBackFirstIsland);
         btn_registro = findViewById(R.id.buttonIniciar);
         nombre = findViewById(R.id.nombreRegistro);
         apellidos = findViewById(R.id.apellidosRegistro);

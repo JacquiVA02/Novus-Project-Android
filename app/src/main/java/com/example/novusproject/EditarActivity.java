@@ -21,7 +21,7 @@ public class EditarActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_editar);
 
-        btn_back = findViewById(R.id.buttonBackEdit);
+        btn_back = findViewById(R.id.buttonBackFirstIsland);
         btn_hat = findViewById(R.id.imageViewHat);
         btn_glasses = findViewById(R.id.imageViewGlasses);
         btn_shirt = findViewById(R.id.imageViewShirt);

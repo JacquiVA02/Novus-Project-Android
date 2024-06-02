@@ -21,9 +21,9 @@ public class AvatarActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_avatar);
 
-        btn_map = findViewById(R.id.buttonMapShop);
-        btn_avatar = findViewById(R.id.buttonAvatarShop);
-        btn_shop = findViewById(R.id.buttonShopShop);
+        btn_map = findViewById(R.id.buttonMapFIrst);
+        btn_avatar = findViewById(R.id.buttonAvatarFirst);
+        btn_shop = findViewById(R.id.buttonShopFirst);
         btn_edit = findViewById(R.id.buttonEdit);
 
         btn_edit.setOnClickListener(new View.OnClickListener() {
