@@ -37,6 +37,7 @@ public class FirstIslandActivity extends AppCompatActivity {
             }
         });
 
+        /*
         btn_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +61,7 @@ public class FirstIslandActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

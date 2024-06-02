@@ -25,12 +25,10 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/text0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -131,70 +129,92 @@
         android:rotation="179"
         android:rotationX="1"
         android:rotationY="1"
-        app:layout_constraintBottom_toBottomOf="@+id/text0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.002"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/back" />
-
-    <TextView
-        android:id="@+id/text0"
-        android:layout_width="413dp"
-        android:layout_height="117dp"
-        android:background="#0B1741"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/text0"
-        app:layout_constraintTop_toTopOf="@+id/text0"
-        app:layout_constraintVertical_bias="0.022">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text0">
 
-        <Button
-            android:id="@+id/buttonMapFIrst"
+        <ImageView
+            android:id="@+id/imageView9"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="Mapa" />
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
 
-        <Space
+        <ImageView
+            android:id="@+id/imageView15"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
 
-        <Button
-            android:id="@+id/buttonAvatarFirst"
+        <ImageView
+            android:id="@+id/imageView16"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="Avatar" />
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
 
-        <Space
+        <ImageView
+            android:id="@+id/imageView17"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
 
-        <Button
-            android:id="@+id/buttonShopFirst"
+        <ImageView
+            android:id="@+id/imageView18"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="Tienda" />
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
+
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
+
+        <ImageView
+            android:id="@+id/imageView22"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/red" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
