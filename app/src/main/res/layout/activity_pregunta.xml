@@ -196,21 +196,21 @@
 
         <ImageView
             android:id="@+id/imageResponse1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginRight="10sp"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars"
-            android:background="@drawable/rounded_answer"/>
+            android:background="@drawable/rounded_answer"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
             android:id="@+id/imageResponse2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginLeft="10sp"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars"
-            android:background="@drawable/rounded_answer" />
+            android:background="@drawable/rounded_answer"
+            tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
     <LinearLayout
@@ -226,21 +226,21 @@
 
         <ImageView
             android:id="@+id/imageResponse3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginRight="10sp"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars"
-            android:background="@drawable/rounded_answer"/>
+            android:background="@drawable/rounded_answer"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
             android:id="@+id/imageResponse4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginLeft="10sp"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars"
-            android:background="@drawable/rounded_answer"/>
+            android:background="@drawable/rounded_answer"
+            tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
     <ImageView

@@ -2,6 +2,7 @@ package com.example.novusproject;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,12 +40,17 @@ public class PreguntaActivity extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
+    // Declarar las variables imgCorrect e imgIncorrect como variables de clase
+    private String imgCorrect;
+    private String imgIncorrect;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pregunta);
 
+        // Asignación de vistas
         btn_back = findViewById(R.id.buttonBackQuestion);
         question = findViewById(R.id.imageQuestion);
         response1 = findViewById(R.id.imageResponse1);
@@ -51,9 +58,11 @@ public class PreguntaActivity extends AppCompatActivity {
         response3 = findViewById(R.id.imageResponse3);
         response4 = findViewById(R.id.imageResponse4);
 
+        // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+        // Verificar el usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
@@ -65,6 +74,7 @@ public class PreguntaActivity extends AppCompatActivity {
             return;
         }
 
+        // Obtener los parámetros
         String param1 = getIntent().getStringExtra("isla");
         String param2 = getIntent().getStringExtra("pregunta");
 
@@ -75,16 +85,21 @@ public class PreguntaActivity extends AppCompatActivity {
             Log.d("PreguntaActivity", "No se recibieron los parámetros esperados.");
         }
 
+        // Aplicar márgenes de borde a la vista principal
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // Configurar el botón de retroceso
         btn_back.setOnClickListener(v -> finish());
 
+        // Obtener la pregunta y los elementos solo una vez al crear la actividad
         getQuestion(param1, param2);
+        getElements();
     }
+
 
     private void getQuestion(String param1, String param2) {
         db.collection(param1).document(param2)
@@ -136,14 +151,44 @@ public class PreguntaActivity extends AppCompatActivity {
                 });
     }
 
+    private void getElements(){
+        db.collection("Elementos").document("elementos")
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        Log.w(TAG, "Listen failed.", error);
+                        return;
+                    }
+
+                    if(value != null && value.exists()) {
+                        Log.d(TAG, "Current data: " + value.getData());
+                        // Asignar los valores a las variables de clase
+                        imgCorrect = value.getString("correct");
+                        imgIncorrect = value.getString("incorrect");
+                    } else {
+                        Log.d(TAG, "Current data: null");
+                    }
+                });
+    }
+
     private void checkAnswer(View view, String correctText, String video) {
         String selectedAnswer = (String) view.getTag();
-        if (selectedAnswer != null && selectedAnswer.equals(correctText)) {
-            view.setBackgroundColor(Color.GREEN);
-        } else {
-            view.setBackgroundColor(Color.RED);
-            showIncorrectAnswerDialog(video);
+        ImageView imageView = (ImageView) view;
 
+        if (selectedAnswer != null && selectedAnswer.equals(correctText)) {
+            view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_correct));
+            Glide.with(getApplicationContext())
+                    .load(imgCorrect)
+                    .fitCenter()
+                    .centerInside()
+                    .into(imageView);
+        } else {
+            view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_incorrect));
+            Glide.with(getApplicationContext())
+                    .load(imgIncorrect)
+                    .fitCenter()
+                    .centerInside()
+                    .into(imageView);
+            showIncorrectAnswerDialog(correctText, video);
         }
 
         // Desactivar los otros botones
@@ -151,12 +196,11 @@ public class PreguntaActivity extends AppCompatActivity {
         response2.setOnClickListener(null);
         response3.setOnClickListener(null);
         response4.setOnClickListener(null);
-
-        // Borrar la imagen dentro del ImageView
-        //((ImageView)view).setImageDrawable(null);
     }
 
-    private void showIncorrectAnswerDialog(String video) {
+
+
+    private void showIncorrectAnswerDialog(String correctText, String video) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Respuesta incorrecta ¿Necesitas ayuda?")
                 .setPositiveButton("Ver video", (dialog, which) -> {
@@ -175,9 +219,29 @@ public class PreguntaActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("Reintentar", (dialog, which) -> {
-                    // Código para reintentar
+                    resetResponseButtons(correctText, video);
                 })
+
                 .show();
+    }
+
+    private void resetResponseButtons(String correctText, String video) {
+        // Restaurar el fondo original de los botones de respuesta
+        response1.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+        response2.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+        response3.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+        response4.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+
+        // Cargar la imagen original en cada ImageView correspondiente
+        loadImageIntoView(response1.getTag().toString(), response1, response1.getTag().toString());
+        loadImageIntoView(response2.getTag().toString(), response2, response2.getTag().toString());
+        loadImageIntoView(response3.getTag().toString(), response3, response3.getTag().toString());
+        loadImageIntoView(response4.getTag().toString(), response4, response4.getTag().toString());
+
+        response1.setOnClickListener(view -> checkAnswer(view, correctText, video));
+        response2.setOnClickListener(view -> checkAnswer(view, correctText, video));
+        response3.setOnClickListener(view -> checkAnswer(view, correctText, video));
+        response4.setOnClickListener(view -> checkAnswer(view, correctText, video));
     }
 
 
