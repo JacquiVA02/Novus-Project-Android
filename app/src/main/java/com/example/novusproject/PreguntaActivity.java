@@ -214,8 +214,9 @@ public class PreguntaActivity extends AppCompatActivity {
                         startActivity(intent);
                     } else {
                         // Si no hay una aplicación disponible, abrir el enlace en un navegador web
-                        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + video));
+                        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(video));
                         startActivity(webIntent);
+                        resetResponseButtons(correctText, video);
                     }
                 })
                 .setNegativeButton("Reintentar", (dialog, which) -> {
