@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class FirstIslandActivity extends AppCompatActivity {
 
-    ImageView btn_back;
+    ImageView btn_back, pregunta1, pregunta2;
 
     Button btn_map, btn_avatar, btn_shop;
 
@@ -24,15 +24,41 @@ public class FirstIslandActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_first_island);
 
-        btn_back = findViewById(R.id.buttonBackFirstIsland);
+        btn_back = findViewById(R.id.buttonBackQuestion);
+
+        pregunta1 = findViewById(R.id.R1I1);
+        pregunta2 = findViewById(R.id.R2I1);
+
+        /*
         btn_map = findViewById(R.id.buttonMapFIrst);
         btn_avatar = findViewById(R.id.buttonAvatarFirst);
         btn_shop = findViewById(R.id.buttonShopFirst);
+         */
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandActivity.this, MapaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        pregunta1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R1I1");
+                startActivity(intent);
+            }
+        });
+
+        pregunta2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Segunda");
+                intent.putExtra("pregunta", "R2I1");
                 startActivity(intent);
             }
         });

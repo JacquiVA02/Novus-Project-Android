@@ -121,7 +121,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/buttonBackFirstIsland"
+        android:id="@+id/buttonBackQuestion"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="15dp"
@@ -205,13 +205,13 @@
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView22"
+            android:id="@+id/R2I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView23"
+            android:id="@+id/R1I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />

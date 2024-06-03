@@ -55,7 +55,7 @@ public class MapaActivity extends AppCompatActivity {
         }
 
         btn_profile = findViewById(R.id.buttonProfile);
-        btn_back = findViewById(R.id.buttonBackFirstIsland);
+        btn_back = findViewById(R.id.buttonBackQuestion);
         btn_map = findViewById(R.id.buttonMapFIrst);
         btn_avatar = findViewById(R.id.buttonAvatarFirst);
         btn_shop = findViewById(R.id.buttonShopFirst);
