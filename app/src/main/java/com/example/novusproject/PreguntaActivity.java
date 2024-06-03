@@ -3,8 +3,11 @@ package com.example.novusproject;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +28,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import android.app.AlertDialog;
+import android.widget.Toast;
+
 
 public class PreguntaActivity extends AppCompatActivity {
 
@@ -95,6 +101,7 @@ public class PreguntaActivity extends AppCompatActivity {
                         String incorrect1Text = value.getString("incorrecta1");
                         String incorrect2Text = value.getString("incorrecta2");
                         String incorrect3Text = value.getString("incorrecta3");
+                        String video = value.getString("link");
 
                         List<String> responses = new ArrayList<>();
                         responses.add(correctText);
@@ -104,26 +111,87 @@ public class PreguntaActivity extends AppCompatActivity {
 
                         Collections.shuffle(responses); // Mezclar la lista de respuestas
 
-                        loadImageIntoView(questionText, question);
-                        loadImageIntoView(responses.get(0), response1);
-                        loadImageIntoView(responses.get(1), response2);
-                        loadImageIntoView(responses.get(2), response3);
-                        loadImageIntoView(responses.get(3), response4);
+                        Glide.with(PreguntaActivity.this)
+                                .load(questionText)
+                                .fitCenter()
+                                .centerInside()
+                                .into(question);
+
+
+                        loadImageIntoView(responses.get(0), response1, responses.get(0));
+                        loadImageIntoView(responses.get(1), response2, responses.get(1));
+                        loadImageIntoView(responses.get(2), response3, responses.get(2));
+                        loadImageIntoView(responses.get(3), response4, responses.get(3));
+
+
+                        response1.setOnClickListener(view -> checkAnswer(view, correctText, video));
+                        response2.setOnClickListener(view -> checkAnswer(view, correctText, video));
+                        response3.setOnClickListener(view -> checkAnswer(view, correctText, video));
+                        response4.setOnClickListener(view -> checkAnswer(view, correctText, video));
+
                     } else {
                         Log.d(TAG, "Current data: null");
                     }
+
                 });
     }
 
+    private void checkAnswer(View view, String correctText, String video) {
+        String selectedAnswer = (String) view.getTag();
+        if (selectedAnswer != null && selectedAnswer.equals(correctText)) {
+            view.setBackgroundColor(Color.GREEN);
+        } else {
+            view.setBackgroundColor(Color.RED);
+            showIncorrectAnswerDialog(video);
 
-    private void loadImageIntoView(String url, ImageView imageView) {
+        }
+
+        // Desactivar los otros botones
+        response1.setOnClickListener(null);
+        response2.setOnClickListener(null);
+        response3.setOnClickListener(null);
+        response4.setOnClickListener(null);
+
+        // Borrar la imagen dentro del ImageView
+        //((ImageView)view).setImageDrawable(null);
+    }
+
+    private void showIncorrectAnswerDialog(String video) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Respuesta incorrecta ¿Necesitas ayuda?")
+                .setPositiveButton("Ver video", (dialog, which) -> {
+                    // Crear un Intent para abrir el enlace de YouTube
+                    Uri youtubeUri = Uri.parse(video);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, youtubeUri);
+
+                    // Comprobar si hay alguna aplicación que pueda manejar este Intent
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        // Si hay una aplicación disponible, iniciarla
+                        startActivity(intent);
+                    } else {
+                        // Si no hay una aplicación disponible, abrir el enlace en un navegador web
+                        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + video));
+                        startActivity(webIntent);
+                    }
+                })
+                .setNegativeButton("Reintentar", (dialog, which) -> {
+                    // Código para reintentar
+                })
+                .show();
+    }
+
+
+
+    private void loadImageIntoView(String url, ImageView imageView, String tag) {
         if (url != null) {
             Glide.with(PreguntaActivity.this)
                     .load(url)
                     .fitCenter()
                     .centerInside()
                     .into(imageView);
+            imageView.setTag(tag);
         }
     }
+
 
 }
