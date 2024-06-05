@@ -22,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,6 +45,8 @@ public class PreguntaActivity extends AppCompatActivity {
     private String imgCorrect;
     private String imgIncorrect;
 
+    Double puntosPregunta, monedasPregunta;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +63,8 @@ public class PreguntaActivity extends AppCompatActivity {
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
 
+        mAuth = FirebaseAuth.getInstance();
         // Verificar el usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -92,6 +95,23 @@ public class PreguntaActivity extends AppCompatActivity {
             return insets;
         });
 
+        db.collection(param1).document(param2)
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        Log.w(TAG, "Listen failed.", error);
+                        return;
+                    }
+
+                    if (value != null && value.exists()) {
+                        puntosPregunta = value.getDouble("puntos");
+                        monedasPregunta = value.getDouble("monedas");
+                        Log.d("puntos pregunta de inicio", String.valueOf(puntosPregunta));
+
+                    } else {
+                        Log.d(TAG, "Current data: null");
+                    }
+                    });
+
         // Configurar el botón de retroceso
         btn_back.setOnClickListener(v -> finish());
 
@@ -117,6 +137,8 @@ public class PreguntaActivity extends AppCompatActivity {
                         String incorrect2Text = value.getString("incorrecta2");
                         String incorrect3Text = value.getString("incorrecta3");
                         String video = value.getString("link");
+                        Double puntosDouble = value.getDouble("puntos");
+                        Log.d("puntos pregunta", String.valueOf(puntosDouble));
 
                         List<String> responses = new ArrayList<>();
                         responses.add(correctText);
@@ -181,6 +203,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     .fitCenter()
                     .centerInside()
                     .into(imageView);
+            updatePoints();
         } else {
             view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_incorrect));
             Glide.with(getApplicationContext())
@@ -245,6 +268,45 @@ public class PreguntaActivity extends AppCompatActivity {
         response4.setOnClickListener(view -> checkAnswer(view, correctText, video));
     }
 
+    private void updatePoints() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los puntos actuales y actualizar el valor
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentPoints = document.getDouble("puntos");
+                        Double currentCoins = document.getDouble("monedas");
+                        if (currentPoints == null && currentCoins == null) {
+                            currentPoints = 0.0;
+                            currentCoins = 0.0;
+                        }
+
+                        Double newPoints = currentPoints + puntosPregunta;
+                        Double newCoins = currentCoins + monedasPregunta;
+
+                        // Actualizar el campo 'puntos'
+                        userDocRef.update("puntos", newPoints, "monedas", newCoins)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "Puntos actualizados correctamente"))
+                                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar puntos", e));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
 
 
     private void loadImageIntoView(String url, ImageView imageView, String tag) {
@@ -257,6 +319,4 @@ public class PreguntaActivity extends AppCompatActivity {
             imageView.setTag(tag);
         }
     }
-
-
 }
