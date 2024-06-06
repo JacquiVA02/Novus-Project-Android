@@ -157,49 +157,49 @@
         app:layout_constraintTop_toBottomOf="@+id/text0">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/R10I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView15"
+            android:id="@+id/R9I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView16"
+            android:id="@+id/R8I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView17"
+            android:id="@+id/R7I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView18"
+            android:id="@+id/R6I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView19"
+            android:id="@+id/R5I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView20"
+            android:id="@+id/R4I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView21"
+            android:id="@+id/R3I1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             app:srcCompat="@drawable/red" />

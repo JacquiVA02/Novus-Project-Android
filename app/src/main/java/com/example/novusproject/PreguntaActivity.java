@@ -46,6 +46,7 @@ public class PreguntaActivity extends AppCompatActivity {
     private String imgIncorrect;
 
     Double puntosPregunta, monedasPregunta;
+    String param1, param2, param3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +79,14 @@ public class PreguntaActivity extends AppCompatActivity {
         }
 
         // Obtener los parámetros
-        String param1 = getIntent().getStringExtra("isla");
-        String param2 = getIntent().getStringExtra("pregunta");
+        param1 = getIntent().getStringExtra("isla");
+        param2 = getIntent().getStringExtra("pregunta");
+        param3 = getIntent().getStringExtra("estado");
 
-        if (param1 != null && param2 != null) {
+        if (param1 != null && param2 != null && param3 != null ){
             Log.d("isla", param1);
             Log.d("pregunta", param2);
+            Log.d("estado", param3);
         } else {
             Log.d("PreguntaActivity", "No se recibieron los parámetros esperados.");
         }
@@ -203,7 +206,11 @@ public class PreguntaActivity extends AppCompatActivity {
                     .fitCenter()
                     .centerInside()
                     .into(imageView);
+            updateQuestionState();
             updatePoints();
+
+            // Finalizar la actividad actual
+            finish();
         } else {
             view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_incorrect));
             Glide.with(getApplicationContext())
@@ -266,6 +273,36 @@ public class PreguntaActivity extends AppCompatActivity {
         response2.setOnClickListener(view -> checkAnswer(view, correctText, video));
         response3.setOnClickListener(view -> checkAnswer(view, correctText, video));
         response4.setOnClickListener(view -> checkAnswer(view, correctText, video));
+    }
+
+    private void updateQuestionState(){
+        // Se obtiene al usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null){
+            String userId = user.getUid();
+
+            // Referenciar al documento de UsuarioIsla
+            DocumentReference userDocRef = db.collection(param3).document(userId);
+
+            // Actualizar a true la pregunta
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Actualizar el campo de la pregunta
+                        userDocRef.update(param2, true)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "Valor actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar valor", e));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
     }
 
     private void updatePoints() {
