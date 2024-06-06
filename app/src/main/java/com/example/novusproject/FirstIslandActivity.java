@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,14 +20,17 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Map;
 
 public class FirstIslandActivity extends AppCompatActivity {
 
     ImageView btn_back, pregunta1, pregunta2;
-
+    TextView coins, Ac1, Ac2, Ac3;
     Button btn_map, btn_avatar, btn_shop;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -37,6 +42,11 @@ public class FirstIslandActivity extends AppCompatActivity {
         setContentView(R.layout.activity_first_island);
 
         btn_back = findViewById(R.id.buttonBackQuestion);
+
+        coins = findViewById(R.id.CoinQuestion);
+        Ac1 = findViewById(R.id.Ac1FI);
+        Ac2 = findViewById(R.id.Ac2FI);
+        Ac3 = findViewById(R.id.Ac3FI);
 
         pregunta1 = findViewById(R.id.R1I1);
         pregunta2 = findViewById(R.id.R2I1);
@@ -126,6 +136,7 @@ public class FirstIslandActivity extends AppCompatActivity {
         });
 
         verificarAvance();
+        getData();
     }
 
     private void verificarAvance() {
@@ -176,5 +187,41 @@ public class FirstIslandActivity extends AppCompatActivity {
         }
     }
 
+    private void getData() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            db.collection("Usuario").document(userId)
+                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+                            if (e != null) {
+                                Log.w("Firestore", "Listen failed", e);
+                                return;
+                            }
+
+                            if (snapshot != null && snapshot.exists()) {
+                                // Obtiene el valor del campo y lo muestra en el TextView
+                                Object value = snapshot.get("monedas");
+                                Object value1 = snapshot.get("c1");
+                                Object value2 = snapshot.get("c2");
+                                Object value3 = snapshot.get("c3");
+                                if (value != null) {
+                                    coins.setText(String.valueOf(value));
+                                    Ac1.setText(String.valueOf(value1));
+                                    Ac2.setText(String.valueOf(value2));
+                                    Ac3.setText(String.valueOf(value3));
+
+                                } else {
+                                    Log.d("Firestore", "Campo 'monedas' no encontrado");
+                                }
+                            } else {
+                                Log.d("Firestore", "Current data: null");
+                            }
+
+                        }
+                    });
+        }
+    }
 
 }

@@ -62,10 +62,10 @@ public class MapaActivity extends AppCompatActivity {
 
         btnIsland1 = findViewById(R.id.buttonIsland1);
 
-        coins = findViewById(R.id.textViewCoin);
-        Ac1 = findViewById(R.id.textViewAc1);
-        Ac2 = findViewById(R.id.textViewAc2);
-        Ac3 = findViewById(R.id.textViewAc3);
+        coins = findViewById(R.id.CoinQuestion);
+        Ac1 = findViewById(R.id.Ac1FI);
+        Ac2 = findViewById(R.id.Ac2FI);
+        Ac3 = findViewById(R.id.Ac3FI);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

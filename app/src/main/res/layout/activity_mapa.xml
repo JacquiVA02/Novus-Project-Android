@@ -139,7 +139,7 @@
             app:srcCompat="@drawable/profile" />
 
         <TextView
-            android:id="@+id/textViewCoin"
+            android:id="@+id/CoinQuestion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5sp"
@@ -171,7 +171,7 @@
             app:srcCompat="@drawable/profile" />
 
         <TextView
-            android:id="@+id/textViewAc1"
+            android:id="@+id/Ac1FI"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -190,7 +190,7 @@
             app:srcCompat="@drawable/profile" />
 
         <TextView
-            android:id="@+id/textViewAc2"
+            android:id="@+id/Ac2FI"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -209,7 +209,7 @@
             app:srcCompat="@drawable/profile" />
 
         <TextView
-            android:id="@+id/textViewAc3"
+            android:id="@+id/Ac3FI"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

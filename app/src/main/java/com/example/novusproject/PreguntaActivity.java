@@ -32,12 +32,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import android.app.AlertDialog;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class PreguntaActivity extends AppCompatActivity {
 
-    ImageView btn_back, question, response1, response2, response3, response4;
+    ImageView btn_back, question, response1, response2, response3, response4, coffee, eraser, candy;
+    TextView coins;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
@@ -61,6 +63,11 @@ public class PreguntaActivity extends AppCompatActivity {
         response2 = findViewById(R.id.imageResponse2);
         response3 = findViewById(R.id.imageResponse3);
         response4 = findViewById(R.id.imageResponse4);
+
+        coins = findViewById(R.id.CoinQuestion);
+        coffee = findViewById(R.id.CoffeeComodin);
+        eraser = findViewById(R.id.EraserComodin);
+        candy = findViewById(R.id.CandyComodin);
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -119,6 +126,7 @@ public class PreguntaActivity extends AppCompatActivity {
         btn_back.setOnClickListener(v -> finish());
 
         // Obtener la pregunta y los elementos solo una vez al crear la actividad
+        getData();
         getQuestion(param1, param2);
         getElements();
     }
@@ -345,6 +353,42 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
+    private void getData() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            db.collection("Usuario").document(userId)
+                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+                            if (e != null) {
+                                Log.w("Firestore", "Listen failed", e);
+                                return;
+                            }
+
+                            if (snapshot != null && snapshot.exists()) {
+                                // Obtiene el valor del campo y lo muestra en el TextView
+                                Object value = snapshot.get("monedas");
+                                Object value1 = snapshot.get("c1");
+                                Object value2 = snapshot.get("c2");
+                                Object value3 = snapshot.get("c3");
+                                if (value != null) {
+                                    coins.setText(String.valueOf(value));
+                                    //Ac1.setText(String.valueOf(value1));
+                                    //Ac2.setText(String.valueOf(value2));
+                                    //Ac3.setText(String.valueOf(value3));
+
+                                } else {
+                                    Log.d("Firestore", "Campo 'monedas' no encontrado");
+                                }
+                            } else {
+                                Log.d("Firestore", "Current data: null");
+                            }
+
+                        }
+                    });
+        }
+    }
 
     private void loadImageIntoView(String url, ImageView imageView, String tag) {
         if (url != null) {
