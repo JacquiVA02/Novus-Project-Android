@@ -3,6 +3,7 @@ package com.example.novusproject;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -39,6 +40,8 @@ import android.widget.Toast;
 public class PreguntaActivity extends AppCompatActivity {
 
     ImageView btn_back, question, response1, response2, response3, response4, coffee, eraser, candy;
+    private List<ImageView> responseViews;
+    String correctText;
     TextView coins;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -46,6 +49,10 @@ public class PreguntaActivity extends AppCompatActivity {
     // Declarar las variables imgCorrect e imgIncorrect como variables de clase
     private String imgCorrect;
     private String imgIncorrect;
+    // Declarar las variables para los valores c1, c2 y c3 como campos de clase
+    private Double c1 = 0.0;
+    private Double c2 = 0.0;
+    private Double c3 = 0.0;
 
     Double puntosPregunta, monedasPregunta;
     String param1, param2, param3;
@@ -64,10 +71,19 @@ public class PreguntaActivity extends AppCompatActivity {
         response3 = findViewById(R.id.imageResponse3);
         response4 = findViewById(R.id.imageResponse4);
 
+        // Inicialización de responseViews y añadir las respuestas
+        responseViews = new ArrayList<>();
+        responseViews.add(response1);
+        responseViews.add(response2);
+        responseViews.add(response3);
+        responseViews.add(response4);
+
         coins = findViewById(R.id.CoinQuestion);
         coffee = findViewById(R.id.CoffeeComodin);
         eraser = findViewById(R.id.EraserComodin);
         candy = findViewById(R.id.CandyComodin);
+
+
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -75,15 +91,55 @@ public class PreguntaActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         // Verificar el usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
+        // Dentro del método onCreate o donde sea necesario obtener los valores de c1, c2 y c3
         if (user != null) {
             String userId = user.getUid();
             Log.d(TAG, "Usuario ID: " + userId);
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los datos del documento Usuario
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Obtener los valores de c1, c2 y c3
+                        c1 = document.getDouble("c1");
+                        c2 = document.getDouble("c2");
+                        c3 = document.getDouble("c3");
+
+                        // Verificar si alguno de los valores es null y manejarlo si es necesario
+                        if (c1 == null) {
+                            c1 = 0.0;  // Valor por defecto o manejo apropiado
+                        }
+                        if (c2 == null) {
+                            c2 = 0.0;  // Valor por defecto o manejo apropiado
+                        }
+                        if (c3 == null) {
+                            c3 = 0.0;  // Valor por defecto o manejo apropiado
+                        }
+
+                        // Aquí puedes utilizar c1, c2, c3 según tus necesidades
+                        Log.d(TAG, "c1: " + c1);
+                        Log.d(TAG, "c2: " + c2);
+                        Log.d(TAG, "c3: " + c3);
+
+                        // Puedes almacenar estos valores en variables globales si necesitas usarlos fuera de este bloque
+                    } else {
+                        Log.d(TAG, "El documento Usuario no existe");
+                    }
+                } else {
+                    Log.d(TAG, "Error al obtener el documento Usuario", task.getException());
+                }
+            });
         } else {
             Log.d(TAG, "Usuario no autenticado");
             startActivity(new Intent(PreguntaActivity.this, SesionActivity.class));
             finish();
             return;
         }
+
 
         // Obtener los parámetros
         param1 = getIntent().getStringExtra("isla");
@@ -125,6 +181,28 @@ public class PreguntaActivity extends AppCompatActivity {
         // Configurar el botón de retroceso
         btn_back.setOnClickListener(v -> finish());
 
+        // USAR COMODIN DE CAFE
+        coffee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (c1 != 0){
+                    removeRandomIncorrectResponses();
+                    updateRemoveOpC1();
+                }else {
+                    // Mostrar un AlertDialog indicando que el usuario no tiene el comodín disponible
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PreguntaActivity.this);
+                    builder.setMessage("No tienes disponible el comodín.")
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss(); // Cierra el diálogo
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
+
         // Obtener la pregunta y los elementos solo una vez al crear la actividad
         getData();
         getQuestion(param1, param2);
@@ -143,7 +221,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     if (value != null && value.exists()) {
                         Log.d(TAG, "Current data: " + value.getData());
                         String questionText = value.getString("pregunta");
-                        String correctText = value.getString("correcta");
+                        correctText = value.getString("correcta");
                         String incorrect1Text = value.getString("incorrecta1");
                         String incorrect2Text = value.getString("incorrecta2");
                         String incorrect3Text = value.getString("incorrecta3");
@@ -184,6 +262,35 @@ public class PreguntaActivity extends AppCompatActivity {
                 });
     }
 
+    // Método para eliminar dos respuestas incorrectas aleatorias
+    private void removeRandomIncorrectResponses() {
+        List<ImageView> incorrectResponses = new ArrayList<>();
+
+        // Identificar y almacenar las respuestas incorrectas
+        for (ImageView view : responseViews) {
+            String tag = (String) view.getTag();
+            if (tag != null && !tag.equals(correctText)) {
+                incorrectResponses.add(view);
+            }
+        }
+
+        // Verificar si hay al menos dos respuestas incorrectas para eliminar
+        if (incorrectResponses.size() >= 2) {
+            // Mezclar la lista de respuestas incorrectas para seleccionar dos aleatoriamente
+            Collections.shuffle(incorrectResponses);
+
+            // Eliminar las dos primeras respuestas incorrectas aleatorias
+            ImageView responseToRemove1 = incorrectResponses.get(0);
+            ImageView responseToRemove2 = incorrectResponses.get(1);
+
+            // Ocultar las respuestas eliminadas (puedes cambiar la visibilidad según tus necesidades)
+            responseToRemove1.setVisibility(View.GONE);
+            responseToRemove2.setVisibility(View.GONE);
+        } else {
+            Log.d(TAG, "No hay suficientes respuestas incorrectas para eliminar.");
+        }
+    }
+
     private void getElements(){
         db.collection("Elementos").document("elementos")
                 .addSnapshotListener((value, error) -> {
@@ -216,9 +323,11 @@ public class PreguntaActivity extends AppCompatActivity {
                     .into(imageView);
             updateQuestionState();
             updatePoints();
+            updateOpC1();
 
             // Finalizar la actividad actual
             finish();
+
         } else {
             view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_incorrect));
             Glide.with(getApplicationContext())
@@ -226,6 +335,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     .fitCenter()
                     .centerInside()
                     .into(imageView);
+            updateWrongOpC1();
             showIncorrectAnswerDialog(correctText, video);
         }
 
@@ -312,6 +422,144 @@ public class PreguntaActivity extends AppCompatActivity {
             Log.d(TAG, "Usuario no autenticado");
         }
     }
+
+    private void updateOpC1() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los valores actuales de opc1 y c1, y actualizar
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentC1 = document.getDouble("c1");
+                        if (currentC1 == null) {
+                            currentC1 = 0.0;
+                        }
+
+                        Double currentOpC1 = document.getDouble("opc1");
+                        if (currentOpC1 == null) {
+                            currentOpC1 = 0.0;
+                        }
+
+                        // Verificar si opc1 alcanzó el valor de 3
+                        if (currentOpC1 >= 3) {
+                            // Incrementar c1 en 1 y reiniciar opc1 a 0
+                            Double newC1 = currentC1 + 1;
+                            userDocRef.update("c1", newC1, "opc1", 0.0)
+                                    .addOnSuccessListener(aVoid -> Log.d(TAG, "c1 y opc1 actualizados correctamente"))
+                                    .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar c1 y opc1", e));
+                        } else {
+                            // Incrementar opc1 en 1
+                            Double newOpC1 = currentOpC1 + 1;
+                            userDocRef.update("opc1", newOpC1)
+                                    .addOnSuccessListener(aVoid -> Log.d(TAG, "opc1 actualizado correctamente"))
+                                    .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar opc1", e));
+                        }
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    private void updateRemoveOpC1() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener el c1 actual y actualizar valor
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentC1 = document.getDouble("c1");
+                        if (currentC1 == null) {
+                            currentC1 = 0.0;
+                        }
+
+                        Double newC1 = currentC1 - 1;
+
+                        // Actualizar el campo 'c1'
+                        userDocRef.update("c1", newC1)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "c1 actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar c1", e));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    private void updateWrongOpC1() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los valores actuales de opc1 y actualizar a 0
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentC1 = document.getDouble("c1");
+                        if (currentC1 == null) {
+                            currentC1 = 0.0;
+                        }
+
+                        Double currentOpC1 = document.getDouble("opc1");
+                        if (currentOpC1 == null) {
+                            currentOpC1 = 0.0;
+                        }
+
+                        // Verificar si opc1 alcanzó el valor de 3
+                        if (currentOpC1 >= 3) {
+                            // Incrementar c1 en 1 y reiniciar opc1 a 0
+                            Double newC1 = currentC1 + 1;
+                            userDocRef.update("c1", newC1, "opc1", 0.0)
+                                    .addOnSuccessListener(aVoid -> Log.d(TAG, "c1 y opc1 actualizados correctamente"))
+                                    .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar c1 y opc1", e));
+                        } else {
+                            // Incrementar opc1 en 1
+                            Double newOpC1 = 0.0;
+                            userDocRef.update("opc1", newOpC1)
+                                    .addOnSuccessListener(aVoid -> Log.d(TAG, "opc1 actualizado correctamente"))
+                                    .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar opc1", e));
+                        }
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
 
     private void updatePoints() {
         // Obtener el usuario actual

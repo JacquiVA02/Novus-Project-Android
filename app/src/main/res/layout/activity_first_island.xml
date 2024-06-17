@@ -68,7 +68,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/profile" />
+            app:srcCompat="@drawable/coffee" />
 
         <TextView
             android:id="@+id/Ac1FI"
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="2sp"
-            app:srcCompat="@drawable/profile" />
+            app:srcCompat="@drawable/eraser" />
 
         <TextView
             android:id="@+id/Ac2FI"
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="2sp"
-            app:srcCompat="@drawable/profile" />
+            app:srcCompat="@drawable/candy" />
 
         <TextView
             android:id="@+id/Ac3FI"
