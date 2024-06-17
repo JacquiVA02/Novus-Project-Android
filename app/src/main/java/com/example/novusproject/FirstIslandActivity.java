@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class FirstIslandActivity extends AppCompatActivity {
 
-    ImageView btn_back, pregunta1, pregunta2;
+    ImageView btn_back, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10;
     TextView coins, Ac1, Ac2, Ac3;
     Button btn_map, btn_avatar, btn_shop;
     FirebaseFirestore db;
@@ -50,6 +50,14 @@ public class FirstIslandActivity extends AppCompatActivity {
 
         pregunta1 = findViewById(R.id.R1I1);
         pregunta2 = findViewById(R.id.R2I1);
+        pregunta3 = findViewById(R.id.R3I1);
+        pregunta4 = findViewById(R.id.R4I1);
+        pregunta5 = findViewById(R.id.R5I1);
+        pregunta6 = findViewById(R.id.R6I1);
+        pregunta7 = findViewById(R.id.R7I1);
+        pregunta8 = findViewById(R.id.R8I1);
+        pregunta9 = findViewById(R.id.R9I1);
+        pregunta10 = findViewById(R.id.R10I1);
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -96,8 +104,96 @@ public class FirstIslandActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "Segunda");
+                intent.putExtra("isla", "Primera");
                 intent.putExtra("pregunta", "R2I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R3I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R4I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R5I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R6I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R7I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R8I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R9I1");
+                intent.putExtra("estado", "UsuarioPrimera");
+                startActivity(intent);
+            }
+        });
+
+        pregunta10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandActivity.this, PreguntaActivity.class);
+                intent.putExtra("isla", "Primera");
+                intent.putExtra("pregunta", "R10I1");
                 intent.putExtra("estado", "UsuarioPrimera");
                 startActivity(intent);
             }
@@ -192,36 +288,49 @@ public class FirstIslandActivity extends AppCompatActivity {
         if (user != null) {
             String userId = user.getUid();
             db.collection("Usuario").document(userId)
-                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
-                            if (e != null) {
-                                Log.w("Firestore", "Listen failed", e);
-                                return;
-                            }
+                    .addSnapshotListener((snapshot, e) -> {
+                        if (e != null) {
+                            Log.w("Firestore", "Listen failed", e);
+                            return;
+                        }
 
-                            if (snapshot != null && snapshot.exists()) {
-                                // Obtiene el valor del campo y lo muestra en el TextView
-                                Object value = snapshot.get("monedas");
-                                Object value1 = snapshot.get("c1");
-                                Object value2 = snapshot.get("c2");
-                                Object value3 = snapshot.get("c3");
-                                if (value != null) {
-                                    coins.setText(String.valueOf(value));
-                                    Ac1.setText(String.valueOf(value1));
-                                    Ac2.setText(String.valueOf(value2));
-                                    Ac3.setText(String.valueOf(value3));
+                        if (snapshot != null && snapshot.exists()) {
+                            // Obtiene el valor del campo y lo muestra en el TextView
+                            Object coinsValue = snapshot.get("monedas");
+                            Object c1Value = snapshot.get("c1");
+                            Object c2Value = snapshot.get("c2");
+                            Object c3Value = snapshot.get("c3");
 
-                                } else {
-                                    Log.d("Firestore", "Campo 'monedas' no encontrado");
-                                }
+                            if (coinsValue instanceof Number) {
+                                coins.setText(String.valueOf(((Number) coinsValue).intValue()));
                             } else {
-                                Log.d("Firestore", "Current data: null");
+                                Log.d("Firestore", "Valor de 'monedas' no es numérico");
                             }
 
+                            if (c1Value instanceof Number) {
+                                Ac1.setText(String.valueOf(((Number) c1Value).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c1' no es numérico");
+                            }
+
+                            if (c2Value instanceof Number) {
+                                Ac2.setText(String.valueOf(((Number) c2Value).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c2' no es numérico");
+                            }
+
+                            if (c3Value instanceof Number) {
+                                Ac3.setText(String.valueOf(((Number) c3Value).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c3' no es numérico");
+                            }
+
+                        } else {
+                            Log.d("Firestore", "No hay datos actuales (snapshot es null o no existe)");
                         }
                     });
         }
     }
+
 
 }

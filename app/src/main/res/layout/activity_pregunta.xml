@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/profile" />
+            app:srcCompat="@drawable/coin" />
 
         <TextView
             android:id="@+id/CoinQuestion"
@@ -102,9 +102,9 @@
             android:id="@+id/CoffeeComodin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25sp"
+            android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
-            android:layout_marginRight="25sp"
+            android:layout_marginRight="15sp"
             android:layout_marginBottom="5sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_profile"
@@ -114,13 +114,23 @@
             android:paddingBottom="10sp"
             app:srcCompat="@drawable/coffee" />
 
+        <TextView
+            android:id="@+id/coffeeUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:ignore="DuplicateIds" />
+
         <ImageView
             android:id="@+id/EraserComodin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25sp"
+            android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
-            android:layout_marginRight="25sp"
+            android:layout_marginRight="15sp"
             android:layout_marginBottom="5sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_profile"
@@ -132,13 +142,22 @@
             android:rotationY="-181"
             app:srcCompat="@drawable/eraser" />
 
+        <TextView
+            android:id="@+id/eraserUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
         <ImageView
             android:id="@+id/CandyComodin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25sp"
+            android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
-            android:layout_marginRight="25sp"
+            android:layout_marginRight="15sp"
             android:layout_marginBottom="5sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_profile"
@@ -147,6 +166,16 @@
             android:paddingRight="5sp"
             android:paddingBottom="10sp"
             app:srcCompat="@drawable/candy" />
+
+        <TextView
+            android:id="@+id/candyUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <TextView
@@ -214,6 +243,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

@@ -42,7 +42,7 @@ public class PreguntaActivity extends AppCompatActivity {
     ImageView btn_back, question, response1, response2, response3, response4, coffee, eraser, candy;
     private List<ImageView> responseViews;
     String correctText;
-    TextView coins;
+    TextView coins, coffeeUser, eraserUser, candyUser;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
@@ -83,7 +83,9 @@ public class PreguntaActivity extends AppCompatActivity {
         eraser = findViewById(R.id.EraserComodin);
         candy = findViewById(R.id.CandyComodin);
 
-
+        coffeeUser = findViewById(R.id.coffeeUser);
+        eraserUser = findViewById(R.id.eraserUser);
+        candyUser = findViewById(R.id.candyUser);
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -182,13 +184,70 @@ public class PreguntaActivity extends AppCompatActivity {
         btn_back.setOnClickListener(v -> finish());
 
         // USAR COMODIN DE CAFE
+        eraser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (c2 != 0){
+                    removeRandomIncorrectResponses();
+                    updateRemoveOpC2();
+                }else {
+                    // Mostrar un AlertDialog indicando que el usuario no tiene el comodín disponible
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PreguntaActivity.this);
+                    builder.setMessage("No tienes disponible el comodín.")
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss(); // Cierra el diálogo
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
+
         coffee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (c1 != 0){
-                    removeRandomIncorrectResponses();
+                if(c1 != 0){
+                    // Ocultar todas las respuestas incorrectas
+                    for (ImageView view : responseViews) {
+                        String tag = (String) view.getTag();
+                        if (tag != null && !tag.equals(correctText)) {
+                            view.setVisibility(View.GONE);
+                        }
+                    }
+
+                    // Asegurarse de que la respuesta correcta esté visible
+                    for (ImageView view : responseViews) {
+                        String tag = (String) view.getTag();
+                        if (tag != null && tag.equals(correctText)) {
+                            view.setVisibility(View.VISIBLE);
+                        }
+                    }
                     updateRemoveOpC1();
-                }else {
+                } else {
+                    // Mostrar un AlertDialog indicando que el usuario no tiene el comodín disponible
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PreguntaActivity.this);
+                    builder.setMessage("No tienes disponible el comodín.")
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss(); // Cierra el diálogo
+                                }
+                            })
+                            .show();
+                }
+
+            }
+        });
+
+        candy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (c3 != 0){
+                    removeRandomIncorrectResponse1();
+                    updateRemoveOpC3();
+                } else {
                     // Mostrar un AlertDialog indicando que el usuario no tiene el comodín disponible
                     AlertDialog.Builder builder = new AlertDialog.Builder(PreguntaActivity.this);
                     builder.setMessage("No tienes disponible el comodín.")
@@ -291,6 +350,33 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
+    // Método para eliminar una respuesta incorrecta aleatoria
+    private void removeRandomIncorrectResponse1() {
+        List<ImageView> incorrectResponses = new ArrayList<>();
+
+        // Identificar y almacenar las respuestas incorrectas
+        for (ImageView view : responseViews) {
+            String tag = (String) view.getTag();
+            if (tag != null && !tag.equals(correctText)) {
+                incorrectResponses.add(view);
+            }
+        }
+
+        // Verificar si hay al menos dos respuestas incorrectas para eliminar
+        if (incorrectResponses.size() >= 2) {
+            // Mezclar la lista de respuestas incorrectas para seleccionar dos aleatoriamente
+            Collections.shuffle(incorrectResponses);
+
+            // Eliminar la primera respuesta incorrecta aleatoria
+            ImageView responseToRemove1 = incorrectResponses.get(0);
+
+            // Ocultar la respuesta eliminada
+            responseToRemove1.setVisibility(View.GONE);
+        } else {
+            Log.d(TAG, "No hay suficientes respuestas incorrectas para eliminar.");
+        }
+    }
+
     private void getElements(){
         db.collection("Elementos").document("elementos")
                 .addSnapshotListener((value, error) -> {
@@ -323,7 +409,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     .into(imageView);
             updateQuestionState();
             updatePoints();
-            updateOpC1();
+            updateOpC2();
 
             // Finalizar la actividad actual
             finish();
@@ -335,7 +421,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     .fitCenter()
                     .centerInside()
                     .into(imageView);
-            updateWrongOpC1();
+            updateWrongOpC2();
             showIncorrectAnswerDialog(correctText, video);
         }
 
@@ -423,7 +509,7 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
-    private void updateOpC1() {
+    private void updateOpC2() {
         // Obtener el usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -437,7 +523,7 @@ public class PreguntaActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Double currentC1 = document.getDouble("c1");
+                        Double currentC1 = document.getDouble("c2");
                         if (currentC1 == null) {
                             currentC1 = 0.0;
                         }
@@ -451,8 +537,8 @@ public class PreguntaActivity extends AppCompatActivity {
                         if (currentOpC1 >= 3) {
                             // Incrementar c1 en 1 y reiniciar opc1 a 0
                             Double newC1 = currentC1 + 1;
-                            userDocRef.update("c1", newC1, "opc1", 0.0)
-                                    .addOnSuccessListener(aVoid -> Log.d(TAG, "c1 y opc1 actualizados correctamente"))
+                            userDocRef.update("c2", newC1, "opc1", 0.0)
+                                    .addOnSuccessListener(aVoid -> Log.d(TAG, "c2 y opc1 actualizados correctamente"))
                                     .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar c1 y opc1", e));
                         } else {
                             // Incrementar opc1 en 1
@@ -510,7 +596,81 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
-    private void updateWrongOpC1() {
+    private void updateRemoveOpC2() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener el c1 actual y actualizar valor
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentC1 = document.getDouble("c2");
+                        if (currentC1 == null) {
+                            currentC1 = 0.0;
+                        }
+
+                        Double newC1 = currentC1 - 1;
+
+                        // Actualizar el campo 'c1'
+                        userDocRef.update("c2", newC1)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "c2 actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar c2", e));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    private void updateRemoveOpC3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener el c1 actual y actualizar valor
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentC1 = document.getDouble("c3");
+                        if (currentC1 == null) {
+                            currentC1 = 0.0;
+                        }
+
+                        Double newC1 = currentC1 - 1;
+
+                        // Actualizar el campo 'c1'
+                        userDocRef.update("c3", newC1)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "c3 actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar c3", e));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    private void updateWrongOpC2() {
         // Obtener el usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -524,7 +684,7 @@ public class PreguntaActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Double currentC1 = document.getDouble("c1");
+                        Double currentC1 = document.getDouble("c2");
                         if (currentC1 == null) {
                             currentC1 = 0.0;
                         }
@@ -538,7 +698,7 @@ public class PreguntaActivity extends AppCompatActivity {
                         if (currentOpC1 >= 3) {
                             // Incrementar c1 en 1 y reiniciar opc1 a 0
                             Double newC1 = currentC1 + 1;
-                            userDocRef.update("c1", newC1, "opc1", 0.0)
+                            userDocRef.update("c2", newC1, "opc1", 0.0)
                                     .addOnSuccessListener(aVoid -> Log.d(TAG, "c1 y opc1 actualizados correctamente"))
                                     .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar c1 y opc1", e));
                         } else {
@@ -606,37 +766,50 @@ public class PreguntaActivity extends AppCompatActivity {
         if (user != null) {
             String userId = user.getUid();
             db.collection("Usuario").document(userId)
-                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
-                            if (e != null) {
-                                Log.w("Firestore", "Listen failed", e);
-                                return;
-                            }
+                    .addSnapshotListener((snapshot, e) -> {
+                        if (e != null) {
+                            Log.w("Firestore", "Listen failed", e);
+                            return;
+                        }
 
-                            if (snapshot != null && snapshot.exists()) {
-                                // Obtiene el valor del campo y lo muestra en el TextView
-                                Object value = snapshot.get("monedas");
-                                Object value1 = snapshot.get("c1");
-                                Object value2 = snapshot.get("c2");
-                                Object value3 = snapshot.get("c3");
-                                if (value != null) {
-                                    coins.setText(String.valueOf(value));
-                                    //Ac1.setText(String.valueOf(value1));
-                                    //Ac2.setText(String.valueOf(value2));
-                                    //Ac3.setText(String.valueOf(value3));
+                        if (snapshot != null && snapshot.exists()) {
+                            // Obtiene el valor del campo y lo muestra en el TextView
+                            Object coinsValue = snapshot.get("monedas");
+                            Object coffeeValue = snapshot.get("c1");
+                            Object eraserValue = snapshot.get("c2");
+                            Object candyValue = snapshot.get("c3");
 
-                                } else {
-                                    Log.d("Firestore", "Campo 'monedas' no encontrado");
-                                }
+                            if (coinsValue instanceof Number) {
+                                coins.setText(String.valueOf(((Number) coinsValue).intValue()));
                             } else {
-                                Log.d("Firestore", "Current data: null");
+                                Log.d("Firestore", "Valor de 'monedas' no es numérico");
                             }
 
+                            if (coffeeValue instanceof Number) {
+                                coffeeUser.setText(String.valueOf(((Number) coffeeValue).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c1' no es numérico");
+                            }
+
+                            if (eraserValue instanceof Number) {
+                                eraserUser.setText(String.valueOf(((Number) eraserValue).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c2' no es numérico");
+                            }
+
+                            if (candyValue instanceof Number) {
+                                candyUser.setText(String.valueOf(((Number) candyValue).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c3' no es numérico");
+                            }
+
+                        } else {
+                            Log.d("Firestore", "No hay datos actuales (snapshot es null o no existe)");
                         }
                     });
         }
     }
+
 
     private void loadImageIntoView(String url, ImageView imageView, String tag) {
         if (url != null) {

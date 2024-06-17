@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/profile" />
+            app:srcCompat="@drawable/coin" />
 
         <TextView
             android:id="@+id/CoinQuestion"
