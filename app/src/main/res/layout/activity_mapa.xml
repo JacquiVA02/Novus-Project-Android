@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/text0"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="138dp"
         android:background="#0B1741"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/text0"
-        android:layout_width="413dp"
+        android:layout_width="0dp"
         android:layout_height="117dp"
         android:background="#0B1741"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -224,7 +224,7 @@
         android:id="@+id/buttonIsland1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Primera Isla"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

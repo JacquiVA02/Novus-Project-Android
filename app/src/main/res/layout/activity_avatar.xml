@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/text0"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="113dp"
         android:background="#0B1741"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/text0"
-        android:layout_width="413dp"
+        android:layout_width="0dp"
         android:layout_height="117dp"
         android:background="#0B1741"
         app:layout_constraintBottom_toBottomOf="parent"
