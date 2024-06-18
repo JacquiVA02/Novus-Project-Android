@@ -153,11 +153,17 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="180dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="15dp"
+        android:background="#0A0F1A"
+        android:backgroundTint="#090B15"
         android:orientation="horizontal"
+        android:paddingLeft="2sp"
+        android:paddingTop="2sp"
+        android:paddingRight="2sp"
+        android:paddingBottom="2sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -230,5 +236,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
         app:layout_constraintVertical_bias="0.368" />
+
+    <Button
+        android:id="@+id/buttonIsland2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Segunda Isla"
+        app:layout_constraintBottom_toBottomOf="@+id/text0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
