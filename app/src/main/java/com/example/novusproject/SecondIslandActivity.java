@@ -193,7 +193,6 @@ public class SecondIslandActivity extends AppCompatActivity {
             }
         });
 
-
         getData();
     }
 
