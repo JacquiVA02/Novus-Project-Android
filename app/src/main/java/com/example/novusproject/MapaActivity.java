@@ -29,7 +29,7 @@ public class MapaActivity extends AppCompatActivity {
 
     ImageView btn_profile, btn_back;
     TextView coins, Ac1, Ac2, Ac3;
-    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2;
+    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
 
@@ -62,6 +62,8 @@ public class MapaActivity extends AppCompatActivity {
 
         btnIsland1 = findViewById(R.id.buttonIsland1);
         btnIsland2 = findViewById(R.id.buttonIsland2);
+        btnIsland3 = findViewById(R.id.buttonIsland3);
+        btnIsland4 = findViewById(R.id.buttonIsland4);
 
         coins = findViewById(R.id.CoinQuestion);
         Ac1 = findViewById(R.id.Ac1FI);
@@ -112,6 +114,22 @@ public class MapaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapaActivity.this, SecondIslandActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnIsland3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, ThirdIslandActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnIsland4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, FourthIslandActivity.class);
                 startActivity(intent);
             }
         });
