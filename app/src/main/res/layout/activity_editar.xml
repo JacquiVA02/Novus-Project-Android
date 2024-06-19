@@ -73,7 +73,7 @@
         android:layout_weight="0.2" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/duck"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
@@ -107,7 +107,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/duck"
         app:layout_constraintVertical_bias="1.0">
 
         <ImageView
@@ -134,7 +134,7 @@
             android:layout_weight="1"
             android:paddingTop="8sp"
             android:paddingBottom="8sp"
-            app:srcCompat="@drawable/shirt" />
+            app:srcCompat="@drawable/collar" />
 
         <ImageView
             android:id="@+id/imageViewShoe"

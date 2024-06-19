@@ -18,7 +18,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class SecondIslandActivity extends AppCompatActivity {
 
@@ -193,8 +196,59 @@ public class SecondIslandActivity extends AppCompatActivity {
             }
         });
 
+        verificarAvance();
         getData();
     }
+
+
+    private void verificarAvance() {
+        // Se obtiene al usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referenciar al documento de UsuarioIsla
+            DocumentReference userDocRef = db.collection("UsuarioSegunda").document(userId);
+
+            // Escuchar cambios en el documento en tiempo real
+            userDocRef.addSnapshotListener((documentSnapshot, e) -> {
+                if (e != null) {
+                    Log.d(TAG, "Error al obtener el documento", e);
+                    return;
+                }
+
+                if (documentSnapshot != null && documentSnapshot.exists()) {
+                    // El documento existe, obtener sus datos
+                    Map<String, Object> userData = documentSnapshot.getData();
+                    if (userData != null) {
+                        for (Map.Entry<String, Object> entry : userData.entrySet()) {
+                            String key = entry.getKey();
+                            Object value = entry.getValue();
+                            //Log.d(TAG, "Key: " + key + " Value: " + value);
+
+                            // Verificar si el valor es true
+                            if (value instanceof Boolean && (Boolean) value) {
+                                // Obtener el id del ImageView usando el nombre de la clave
+                                int imageViewId = getResources().getIdentifier(key, "id", getPackageName());
+                                if (imageViewId != 0) {
+                                    ImageView imageView = findViewById(imageViewId);
+                                    if (imageView != null) {
+                                        // Cambiar la imagen del ImageView
+                                        imageView.setImageResource(R.drawable.green); // new_image es el nombre de la nueva imagen
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "El documento no existe.");
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
 
     private void getData() {
         FirebaseUser user = mAuth.getCurrentUser();
