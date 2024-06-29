@@ -104,7 +104,18 @@ public class EditarActivity extends AppCompatActivity {
                 for (String hat : availableHats) {
                     // Crear un nuevo botón para cada sombrero disponible
                     Button hatButton = new Button(EditarActivity.this);
+
+                    // Establecer el fondo circular
+                    hatButton.setBackground(getResources().getDrawable(R.drawable.ircular_button_with_border));
+
+                    // Ajustar el tamaño del botón
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200, 200); // tamaño en píxeles
+                    params.setMargins(10, 10, 10, 10); // margen entre botones
+                    hatButton.setLayoutParams(params);
+
+
                     hatButton.setText(hat);
+                    hatButton.setTextColor(getResources().getColor(R.color.white));
 
                     // Establecer un listener de clic para el botón
                     hatButton.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +155,17 @@ public class EditarActivity extends AppCompatActivity {
                 for (String face : availableFaces) {
                     // Crear un nuevo botón para cada sombrero disponible
                     Button faceButton = new Button(EditarActivity.this);
+
+                    // Establecer el fondo circular
+                    faceButton.setBackground(getResources().getDrawable(R.drawable.ircular_button_with_border));
+
+                    // Ajustar el tamaño del botón
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200, 200); // tamaño en píxeles
+                    params.setMargins(10, 10, 10, 10); // margen entre botones
+                    faceButton.setLayoutParams(params);
+
                     faceButton.setText(face);
+                    faceButton.setTextColor(getResources().getColor(R.color.white));
 
                     // Establecer un listener de clic para el botón
                     faceButton.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +205,17 @@ public class EditarActivity extends AppCompatActivity {
                 for (String neck : availableNecks) {
                     // Crear un nuevo botón para cada sombrero disponible
                     Button neckButton = new Button(EditarActivity.this);
+
+                    // Establecer el fondo circular
+                    neckButton.setBackground(getResources().getDrawable(R.drawable.ircular_button_with_border));
+
+                    // Ajustar el tamaño del botón
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200, 200); // tamaño en píxeles
+                    params.setMargins(10, 10, 10, 10); // margen entre botones
+                    neckButton.setLayoutParams(params);
+
                     neckButton.setText(neck);
+                    neckButton.setTextColor(getResources().getColor(R.color.white));
 
                     // Establecer un listener de clic para el botón
                     neckButton.setOnClickListener(new View.OnClickListener() {
@@ -224,7 +255,17 @@ public class EditarActivity extends AppCompatActivity {
                 for (String feet : availableFeets) {
                     // Crear un nuevo botón para cada sombrero disponible
                     Button feetButton = new Button(EditarActivity.this);
+
+                    // Establecer el fondo circular
+                    feetButton.setBackground(getResources().getDrawable(R.drawable.ircular_button_with_border));
+
+                    // Ajustar el tamaño del botón
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200, 200); // tamaño en píxeles
+                    params.setMargins(10, 10, 10, 10); // margen entre botones
+                    feetButton.setLayoutParams(params);
+
                     feetButton.setText(feet);
+                    feetButton.setTextColor(getResources().getColor(R.color.white));
 
                     // Establecer un listener de clic para el botón
                     feetButton.setOnClickListener(new View.OnClickListener() {
