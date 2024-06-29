@@ -17,13 +17,14 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
 
 public class EditarActivity extends AppCompatActivity {
 
-    ImageView btn_hat, btn_glasses, btn_shirt, btn_shoes, btn_back;
+    ImageView btn_hat, btn_glasses, btn_shirt, btn_shoes, btn_back, ActualHead, ActualFace, ActualFeet, ActualNeck;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
@@ -38,6 +39,11 @@ public class EditarActivity extends AppCompatActivity {
         btn_glasses = findViewById(R.id.imageViewGlasses);
         btn_shirt = findViewById(R.id.imageViewShirt);
         btn_shoes = findViewById(R.id.imageViewShoe);
+
+        ActualFace = findViewById(R.id.faceEdit);
+        ActualFeet = findViewById(R.id.feetEdit);
+        ActualHead = findViewById(R.id.headEdit);
+        ActualNeck = findViewById(R.id.neckEdit);
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -114,31 +120,64 @@ public class EditarActivity extends AppCompatActivity {
 
 
     private void verificarVestimenta() {
-        // Se obtiene al usuario actual
+        // Obtener al usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
 
-            // Referenciar al documento de UsuarioIsla
+            // Referenciar al documento de UsuarioAvatar
             DocumentReference userDocRef = db.collection("UsuarioAvatar").document(userId);
 
-            // Escuchar cambios en el documento en tiempo real
-            userDocRef.addSnapshotListener((documentSnapshot, e) -> {
-                if (e != null) {
-                    Log.d(TAG, "Error al obtener el documento", e);
-                    return;
-                }
+            // Obtener el documento una vez
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // El documento existe, obtener sus datos
+                        Map<String, Object> userData = document.getData();
+                        if (userData != null) {
+                            // Obtener valores actuales
+                            String actualFace = (String) userData.get("actualFace");
+                            String actualFeet = (String) userData.get("actualFeet");
+                            String actualHead = (String) userData.get("actualHead");
+                            String actualNeck = (String) userData.get("actualNeck");
 
-                if (documentSnapshot != null && documentSnapshot.exists()) {
-                    // El documento existe, obtener sus datos
-                    Map<String, Object> userData = documentSnapshot.getData();
+                            // Configurar la interfaz de usuario según los datos
+                            setImageViewResource(actualFace, ActualFace);
+                            setImageViewResource(actualFeet, ActualFeet);
+                            setImageViewResource(actualHead, ActualHead);
+                            setImageViewResource(actualNeck, ActualNeck);
 
+                            // Procesar el resto de los atributos
+                            for (Map.Entry<String, Object> entry : userData.entrySet()) {
+                                String key = entry.getKey();
+                                Object value = entry.getValue();
+
+                                if (value instanceof Boolean) {
+                                    Boolean isSelected = (Boolean) value;
+                                    // Procesar cada atributo booleano
+                                    Log.d(TAG, key + ": " + isSelected);
+                                }
+                            }
+                        }
+                    } else {
+                        Log.d(TAG, "El documento no existe.");
+                    }
                 } else {
-                    Log.d(TAG, "El documento no existe.");
+                    Log.d(TAG, "Error al obtener el documento: ", task.getException());
                 }
             });
         } else {
             Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    private void setImageViewResource(String imageName, ImageView imageView) {
+        int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+        if (resId != 0) {
+            imageView.setImageResource(resId);
+        } else {
+            Log.d(TAG, "Recurso no encontrado para: " + imageName);
         }
     }
 
