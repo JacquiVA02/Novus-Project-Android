@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -32,6 +33,7 @@ import java.util.Map;
 public class EditarActivity extends AppCompatActivity {
 
     ImageView btn_hat, btn_glasses, btn_shirt, btn_shoes, btn_back, ActualHead, ActualFace, ActualFeet, ActualNeck;
+    Button btn_guardar;
     LinearLayout things;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -47,6 +49,8 @@ public class EditarActivity extends AppCompatActivity {
         btn_glasses = findViewById(R.id.imageViewGlasses);
         btn_shirt = findViewById(R.id.imageViewShirt);
         btn_shoes = findViewById(R.id.imageViewShoe);
+
+        btn_guardar = findViewById(R.id.buttonSafe);
 
         ActualFace = findViewById(R.id.faceEdit);
         ActualFeet = findViewById(R.id.feetEdit);
@@ -239,6 +243,16 @@ public class EditarActivity extends AppCompatActivity {
             }
         });
 
+        btn_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guardarCambios();
+                Intent intent = new Intent(EditarActivity.this, AvatarActivity.class);
+                startActivity(intent);
+                Toast.makeText(EditarActivity.this, "Avatar editado con Exito", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -333,9 +347,38 @@ public class EditarActivity extends AppCompatActivity {
         int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
         if (resId != 0) {
             imageView.setImageResource(resId);
+            imageView.setTag(resId); // Configurar la etiqueta
         } else {
             Log.d(TAG, "Recurso no encontrado para: " + imageName);
         }
+    }
+
+
+    private void guardarCambios() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            DocumentReference userDocRef = db.collection("UsuarioAvatar").document(userId);
+
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("actualFace", getResourceName(ActualFace));
+            updates.put("actualFeet", getResourceName(ActualFeet));
+            updates.put("actualHead", getResourceName(ActualHead));
+            updates.put("actualNeck", getResourceName(ActualNeck));
+
+            userDocRef.update(updates).addOnSuccessListener(aVoid -> {
+                Log.d(TAG, "Datos actualizados exitosamente");
+            }).addOnFailureListener(e -> {
+                Log.d(TAG, "Error al actualizar los datos", e);
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    private String getResourceName(ImageView imageView) {
+        int resId = (int) imageView.getTag();
+        return getResources().getResourceEntryName(resId);
     }
 
 }

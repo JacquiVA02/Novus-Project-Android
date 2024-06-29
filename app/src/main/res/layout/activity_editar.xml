@@ -87,7 +87,7 @@
         app:srcCompat="@drawable/duck" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonSafe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -191,8 +191,10 @@
         android:layout_marginBottom="230dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/duck"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/neck2" />
 
     <LinearLayout
