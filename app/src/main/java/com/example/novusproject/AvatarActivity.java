@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 import java.util.Map;
 
@@ -48,6 +49,12 @@ public class AvatarActivity extends AppCompatActivity {
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
+
+        // Habilitar caché de Firestore
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
 
         mAuth = FirebaseAuth.getInstance();
         // Verificar el usuario actual
@@ -78,16 +85,6 @@ public class AvatarActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        btn_avatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AvatarActivity.this, AvatarActivity.class);
-                startActivity(intent);
-            }
-        });
-        */
-
         btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,31 +111,31 @@ public class AvatarActivity extends AppCompatActivity {
             // Referenciar al documento de UsuarioAvatar
             DocumentReference userDocRef = db.collection("UsuarioAvatar").document(userId);
 
-            // Obtener el documento una vez
-            userDocRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // El documento existe, obtener sus datos
-                        Map<String, Object> userData = document.getData();
-                        if (userData != null) {
-                            // Obtener valores actuales
-                            String actualFace = (String) userData.get("actualFace");
-                            String actualFeet = (String) userData.get("actualFeet");
-                            String actualHead = (String) userData.get("actualHead");
-                            String actualNeck = (String) userData.get("actualNeck");
+            // Usar un listener en tiempo real para obtener el documento
+            userDocRef.addSnapshotListener((document, e) -> {
+                if (e != null) {
+                    Log.d(TAG, "Error al obtener el documento: ", e);
+                    return;
+                }
 
-                            // Configurar la interfaz de usuario según los datos
-                            setImageViewResource(actualFace, ActualFace);
-                            setImageViewResource(actualFeet, ActualFeet);
-                            setImageViewResource(actualHead, ActualHead);
-                            setImageViewResource(actualNeck, ActualNeck);
-                        }
-                    } else {
-                        Log.d(TAG, "El documento no existe.");
+                if (document != null && document.exists()) {
+                    // El documento existe, obtener sus datos
+                    Map<String, Object> userData = document.getData();
+                    if (userData != null) {
+                        // Obtener valores actuales
+                        String actualFace = (String) userData.get("actualFace");
+                        String actualFeet = (String) userData.get("actualFeet");
+                        String actualHead = (String) userData.get("actualHead");
+                        String actualNeck = (String) userData.get("actualNeck");
+
+                        // Configurar la interfaz de usuario según los datos
+                        setImageViewResource(actualFace, ActualFace);
+                        setImageViewResource(actualFeet, ActualFeet);
+                        setImageViewResource(actualHead, ActualHead);
+                        setImageViewResource(actualNeck, ActualNeck);
                     }
                 } else {
-                    Log.d(TAG, "Error al obtener el documento: ", task.getException());
+                    Log.d(TAG, "El documento no existe.");
                 }
             });
         } else {

@@ -4,11 +4,15 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,11 +24,15 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EditarActivity extends AppCompatActivity {
 
     ImageView btn_hat, btn_glasses, btn_shirt, btn_shoes, btn_back, ActualHead, ActualFace, ActualFeet, ActualNeck;
+    LinearLayout things;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
@@ -44,6 +52,8 @@ public class EditarActivity extends AppCompatActivity {
         ActualFeet = findViewById(R.id.feetEdit);
         ActualHead = findViewById(R.id.headEdit);
         ActualNeck = findViewById(R.id.neckEdit);
+
+        things = findViewById(R.id.things);
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -76,6 +86,36 @@ public class EditarActivity extends AppCompatActivity {
                 btn_glasses.setBackgroundColor(getResources().getColor(R.color.white));
                 btn_shirt.setBackgroundColor(getResources().getColor(R.color.white));
                 btn_shoes.setBackgroundColor(getResources().getColor(R.color.white));
+
+                // Limpiar el LinearLayout antes de agregar nuevos botones
+                things.removeAllViews();
+
+                List<String> availableHats = new ArrayList<>();
+                for (VestimentaHead item : vestimentaHeads.values()) {
+                    if (item.name.startsWith("head") && item.isSelected) {
+                        availableHats.add(item.name);
+                    }
+                }
+
+                for (String hat : availableHats) {
+                    // Crear un nuevo botón para cada sombrero disponible
+                    Button hatButton = new Button(EditarActivity.this);
+                    hatButton.setText(hat);
+
+                    // Establecer un listener de clic para el botón
+                    hatButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d(TAG, "Sombrero seleccionado: " + hat);
+                            // Aquí puedes hacer algo con el sombrero seleccionado
+                            // Por ejemplo, actualizar la imagen del sombrero en la vista actual
+                            setImageViewResource(hat, ActualHead);
+                        }
+                    });
+
+                    // Agregar el botón al LinearLayout
+                    things.addView(hatButton);
+                }
             }
         });
 
@@ -86,6 +126,36 @@ public class EditarActivity extends AppCompatActivity {
                 btn_glasses.setBackgroundColor(getResources().getColor(R.color.fondoIcon));
                 btn_shirt.setBackgroundColor(getResources().getColor(R.color.white));
                 btn_shoes.setBackgroundColor(getResources().getColor(R.color.white));
+
+                // Limpiar el LinearLayout antes de agregar nuevos botones
+                things.removeAllViews();
+
+                List<String> availableFaces = new ArrayList<>();
+                for (VestimentaFace item : vestimentaFaces.values()) {
+                    if (item.name.startsWith("face") && item.isSelected) {
+                        availableFaces.add(item.name);
+                    }
+                }
+
+                for (String face : availableFaces) {
+                    // Crear un nuevo botón para cada sombrero disponible
+                    Button faceButton = new Button(EditarActivity.this);
+                    faceButton.setText(face);
+
+                    // Establecer un listener de clic para el botón
+                    faceButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d(TAG, "Accesorio seleccionado: " + face);
+                            // Aquí puedes hacer algo con el sombrero seleccionado
+                            // Por ejemplo, actualizar la imagen del sombrero en la vista actual
+                            setImageViewResource(face, ActualFace);
+                        }
+                    });
+
+                    // Agregar el botón al LinearLayout
+                    things.addView(faceButton);
+                }
             }
         });
 
@@ -96,6 +166,36 @@ public class EditarActivity extends AppCompatActivity {
                 btn_glasses.setBackgroundColor(getResources().getColor(R.color.white));
                 btn_shirt.setBackgroundColor(getResources().getColor(R.color.fondoIcon));
                 btn_shoes.setBackgroundColor(getResources().getColor(R.color.white));
+
+                // Limpiar el LinearLayout antes de agregar nuevos botones
+                things.removeAllViews();
+
+                List<String> availableNecks = new ArrayList<>();
+                for (VestimentaNeck item : vestimentaNecks.values()) {
+                    if (item.name.startsWith("neck") && item.isSelected) {
+                        availableNecks.add(item.name);
+                    }
+                }
+
+                for (String neck : availableNecks) {
+                    // Crear un nuevo botón para cada sombrero disponible
+                    Button neckButton = new Button(EditarActivity.this);
+                    neckButton.setText(neck);
+
+                    // Establecer un listener de clic para el botón
+                    neckButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d(TAG, "Cuello seleccionado: " + neck);
+                            // Aquí puedes hacer algo con el sombrero seleccionado
+                            // Por ejemplo, actualizar la imagen del sombrero en la vista actual
+                            setImageViewResource(neck, ActualNeck);
+                        }
+                    });
+
+                    // Agregar el botón al LinearLayout
+                    things.addView(neckButton);
+                }
             }
         });
 
@@ -106,6 +206,36 @@ public class EditarActivity extends AppCompatActivity {
                 btn_glasses.setBackgroundColor(getResources().getColor(R.color.white));
                 btn_shirt.setBackgroundColor(getResources().getColor(R.color.white));
                 btn_shoes.setBackgroundColor(getResources().getColor(R.color.fondoIcon));
+
+                // Limpiar el LinearLayout antes de agregar nuevos botones
+                things.removeAllViews();
+
+                List<String> availableFeets = new ArrayList<>();
+                for (VestimentaFeet item : vestimentaFeets.values()) {
+                    if (item.name.startsWith("feet") && item.isSelected) {
+                        availableFeets.add(item.name);
+                    }
+                }
+
+                for (String feet : availableFeets) {
+                    // Crear un nuevo botón para cada sombrero disponible
+                    Button feetButton = new Button(EditarActivity.this);
+                    feetButton.setText(feet);
+
+                    // Establecer un listener de clic para el botón
+                    feetButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d(TAG, "Sombrero seleccionado: " + feet);
+                            // Aquí puedes hacer algo con el sombrero seleccionado
+                            // Por ejemplo, actualizar la imagen del sombrero en la vista actual
+                            setImageViewResource(feet, ActualFeet);
+                        }
+                    });
+
+                    // Agregar el botón al LinearLayout
+                    things.addView(feetButton);
+                }
             }
         });
 
@@ -119,43 +249,69 @@ public class EditarActivity extends AppCompatActivity {
     }
 
 
+    private Map<String, VestimentaHead> vestimentaHeads = new HashMap<>();
+    private Map<String, VestimentaFace> vestimentaFaces = new HashMap<>();
+    private Map<String, VestimentaNeck> vestimentaNecks = new HashMap<>();
+    private Map<String, VestimentaFeet> vestimentaFeets = new HashMap<>();
+
     private void verificarVestimenta() {
-        // Obtener al usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
-
-            // Referenciar al documento de UsuarioAvatar
             DocumentReference userDocRef = db.collection("UsuarioAvatar").document(userId);
 
-            // Obtener el documento una vez
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        // El documento existe, obtener sus datos
                         Map<String, Object> userData = document.getData();
                         if (userData != null) {
-                            // Obtener valores actuales
                             String actualFace = (String) userData.get("actualFace");
                             String actualFeet = (String) userData.get("actualFeet");
                             String actualHead = (String) userData.get("actualHead");
                             String actualNeck = (String) userData.get("actualNeck");
 
-                            // Configurar la interfaz de usuario según los datos
                             setImageViewResource(actualFace, ActualFace);
                             setImageViewResource(actualFeet, ActualFeet);
                             setImageViewResource(actualHead, ActualHead);
                             setImageViewResource(actualNeck, ActualNeck);
 
-                            // Procesar el resto de los atributos
                             for (Map.Entry<String, Object> entry : userData.entrySet()) {
                                 String key = entry.getKey();
                                 Object value = entry.getValue();
-
                                 if (value instanceof Boolean) {
                                     Boolean isSelected = (Boolean) value;
-                                    // Procesar cada atributo booleano
+                                    vestimentaHeads.put(key, new VestimentaHead(key, isSelected));
+                                    Log.d(TAG, key + ": " + isSelected);
+                                }
+                            }
+
+                            for (Map.Entry<String, Object> entry : userData.entrySet()) {
+                                String key = entry.getKey();
+                                Object value = entry.getValue();
+                                if (value instanceof Boolean) {
+                                    Boolean isSelected = (Boolean) value;
+                                    vestimentaFaces.put(key, new VestimentaFace(key, isSelected));
+                                    Log.d(TAG, key + ": " + isSelected);
+                                }
+                            }
+
+                            for (Map.Entry<String, Object> entry : userData.entrySet()) {
+                                String key = entry.getKey();
+                                Object value = entry.getValue();
+                                if (value instanceof Boolean) {
+                                    Boolean isSelected = (Boolean) value;
+                                    vestimentaNecks.put(key, new VestimentaNeck(key, isSelected));
+                                    Log.d(TAG, key + ": " + isSelected);
+                                }
+                            }
+
+                            for (Map.Entry<String, Object> entry : userData.entrySet()) {
+                                String key = entry.getKey();
+                                Object value = entry.getValue();
+                                if (value instanceof Boolean) {
+                                    Boolean isSelected = (Boolean) value;
+                                    vestimentaFeets.put(key, new VestimentaFeet(key, isSelected));
                                     Log.d(TAG, key + ": " + isSelected);
                                 }
                             }
@@ -171,6 +327,7 @@ public class EditarActivity extends AppCompatActivity {
             Log.d(TAG, "Usuario no autenticado");
         }
     }
+
 
     private void setImageViewResource(String imageName, ImageView imageView) {
         int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
