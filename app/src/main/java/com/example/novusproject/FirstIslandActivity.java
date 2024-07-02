@@ -232,10 +232,34 @@ public class FirstIslandActivity extends AppCompatActivity {
         getData();
     }
 
+    private void actualizarEstadoBotones(Map<String, Object> userData) {
+        boolean estadoAnterior = true; // Se inicializa como true para habilitar la primera pregunta
+
+        for (int i = 1; i <= 10; i++) {
+            String preguntaKey = "R" + i + "I1";
+            int preguntaId = getResources().getIdentifier(preguntaKey, "id", getPackageName());
+            ImageView pregunta = findViewById(preguntaId);
+
+            if (pregunta != null) {
+                if (userData.containsKey(preguntaKey) && userData.get(preguntaKey) instanceof Boolean) {
+                    boolean estado = (Boolean) userData.get(preguntaKey);
+                    pregunta.setEnabled(estadoAnterior); // Habilitar/deshabilitar el botón según el estado anterior
+                    estadoAnterior = estado; // Actualizar el estado anterior
+                } else {
+                    pregunta.setEnabled(false); // Deshabilitar el botón si no hay datos
+                }
+            }
+        }
+    }
+
+
     private void verificarAvance() {
+        // Se obtiene al usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
+
+            // Referenciar al documento de UsuarioIsla
             DocumentReference userDocRef = db.collection("UsuarioPrimera").document(userId);
 
             // Escuchar cambios en el documento en tiempo real
@@ -248,12 +272,12 @@ public class FirstIslandActivity extends AppCompatActivity {
                 if (documentSnapshot != null && documentSnapshot.exists()) {
                     // El documento existe, obtener sus datos
                     Map<String, Object> userData = documentSnapshot.getData();
-                    Log.d(TAG, "Datos obtenidos: " + userData.toString());
                     if (userData != null) {
+                        actualizarEstadoBotones(userData);
+
                         for (Map.Entry<String, Object> entry : userData.entrySet()) {
                             String key = entry.getKey();
                             Object value = entry.getValue();
-                            Log.d(TAG, "Key: " + key + " Value: " + value);
 
                             // Verificar si el valor es true
                             if (value instanceof Boolean && (Boolean) value) {
@@ -263,13 +287,8 @@ public class FirstIslandActivity extends AppCompatActivity {
                                     ImageView imageView = findViewById(imageViewId);
                                     if (imageView != null) {
                                         // Cambiar la imagen del ImageView
-                                        imageView.setImageResource(R.drawable.green);
-                                        Log.d(TAG, "ImageView actualizado: " + key);
-                                    } else {
-                                        Log.d(TAG, "ImageView con id " + imageViewId + " no encontrado.");
+                                        imageView.setImageResource(R.drawable.green); // new_image es el nombre de la nueva imagen
                                     }
-                                } else {
-                                    Log.d(TAG, "Identificador de recurso para la clave " + key + " no encontrado.");
                                 }
                             }
                         }
@@ -282,6 +301,7 @@ public class FirstIslandActivity extends AppCompatActivity {
             Log.d(TAG, "Usuario no autenticado");
         }
     }
+
 
 
     private void getData() {

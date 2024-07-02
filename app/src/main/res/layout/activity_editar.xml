@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backoutfit"
     tools:context=".EditarActivity">
 
     <TextView
@@ -104,12 +105,14 @@
         <ImageView
             android:id="@+id/imageViewGlasses"
             android:layout_width="wrap_content"
+            android:background="#FFFFFF"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/glasses" />
 
         <ImageView
             android:id="@+id/imageViewShirt"
+            android:background="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -119,6 +122,7 @@
 
         <ImageView
             android:id="@+id/imageViewShoe"
+            android:background="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -67,4 +67,7 @@ dependencies {
 
     // Glide para mostrar fotos desde firebase storage
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+
+    implementation ("com.google.firebase:firebase-appcheck-playintegrity:18.0.0")
+
 }

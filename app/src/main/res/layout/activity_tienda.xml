@@ -21,6 +21,39 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="DuplicateIds,VisualLintBounds" />
 
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/coin" />
+
+        <TextView
+            android:id="@+id/CoinQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5sp"
+            android:layout_weight="1"
+            android:paddingLeft="8sp"
+            android:paddingTop="1sp"
+            android:text="000"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/text0"
         android:layout_width="0dp"
@@ -35,6 +68,7 @@
         tools:ignore="DuplicateIds,VisualLintOverlap,VisualLintBounds" />
 
     <LinearLayout
+        android:id="@+id/linearLayout9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -98,27 +132,30 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/nameUser"
+    <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NOMBRE"
+        android:layout_weight="0.2"
+        tools:ignore="MissingConstraints" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/accesorios"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="135dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        tools:ignore="MissingConstraints" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
