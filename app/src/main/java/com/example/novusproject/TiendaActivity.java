@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class TiendaActivity extends AppCompatActivity {
@@ -140,17 +139,34 @@ public class TiendaActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Object> entry : avatarItems.entrySet()) {
             if (entry.getValue() instanceof Boolean && !(Boolean) entry.getValue()) {
-                if (count % 3 == 0) {
+                if (count % 2 == 0) {
                     rowLayout = new LinearLayout(this);
                     rowLayout.setOrientation(LinearLayout.HORIZONTAL);
                     accesorios.addView(rowLayout);
                 }
-                Button button = new Button(this);
-                button.setText(entry.getKey()); // You can set a more descriptive text here
-                button.setLayoutParams(layoutParams);
-                rowLayout.addView(button);
+                String itemName = entry.getKey();
+                createButtonForAvatarItem(itemName, rowLayout, layoutParams);
                 count++;
             }
         }
+    }
+
+    private void createButtonForAvatarItem(String itemName, LinearLayout rowLayout, LinearLayout.LayoutParams layoutParams) {
+        db.collection("Avatar").document(itemName).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    String description = document.getString("descripcion");
+                    Button button = new Button(this);
+                    button.setText(description != null ? description : itemName); // Use description if available, otherwise fallback to itemName
+                    button.setLayoutParams(layoutParams);
+                    rowLayout.addView(button);
+                } else {
+                    Log.d(TAG, "No such document in Avatar collection");
+                }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
+            }
+        });
     }
 }
