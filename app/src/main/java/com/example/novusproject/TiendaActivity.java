@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -157,16 +159,82 @@ public class TiendaActivity extends AppCompatActivity {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     String description = document.getString("descripcion");
+                    Long price = document.getLong("precio"); // Obtener el precio del accesorio
                     Button button = new Button(this);
-                    button.setText(description != null ? description : itemName); // Use description if available, otherwise fallback to itemName
+                    button.setText(description != null ? description : itemName); // Usar descripción si está disponible, de lo contrario usar el nombre del ítem
                     button.setLayoutParams(layoutParams);
+                    button.setOnClickListener(v -> {
+                        // Mostrar el popup al hacer clic en el botón
+                        showPurchaseDialog(description, itemName, price != null ? price.intValue() : 0);
+                    });
                     rowLayout.addView(button);
                 } else {
-                    Log.d(TAG, "No such document in Avatar collection");
+                    Log.d(TAG, "No existe tal documento en la colección Avatar");
                 }
             } else {
-                Log.d(TAG, "get failed with ", task.getException());
+                Log.d(TAG, "La obtención falló con ", task.getException());
             }
         });
     }
+
+    private void showPurchaseDialog(String description, String itemName, int price) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Quieres comprar la prenda " + description + "?");
+        builder.setMessage("Precio: " + price + " monedas");
+
+        builder.setPositiveButton("Comprar", (dialog, which) -> {
+            // Acción para comprar el accesorio
+            purchaseAvatarItem(itemName, price);
+        });
+
+        builder.setNegativeButton("Cancelar", (dialog, which) -> {
+            dialog.dismiss();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void purchaseAvatarItem(String itemName, int price) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            db.collection("Usuario").document(userId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Long currentCoins = document.getLong("monedas");
+                        if (currentCoins != null && currentCoins >= price) {
+                            // Actualizar las monedas del usuario
+                            int newCoins = currentCoins.intValue() - price;
+                            db.collection("Usuario").document(userId).update("monedas", newCoins)
+                                    .addOnSuccessListener(aVoid -> {
+                                        // Actualizar el estado del accesorio del usuario
+                                        db.collection("UsuarioAvatar").document(userId)
+                                                .update(itemName, true)
+                                                .addOnSuccessListener(aVoid1 -> {
+                                                    // Mostrar un mensaje de éxito
+                                                    Toast.makeText(TiendaActivity.this, "Compra realizada con éxito", Toast.LENGTH_SHORT).show();
+                                                    // Actualizar la visualización de monedas
+                                                    getCoins();
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    // Mostrar un mensaje de error si no se pudo actualizar el estado del accesorio
+                                                    Toast.makeText(TiendaActivity.this, "Error al actualizar el estado del accesorio", Toast.LENGTH_SHORT).show();
+                                                });
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        // Mostrar un mensaje de error si no se pudo actualizar las monedas
+                                        Toast.makeText(TiendaActivity.this, "Error al actualizar las monedas", Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            // Mostrar un mensaje de error si no hay suficientes monedas
+                            Toast.makeText(TiendaActivity.this, "No tienes suficientes monedas", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            });
+        }
+    }
+
 }

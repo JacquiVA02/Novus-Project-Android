@@ -168,7 +168,7 @@ public class EditarActivity extends AppCompatActivity {
                         Button itemButton = new Button(this);
 
                         itemButton.setBackground(getResources().getDrawable(R.drawable.ircular_button_with_border));
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400, 200); // tamaño en píxeles
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(600, 200); // tamaño en píxeles
                         params.setMargins(10, 10, 10, 10); // margen entre botones
                         itemButton.setLayoutParams(params);
 
