@@ -103,9 +103,9 @@ public class MapaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
                 // Agregar parámetros al Intent
-                intent.putExtra("level1", "com.example.novusproject.FirstIslandL1Activity");
-                intent.putExtra("level2", "com.example.novusproject.Level2Activity");
-                intent.putExtra("level3", "com.example.novusproject.Level3Activity");
+                intent.putExtra("isla", "I1");
+                intent.putExtra("base", "UsuarioPrimera");
+                intent.putExtra("baseP", "Primera");
                 startActivity(intent);
             }
         });

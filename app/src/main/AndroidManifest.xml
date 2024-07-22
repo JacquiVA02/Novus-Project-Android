@@ -17,6 +17,12 @@
         android:theme="@style/Theme.NovusProject"
         tools:targetApi="31">
         <activity
+            android:name=".FirstIslandL3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".FirstIslandL2Activity"
+            android:exported="false" />
+        <activity
             android:name=".LevelsActivity"
             android:exported="false" />
         <activity

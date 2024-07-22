@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class FirstIslandL1Activity extends AppCompatActivity {
@@ -31,6 +32,11 @@ public class FirstIslandL1Activity extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
+    // Mapa para asociar los IDs de los botones con sus correspondientes ImageViews
+    private Map<String, Integer> buttonToImageViewMap;
+
+    String isla, base, baseP, nivel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,13 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_first_island_l1);
 
         btn_back = findViewById(R.id.buttonBackQuestion);
+
+        // Recuperar los parámetros del Intent
+        Intent intent = getIntent();
+        isla = intent.getStringExtra("isla");
+        base = intent.getStringExtra("base");
+        baseP = intent.getStringExtra("baseP");
+        nivel = intent.getStringExtra("nivel");
 
         coins = findViewById(R.id.CoinQuestion);
         Ac1 = findViewById(R.id.Ac1FI);
@@ -55,6 +68,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         pregunta9 = findViewById(R.id.R9I1L1);
         pregunta10 = findViewById(R.id.R10I1L1);
 
+        // Inicializar el mapa de asociaciones
+        buttonToImageViewMap = new HashMap<>();
+        initializeButtonToImageViewMap();
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -90,9 +106,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R1I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R1" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -101,9 +117,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R2I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R2" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -112,9 +128,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R3I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R3" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -123,9 +139,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R4I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R4" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -134,9 +150,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R5I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R5" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -145,9 +161,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R6I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R6" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -156,9 +172,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R7I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R7" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -167,9 +183,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R8I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R8" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -178,9 +194,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R9I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R9" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -189,9 +205,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstIslandL1Activity.this, PreguntaActivity.class);
-                intent.putExtra("isla", "PrimeraL1");
-                intent.putExtra("pregunta", "R10I1L1");
-                intent.putExtra("estado", "UsuarioPrimera");
+                intent.putExtra("isla", baseP + nivel);
+                intent.putExtra("pregunta", "R10" + isla + nivel);
+                intent.putExtra("estado", base);
                 startActivity(intent);
             }
         });
@@ -232,26 +248,44 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         getData();
     }
 
+    private void initializeButtonToImageViewMap() {
+        // Agregar las asociaciones entre los botones e ImageViews
+        buttonToImageViewMap.put("R1" + isla + nivel, R.id.R1I1L1);
+        buttonToImageViewMap.put("R2" + isla + nivel, R.id.R2I1L1);
+        buttonToImageViewMap.put("R3" + isla + nivel, R.id.R3I1L1);
+        buttonToImageViewMap.put("R4" + isla + nivel, R.id.R4I1L1);
+        buttonToImageViewMap.put("R5" + isla + nivel, R.id.R5I1L1);
+        buttonToImageViewMap.put("R6" + isla + nivel, R.id.R6I1L1);
+        buttonToImageViewMap.put("R7" + isla + nivel, R.id.R7I1L1);
+        buttonToImageViewMap.put("R8" + isla + nivel, R.id.R8I1L1);
+        buttonToImageViewMap.put("R9" + isla + nivel, R.id.R9I1L1);
+        buttonToImageViewMap.put("R10" + isla + nivel, R.id.R10I1L1);
+        // Agrega todas las asociaciones necesarias aquí
+        // buttonToImageViewMap.put("botonKey", R.id.imageViewId);
+    }
+
     private void actualizarEstadoBotones(Map<String, Object> userData) {
         boolean estadoAnterior = true; // Se inicializa como true para habilitar la primera pregunta
 
         for (int i = 1; i <= 10; i++) {
-            String preguntaKey = "R" + i + "I1L1";
-            int preguntaId = getResources().getIdentifier(preguntaKey, "id", getPackageName());
-            ImageView pregunta = findViewById(preguntaId);
+            String preguntaKey = "R" + i + isla + nivel;
 
-            if (pregunta != null) {
-                if (userData.containsKey(preguntaKey) && userData.get(preguntaKey) instanceof Boolean) {
-                    boolean estado = (Boolean) userData.get(preguntaKey);
-                    pregunta.setEnabled(estadoAnterior); // Habilitar/deshabilitar el botón según el estado anterior
-                    estadoAnterior = estado; // Actualizar el estado anterior
-                } else {
-                    pregunta.setEnabled(false); // Deshabilitar el botón si no hay datos
+            if (buttonToImageViewMap.containsKey(preguntaKey)) {
+                int preguntaId = getResources().getIdentifier(preguntaKey, "id", getPackageName());
+                ImageView pregunta = findViewById(preguntaId);
+
+                if (pregunta != null) {
+                    if (userData.containsKey(preguntaKey) && userData.get(preguntaKey) instanceof Boolean) {
+                        boolean estado = (Boolean) userData.get(preguntaKey);
+                        pregunta.setEnabled(estadoAnterior); // Habilitar/deshabilitar el botón según el estado anterior
+                        estadoAnterior = estado; // Actualizar el estado anterior
+                    } else {
+                        pregunta.setEnabled(false); // Deshabilitar el botón si no hay datos
+                    }
                 }
             }
         }
     }
-
 
     private void verificarAvance() {
         // Se obtiene al usuario actual
@@ -260,7 +294,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             String userId = user.getUid();
 
             // Referenciar al documento de UsuarioIsla
-            DocumentReference userDocRef = db.collection("UsuarioPrimera").document(userId);
+            DocumentReference userDocRef = db.collection(base).document(userId);
 
             // Escuchar cambios en el documento en tiempo real
             userDocRef.addSnapshotListener((documentSnapshot, e) -> {
@@ -281,9 +315,8 @@ public class FirstIslandL1Activity extends AppCompatActivity {
 
                             // Verificar si el valor es true
                             if (value instanceof Boolean && (Boolean) value) {
-                                // Obtener el id del ImageView usando el nombre de la clave
-                                int imageViewId = getResources().getIdentifier(key, "id", getPackageName());
-                                if (imageViewId != 0) {
+                                if (buttonToImageViewMap.containsKey(key)) {
+                                    int imageViewId = buttonToImageViewMap.get(key);
                                     ImageView imageView = findViewById(imageViewId);
                                     if (imageView != null) {
                                         // Cambiar la imagen del ImageView

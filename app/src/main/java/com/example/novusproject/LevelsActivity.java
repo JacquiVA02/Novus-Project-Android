@@ -72,16 +72,31 @@ public class LevelsActivity extends AppCompatActivity {
 
         // Recuperar los parámetros del Intent
         Intent intent = getIntent();
-        String parametro1 = intent.getStringExtra("level1");
-        String parametro2 = intent.getStringExtra("level2");
-        String parametro3 = intent.getStringExtra("level3");
+        String isla = intent.getStringExtra("isla");
+        String base = intent.getStringExtra("base");
+        String baseP = intent.getStringExtra("baseP");
 
+        btn_nivel1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LevelsActivity.this, FirstIslandL1Activity.class);
+                intent.putExtra("isla", isla);
+                intent.putExtra("base", base);
+                intent.putExtra("baseP", baseP);
+                intent.putExtra("nivel", "L1");
+                startActivity(intent);
+            }
+        });
         // Configurar OnClickListeners para los botones de nivel
+        /*
         setLevelButtonOnClickListener(btn_nivel1, parametro1);
         setLevelButtonOnClickListener(btn_nivel2, parametro2);
         setLevelButtonOnClickListener(btn_nivel3, parametro3);
+
+         */
     }
 
+    /*
     private void setLevelButtonOnClickListener(Button button, String className) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,4 +111,6 @@ public class LevelsActivity extends AppCompatActivity {
             }
         });
     }
+    */
+
 }
