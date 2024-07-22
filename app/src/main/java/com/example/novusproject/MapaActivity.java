@@ -101,10 +101,16 @@ public class MapaActivity extends AppCompatActivity {
         btnIsland1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapaActivity.this, FirstIslandActivity.class);
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("level1", "com.example.novusproject.FirstIslandL1Activity");
+                intent.putExtra("level2", "com.example.novusproject.Level2Activity");
+                intent.putExtra("level3", "com.example.novusproject.Level3Activity");
                 startActivity(intent);
             }
         });
+
+
 
         btnIsland2.setOnClickListener(new View.OnClickListener() {
             @Override
