@@ -87,6 +87,18 @@ public class LevelsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btn_nivel2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LevelsActivity.this, FirstIslandL1Activity.class);
+                intent.putExtra("isla", isla);
+                intent.putExtra("base", base);
+                intent.putExtra("baseP", baseP);
+                intent.putExtra("nivel", "L2");
+                startActivity(intent);
+            }
+        });
         // Configurar OnClickListeners para los botones de nivel
         /*
         setLevelButtonOnClickListener(btn_nivel1, parametro1);
@@ -94,6 +106,8 @@ public class LevelsActivity extends AppCompatActivity {
         setLevelButtonOnClickListener(btn_nivel3, parametro3);
 
          */
+
+        getData();
     }
 
     /*
@@ -112,5 +126,54 @@ public class LevelsActivity extends AppCompatActivity {
         });
     }
     */
+
+    private void getData() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            db.collection("Usuario").document(userId)
+                    .addSnapshotListener((snapshot, e) -> {
+                        if (e != null) {
+                            Log.w("Firestore", "Listen failed", e);
+                            return;
+                        }
+
+                        if (snapshot != null && snapshot.exists()) {
+                            // Obtiene el valor del campo y lo muestra en el TextView
+                            Object coinsValue = snapshot.get("monedas");
+                            Object c1Value = snapshot.get("c1");
+                            Object c2Value = snapshot.get("c2");
+                            Object c3Value = snapshot.get("c3");
+
+                            if (coinsValue instanceof Number) {
+                                coins.setText(String.valueOf(((Number) coinsValue).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'monedas' no es numérico");
+                            }
+
+                            if (c1Value instanceof Number) {
+                                Ac1.setText(String.valueOf(((Number) c1Value).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c1' no es numérico");
+                            }
+
+                            if (c2Value instanceof Number) {
+                                Ac2.setText(String.valueOf(((Number) c2Value).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c2' no es numérico");
+                            }
+
+                            if (c3Value instanceof Number) {
+                                Ac3.setText(String.valueOf(((Number) c3Value).intValue()));
+                            } else {
+                                Log.d("Firestore", "Valor de 'c3' no es numérico");
+                            }
+
+                        } else {
+                            Log.d("Firestore", "No hay datos actuales (snapshot es null o no existe)");
+                        }
+                    });
+        }
+    }
 
 }

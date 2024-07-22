@@ -97,10 +97,10 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FirstIslandL1Activity.this, MapaActivity.class);
-                startActivity(intent);
+                finish(); // Cierra la actividad actual y vuelve a la actividad anterior
             }
         });
+
 
         pregunta1.setOnClickListener(new View.OnClickListener() {
             @Override
