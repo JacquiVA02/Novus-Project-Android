@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Define el tamaño de los ImageButtons -->
+    <dimen name="image_button_size">190dp</dimen> <!-- Ajusta este tamaño según sea necesario -->
+</resources>

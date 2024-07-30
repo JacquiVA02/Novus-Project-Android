@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -130,14 +132,44 @@ public class TiendaActivity extends AppCompatActivity {
         });
     }
 
+    private void createButtonForAvatarItem(String itemName, LinearLayout rowLayout, LinearLayout.LayoutParams layoutParams) {
+        db.collection("Avatar").document(itemName).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Long price = document.getLong("precio"); // Obtener el precio del accesorio
+                    ImageButton imageButton = new ImageButton(this);
+                    int imageResource = getResources().getIdentifier(itemName, "drawable", getPackageName());
+                    Glide.with(this)
+                            .load(imageResource)
+                            .into(imageButton);
+
+                    // Ajustar el tamaño del ImageButton
+                    int size = getResources().getDimensionPixelSize(R.dimen.image_button_size); // Asegúrate de definir image_button_size en dimens.xml
+                    LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(size, size);
+                    buttonParams.setMargins(2, 6, 2, 6); // Agregar márgenes entre botones
+
+                    imageButton.setLayoutParams(buttonParams);
+                    imageButton.setScaleType(ImageView.ScaleType.CENTER_CROP); // Ajusta esto según sea necesario
+                    imageButton.setOnClickListener(v -> {
+                        // Mostrar el popup al hacer clic en el botón
+                        String description = document.getString("descripcion");
+                        showPurchaseDialog(description != null ? description : itemName, itemName, price != null ? price.intValue() : 0);
+                    });
+
+                    rowLayout.addView(imageButton);
+                } else {
+                    Log.d(TAG, "No existe tal documento en la colección Avatar");
+                }
+            } else {
+                Log.d(TAG, "La obtención falló con ", task.getException());
+            }
+        });
+    }
+
     private void createButtonsForAvatarItems(Map<String, Object> avatarItems) {
         int count = 0;
         LinearLayout rowLayout = null;
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        layoutParams.setMargins(8, 8, 8, 8); // Optional: Add some margins between buttons
 
         for (Map.Entry<String, Object> entry : avatarItems.entrySet()) {
             if (entry.getValue() instanceof Boolean && !(Boolean) entry.getValue()) {
@@ -147,35 +179,12 @@ public class TiendaActivity extends AppCompatActivity {
                     accesorios.addView(rowLayout);
                 }
                 String itemName = entry.getKey();
-                createButtonForAvatarItem(itemName, rowLayout, layoutParams);
+                createButtonForAvatarItem(itemName, rowLayout, null); // layoutParams ya no es necesario aquí
                 count++;
             }
         }
     }
 
-    private void createButtonForAvatarItem(String itemName, LinearLayout rowLayout, LinearLayout.LayoutParams layoutParams) {
-        db.collection("Avatar").document(itemName).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    String description = document.getString("descripcion");
-                    Long price = document.getLong("precio"); // Obtener el precio del accesorio
-                    Button button = new Button(this);
-                    button.setText(description != null ? description : itemName); // Usar descripción si está disponible, de lo contrario usar el nombre del ítem
-                    button.setLayoutParams(layoutParams);
-                    button.setOnClickListener(v -> {
-                        // Mostrar el popup al hacer clic en el botón
-                        showPurchaseDialog(description, itemName, price != null ? price.intValue() : 0);
-                    });
-                    rowLayout.addView(button);
-                } else {
-                    Log.d(TAG, "No existe tal documento en la colección Avatar");
-                }
-            } else {
-                Log.d(TAG, "La obtención falló con ", task.getException());
-            }
-        });
-    }
 
     private void showPurchaseDialog(String description, String itemName, int price) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
