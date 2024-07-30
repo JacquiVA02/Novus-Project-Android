@@ -276,6 +276,6 @@ public class EditarActivity extends AppCompatActivity {
             int resId = (int) tag;
             return getResources().getResourceEntryName(resId);
         }
-        return null;
+        return ""; // Devuelve una cadena vacía si no hay un recurso seleccionado
     }
 }

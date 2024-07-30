@@ -149,11 +149,15 @@ public class AvatarActivity extends AppCompatActivity {
     }
 
     private void setImageViewResource(String imageName, ImageView imageView) {
-        int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
-        if (resId != 0) {
-            imageView.setImageResource(resId);
+        if (imageName != null) {
+            int resId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+            if (resId != 0) {
+                imageView.setImageResource(resId);
+            } else {
+                Log.d(TAG, "Recurso no encontrado para: " + imageName);
+            }
         } else {
-            Log.d(TAG, "Recurso no encontrado para: " + imageName);
+            Log.d(TAG, "Nombre de imagen es null");
         }
     }
 }
