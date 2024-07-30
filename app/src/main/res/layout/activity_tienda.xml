@@ -144,18 +144,24 @@
         android:layout_weight="0.2"
         tools:ignore="MissingConstraints" />
 
-    <LinearLayout
-        android:id="@+id/accesorios"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="15dp"
         android:layout_marginTop="130dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="135dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+        android:layout_marginBottom="135dp">
+
+        <LinearLayout
+            android:id="@+id/accesorios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Los elementos accesorios se añadirán aquí dinámicamente -->
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
