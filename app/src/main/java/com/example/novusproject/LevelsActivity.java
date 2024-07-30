@@ -99,6 +99,19 @@ public class LevelsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btn_nivel3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LevelsActivity.this, FirstIslandL1Activity.class);
+                intent.putExtra("isla", isla);
+                intent.putExtra("base", base);
+                intent.putExtra("baseP", baseP);
+                intent.putExtra("nivel", "L3");
+                startActivity(intent);
+            }
+        });
+
         // Configurar OnClickListeners para los botones de nivel
         /*
         setLevelButtonOnClickListener(btn_nivel1, parametro1);

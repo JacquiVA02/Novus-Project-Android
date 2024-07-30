@@ -25,7 +25,7 @@ public class MapaActivity extends AppCompatActivity {
 
     ImageView btn_profile, btn_back;
     TextView coins, Ac1, Ac2, Ac3;
-    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4;
+    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4, btnIsland5, btnIsland6, btnIsland7, btnIsland8, btnIsland9, btnIsland10;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
 
@@ -60,6 +60,12 @@ public class MapaActivity extends AppCompatActivity {
         btnIsland2 = findViewById(R.id.buttonIsland2);
         btnIsland3 = findViewById(R.id.buttonIsland3);
         btnIsland4 = findViewById(R.id.buttonIsland4);
+        btnIsland5 = findViewById(R.id.buttonIsland5);
+        btnIsland6 = findViewById(R.id.buttonIsland6);
+        btnIsland7 = findViewById(R.id.buttonIsland7);
+        btnIsland8 = findViewById(R.id.buttonIsland8);
+        btnIsland9 = findViewById(R.id.buttonIsland9);
+        btnIsland10 = findViewById(R.id.buttonIsland10);
 
         coins = findViewById(R.id.CoinQuestion);
         Ac1 = findViewById(R.id.Ac1FI);
@@ -115,7 +121,11 @@ public class MapaActivity extends AppCompatActivity {
         btnIsland2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapaActivity.this, SecondIslandActivity.class);
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I2");
+                intent.putExtra("base", "UsuarioSegunda");
+                intent.putExtra("baseP", "Segunda");
                 startActivity(intent);
             }
         });
@@ -123,7 +133,11 @@ public class MapaActivity extends AppCompatActivity {
         btnIsland3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapaActivity.this, ThirdIslandActivity.class);
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I3");
+                intent.putExtra("base", "UsuarioTercera");
+                intent.putExtra("baseP", "Tercera");
                 startActivity(intent);
             }
         });
@@ -131,7 +145,83 @@ public class MapaActivity extends AppCompatActivity {
         btnIsland4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapaActivity.this, FourthIslandActivity.class);
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I4");
+                intent.putExtra("base", "UsuarioCuarta");
+                intent.putExtra("baseP", "Cuarta");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I5");
+                intent.putExtra("base", "UsuarioQuinta");
+                intent.putExtra("baseP", "Quinta");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I6");
+                intent.putExtra("base", "UsuarioSexta");
+                intent.putExtra("baseP", "Sexta");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I7");
+                intent.putExtra("base", "UsuarioSeptima");
+                intent.putExtra("baseP", "Septima");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I8");
+                intent.putExtra("base", "UsuarioOctava");
+                intent.putExtra("baseP", "Octava");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I9");
+                intent.putExtra("base", "UsuarioNovena");
+                intent.putExtra("baseP", "Novena");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I10");
+                intent.putExtra("base", "UsuarioDecima");
+                intent.putExtra("baseP", "Decima");
                 startActivity(intent);
             }
         });

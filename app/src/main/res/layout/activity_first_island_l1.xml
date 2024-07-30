@@ -160,54 +160,64 @@
             android:id="@+id/R10I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R9I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R8I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R7I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R6I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R5I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R4I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R3I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView
             android:id="@+id/R2I1L1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/red" />
 
         <ImageView

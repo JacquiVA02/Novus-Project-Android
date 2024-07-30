@@ -8,6 +8,19 @@
     android:background="@drawable/mapaprin"
     tools:context=".MapaActivity">
 
+    <Button
+        android:id="@+id/buttonIsland10"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="45dp"
+        android:text="Décima Isla"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland9"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/text0"
         android:layout_width="0dp"
@@ -229,52 +242,107 @@
 
     <Button
         android:id="@+id/buttonIsland1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="25dp"
         android:text="Primera Isla"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile" />
 
     <Button
         android:id="@+id/buttonIsland2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
         android:text="Segunda Isla"
-        app:layout_constraintBottom_toBottomOf="@+id/text0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland1" />
 
     <Button
         android:id="@+id/buttonIsland3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
         android:text="Tercera Isla"
-        app:layout_constraintBottom_toBottomOf="@+id/text0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland2" />
 
     <Button
         android:id="@+id/buttonIsland4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
         android:text="Cuarta Isla"
-        app:layout_constraintBottom_toBottomOf="@+id/text0"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland3"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland3" />
+
+    <Button
+        android:id="@+id/buttonIsland5"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+        android:text="Quinta Isla"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland4"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonIsland6"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="45dp"
+        android:text="Sexta Isla"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile" />
+
+    <Button
+        android:id="@+id/buttonIsland7"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="45dp"
+        android:text="Séptima Isla"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland6" />
+
+    <Button
+        android:id="@+id/buttonIsland8"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="45dp"
+        android:text="Octava Isla"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland7" />
+
+    <Button
+        android:id="@+id/buttonIsland9"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="45dp"
+        android:text="Novena Isla"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

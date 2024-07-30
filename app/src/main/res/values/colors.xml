@@ -6,8 +6,9 @@
     <color name="verde">#1ABF28</color>
     <color name="fondoIcon">#DFDFDF</color>
     <color name="fondoComodin">#8E8E8E</color>
+    <color name="gris">#c7c4c4</color>
 
-    <color name="normal_color">#BF1A1A</color>
-    <color name="border_color">#631313</color>
+    <color name="normal_color">#FFFFFFFF</color>
+    <color name="border_color">#dddddd</color>
     <color name="pressed_color">#871414</color>
 </resources>

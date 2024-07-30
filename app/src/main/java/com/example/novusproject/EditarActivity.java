@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -84,6 +85,10 @@ public class EditarActivity extends AppCompatActivity {
         btn_hat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_hat.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.gris));
+                btn_glasses.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_shirt.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_shoes.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
                 loadAvatarItems("head", ActualHead);
             }
         });
@@ -91,6 +96,10 @@ public class EditarActivity extends AppCompatActivity {
         btn_glasses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_hat.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_glasses.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.gris));
+                btn_shirt.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_shoes.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
                 loadAvatarItems("face", ActualFace);
             }
         });
@@ -98,6 +107,10 @@ public class EditarActivity extends AppCompatActivity {
         btn_shirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_hat.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_glasses.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_shirt.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.gris));
+                btn_shoes.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
                 loadAvatarItems("neck", ActualNeck);
             }
         });
@@ -105,6 +118,10 @@ public class EditarActivity extends AppCompatActivity {
         btn_shoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_hat.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_glasses.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_shirt.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.white));
+                btn_shoes.setBackgroundColor(ContextCompat.getColor(EditarActivity.this, R.color.gris));
                 loadAvatarItems("feet", ActualFeet);
             }
         });
@@ -173,7 +190,7 @@ public class EditarActivity extends AppCompatActivity {
                         itemButton.setLayoutParams(params);
 
                         itemButton.setText(description);
-                        itemButton.setTextColor(getResources().getColor(R.color.white));
+                        itemButton.setTextColor(getResources().getColor(R.color.black));
 
                         itemButton.setOnClickListener(v -> {
                             Log.d(TAG, "Item seleccionado: " + itemName);
