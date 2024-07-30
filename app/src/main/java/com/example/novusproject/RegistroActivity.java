@@ -171,7 +171,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -215,7 +215,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -271,7 +271,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -327,7 +327,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -383,7 +383,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -439,7 +439,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -495,7 +495,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -551,7 +551,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -607,7 +607,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -663,7 +663,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -719,7 +719,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onSuccess(Void unused) {
                 finish();
                 startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
