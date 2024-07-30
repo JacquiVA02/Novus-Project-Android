@@ -52,7 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:backgroundTint="#0B1741"
             android:text="Mapa"
+            android:textColorLink="#0B1741"
             tools:ignore="HardcodedText" />
 
         <Space
@@ -65,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:backgroundTint="#0B1741"
             android:text="Avatar"
             tools:ignore="HardcodedText" />
 
@@ -78,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:backgroundTint="#0B1741"
             android:text="Tienda"
             tools:ignore="HardcodedText" />
     </LinearLayout>
@@ -114,6 +118,7 @@
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
+        android:backgroundTint="#BFA213"
         android:paddingLeft="30sp"
         android:paddingTop="10dp"
         android:paddingRight="30sp"
