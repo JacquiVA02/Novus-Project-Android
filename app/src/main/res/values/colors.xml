@@ -8,6 +8,9 @@
     <color name="fondoComodin">#8E8E8E</color>
     <color name="gris">#c7c4c4</color>
 
+    <color name="boton">#0B1741</color>
+    <color name="fondoBoton">#080f29</color>
+
     <color name="normal_color">#FFFFFFFF</color>
     <color name="border_color">#dddddd</color>
     <color name="pressed_color">#871414</color>

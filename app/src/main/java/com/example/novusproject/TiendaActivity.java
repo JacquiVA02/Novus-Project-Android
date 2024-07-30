@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -59,6 +60,7 @@ public class TiendaActivity extends AppCompatActivity {
 
         btn_map = findViewById(R.id.buttonMapFIrst);
         btn_avatar = findViewById(R.id.buttonAvatarFirst);
+        btn_shop = findViewById(R.id.buttonShopFirst);
 
         accesorios = findViewById(R.id.accesorios);
 
@@ -85,6 +87,10 @@ public class TiendaActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btn_avatar.setBackgroundColor(ContextCompat.getColor(this, R.color.boton));
+        btn_map.setBackgroundColor(ContextCompat.getColor(this, R.color.boton));
+        btn_shop.setBackgroundColor(ContextCompat.getColor(this, R.color.fondoBoton));
 
         getCoins();
     }

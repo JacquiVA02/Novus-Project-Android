@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -98,6 +99,10 @@ public class AvatarActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btn_avatar.setBackgroundColor(ContextCompat.getColor(this, R.color.fondoBoton));
+        btn_map.setBackgroundColor(ContextCompat.getColor(this, R.color.boton));
+        btn_shop.setBackgroundColor(ContextCompat.getColor(this, R.color.boton));
 
         verificarVestimenta();
     }
