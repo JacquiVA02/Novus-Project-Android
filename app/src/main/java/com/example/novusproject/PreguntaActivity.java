@@ -30,6 +30,8 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.widget.TextView;
 
+import android.media.MediaPlayer;
+
 
 public class PreguntaActivity extends AppCompatActivity {
 
@@ -48,6 +50,9 @@ public class PreguntaActivity extends AppCompatActivity {
     private Double c2 = 0.0;
     private Double c3 = 0.0;
 
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer incorrectMediaPlayer;
+
     Double puntosPregunta, monedasPregunta;
     String param1, param2, param3;
 
@@ -56,6 +61,10 @@ public class PreguntaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pregunta);
+
+        // Inicializar MediaPlayer con el sonido correcto
+        mediaPlayer = MediaPlayer.create(this, R.raw.correct);
+        incorrectMediaPlayer = MediaPlayer.create(this, R.raw.wrong);
 
         // Asignación de vistas
         btn_back = findViewById(R.id.buttonBackQuestion);
@@ -405,6 +414,11 @@ public class PreguntaActivity extends AppCompatActivity {
             updatePoints();
             updateOpC2();
 
+            // Reproducir sonido de respuesta correcta
+            if (mediaPlayer != null) {
+                mediaPlayer.start();
+            }
+
             // Finalizar la actividad actual
             finish();
 
@@ -416,6 +430,12 @@ public class PreguntaActivity extends AppCompatActivity {
                     .centerInside()
                     .into(imageView);
             updateWrongOpC2();
+
+            // Reproducir sonido de respuesta incorrecta
+            if (incorrectMediaPlayer != null) {
+                incorrectMediaPlayer.start();
+            }
+
             showIncorrectAnswerDialog(correctText, video);
         }
 
@@ -426,7 +446,19 @@ public class PreguntaActivity extends AppCompatActivity {
         response4.setOnClickListener(null);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Liberar MediaPlayer cuando la actividad se destruye
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        if (incorrectMediaPlayer != null) {
+            incorrectMediaPlayer.release();
+            incorrectMediaPlayer = null;
+        }
+    }
 
     private void showIncorrectAnswerDialog(String correctText, String video) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -816,3 +848,4 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 }
+

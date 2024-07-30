@@ -97,10 +97,10 @@ public class RegistroActivity extends AppCompatActivity {
                     userMap.put("correo", emailUser);
                     userMap.put("password", passUser);
                     userMap.put("puntos", 0);
-                    userMap.put("monedas", 0);
-                    userMap.put("c1", 0);
-                    userMap.put("c2", 0);
-                    userMap.put("c3", 0);
+                    userMap.put("monedas", 100);
+                    userMap.put("c1", 3);
+                    userMap.put("c2", 3);
+                    userMap.put("c3", 3);
 
                     // Guardar el documento en la colección "Usuario"
                     mFirestore.collection("Usuario").document(id).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
