@@ -88,29 +88,41 @@ public class RegistroActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     String id = mAuth.getCurrentUser().getUid();
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("id", id);
-                    map.put("nombre", nameUser);
-                    map.put("apellidos", usernameUser);
-                    map.put("correo", emailUser);
-                    map.put("password", passUser);
-                    map.put("puntos", 0);
-                    map.put("monedas", 0);
-                    map.put("c1", 0);
-                    map.put("c2", 0);
-                    map.put("c3", 0);
 
-                    mFirestore.collection("Usuario").document(id).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    // Crear el mapa para la colección "Usuario"
+                    Map<String, Object> userMap = new HashMap<>();
+                    userMap.put("id", id);
+                    userMap.put("nombre", nameUser);
+                    userMap.put("apellidos", usernameUser);
+                    userMap.put("correo", emailUser);
+                    userMap.put("password", passUser);
+                    userMap.put("puntos", 0);
+                    userMap.put("monedas", 0);
+                    userMap.put("c1", 0);
+                    userMap.put("c2", 0);
+                    userMap.put("c3", 0);
+
+                    // Guardar el documento en la colección "Usuario"
+                    mFirestore.collection("Usuario").document(id).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            finish();
-                            startActivity(new Intent(RegistroActivity.this, MainActivity.class));
-                            Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+                            // Llamar a la función para crear el documento en "UsuarioAvatar"
+                            createUserAvatar(id);
+                            createUsuarioPrimera(id);
+                            createUsuarioSegunda(id);
+                            createUsuarioTercera(id);
+                            createUsuarioCuarta(id);
+                            createUsuarioQuinta(id);
+                            createUsuarioSexta(id);
+                            createUsuarioSeptima(id);
+                            createUsuarioOctava(id);
+                            createUsuarioNovena(id);
+                            createUsuarioDecima(id);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(RegistroActivity.this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistroActivity.this, "Error al guardar usuario: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
@@ -121,6 +133,598 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(RegistroActivity.this, "Error al registrar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioAvatar"
+    private void createUserAvatar(String userId) {
+        // Crear el mapa para la colección "UsuarioAvatar"
+        Map<String, Object> avatarMap = new HashMap<>();
+        avatarMap.put("actualFace", "");
+        avatarMap.put("actualFeet", "");
+        avatarMap.put("actualHead", "");
+        avatarMap.put("actualNeck", "");
+
+        avatarMap.put("face1", false);
+        avatarMap.put("face2", false);
+        avatarMap.put("face3", false);
+        avatarMap.put("face4", false);
+
+        avatarMap.put("feet1", false);
+        avatarMap.put("feet2", false);
+        avatarMap.put("feet3", false);
+        avatarMap.put("feet4", false);
+
+        avatarMap.put("head1", false);
+        avatarMap.put("head2", false);
+        avatarMap.put("head3", false);
+
+        avatarMap.put("neck1", false);
+        avatarMap.put("neck2", false);
+        avatarMap.put("neck3", false);
+        avatarMap.put("neck4", false);
+
+        // Guardar el documento en la colección "UsuarioAvatar"
+        mFirestore.collection("UsuarioAvatar").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar avatar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioPrimera"
+    private void createUsuarioPrimera(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 1 nivel 1
+        avatarMap.put("R1I1L1", false);
+        avatarMap.put("R2I1L1", false);
+        avatarMap.put("R3I1L1", false);
+        avatarMap.put("R4I1L1", false);
+        avatarMap.put("R5I1L1", false);
+        avatarMap.put("R6I1L1", false);
+        avatarMap.put("R7I1L1", false);
+        avatarMap.put("R8I1L1", false);
+        avatarMap.put("R9I1L1", false);
+        avatarMap.put("R10I1L1", false);
+
+        // Isla 1 nivel 2
+        avatarMap.put("R1I1L2", false);
+        avatarMap.put("R2I1L2", false);
+        avatarMap.put("R3I1L2", false);
+        avatarMap.put("R4I1L2", false);
+        avatarMap.put("R5I1L2", false);
+        avatarMap.put("R6I1L2", false);
+        avatarMap.put("R7I1L2", false);
+        avatarMap.put("R8I1L2", false);
+        avatarMap.put("R9I1L2", false);
+        avatarMap.put("R10I1L2", false);
+
+        // Guardar el documento en la colección "UsuarioAvatar"
+        mFirestore.collection("UsuarioPrimera").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar primera: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioSegunda"
+    private void createUsuarioSegunda(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 2 nivel 1
+        avatarMap.put("R1I2L1", false);
+        avatarMap.put("R2I2L1", false);
+        avatarMap.put("R3I2L1", false);
+        avatarMap.put("R4I2L1", false);
+        avatarMap.put("R5I2L1", false);
+        avatarMap.put("R6I2L1", false);
+        avatarMap.put("R7I2L1", false);
+        avatarMap.put("R8I2L1", false);
+        avatarMap.put("R9I2L1", false);
+        avatarMap.put("R10I2L1", false);
+
+        // Isla 2 nivel 2
+        avatarMap.put("R1I2L2", false);
+        avatarMap.put("R2I2L2", false);
+        avatarMap.put("R3I2L2", false);
+        avatarMap.put("R4I2L2", false);
+        avatarMap.put("R5I2L2", false);
+        avatarMap.put("R6I2L2", false);
+        avatarMap.put("R7I2L2", false);
+        avatarMap.put("R8I2L2", false);
+        avatarMap.put("R9I2L2", false);
+        avatarMap.put("R10I2L2", false);
+
+        // Isla 2 nivel 3
+        avatarMap.put("R1I2L3", false);
+        avatarMap.put("R2I2L3", false);
+        avatarMap.put("R3I2L3", false);
+        avatarMap.put("R4I2L3", false);
+        avatarMap.put("R5I2L3", false);
+        avatarMap.put("R6I2L3", false);
+        avatarMap.put("R7I2L3", false);
+        avatarMap.put("R8I2L3", false);
+        avatarMap.put("R9I2L3", false);
+        avatarMap.put("R10I2L3", false);
+
+        // Guardar el documento en la colección "UsuarioAvatar"
+        mFirestore.collection("UsuarioSegunda").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar segunda: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioTercera"
+    private void createUsuarioTercera(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 3 nivel 1
+        avatarMap.put("R1I3L1", false);
+        avatarMap.put("R2I3L1", false);
+        avatarMap.put("R3I3L1", false);
+        avatarMap.put("R4I3L1", false);
+        avatarMap.put("R5I3L1", false);
+        avatarMap.put("R6I3L1", false);
+        avatarMap.put("R7I3L1", false);
+        avatarMap.put("R8I3L1", false);
+        avatarMap.put("R9I3L1", false);
+        avatarMap.put("R10I3L1", false);
+
+        // Isla 3 nivel 2
+        avatarMap.put("R1I3L2", false);
+        avatarMap.put("R2I3L2", false);
+        avatarMap.put("R3I3L2", false);
+        avatarMap.put("R4I3L2", false);
+        avatarMap.put("R5I3L2", false);
+        avatarMap.put("R6I3L2", false);
+        avatarMap.put("R7I3L2", false);
+        avatarMap.put("R8I3L2", false);
+        avatarMap.put("R9I3L2", false);
+        avatarMap.put("R10I3L2", false);
+
+        // Isla 3 nivel 3
+        avatarMap.put("R1I3L3", false);
+        avatarMap.put("R2I3L3", false);
+        avatarMap.put("R3I3L3", false);
+        avatarMap.put("R4I3L3", false);
+        avatarMap.put("R5I3L3", false);
+        avatarMap.put("R6I3L3", false);
+        avatarMap.put("R7I3L3", false);
+        avatarMap.put("R8I3L3", false);
+        avatarMap.put("R9I3L3", false);
+        avatarMap.put("R10I3L3", false);
+
+        // Guardar el documento en la colección "UsuarioAvatar"
+        mFirestore.collection("UsuarioTercera").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar tercera: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioCuarta"
+    private void createUsuarioCuarta(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 4 nivel 1
+        avatarMap.put("R1I4L1", false);
+        avatarMap.put("R2I4L1", false);
+        avatarMap.put("R3I4L1", false);
+        avatarMap.put("R4I4L1", false);
+        avatarMap.put("R5I4L1", false);
+        avatarMap.put("R6I4L1", false);
+        avatarMap.put("R7I4L1", false);
+        avatarMap.put("R8I4L1", false);
+        avatarMap.put("R9I4L1", false);
+        avatarMap.put("R10I4L1", false);
+
+        // Isla 4 nivel 2
+        avatarMap.put("R1I4L2", false);
+        avatarMap.put("R2I4L2", false);
+        avatarMap.put("R3I4L2", false);
+        avatarMap.put("R4I4L2", false);
+        avatarMap.put("R5I4L2", false);
+        avatarMap.put("R6I4L2", false);
+        avatarMap.put("R7I4L2", false);
+        avatarMap.put("R8I4L2", false);
+        avatarMap.put("R9I4L2", false);
+        avatarMap.put("R10I4L2", false);
+
+        // Isla 4 nivel 3
+        avatarMap.put("R1I4L3", false);
+        avatarMap.put("R2I4L3", false);
+        avatarMap.put("R3I4L3", false);
+        avatarMap.put("R4I4L3", false);
+        avatarMap.put("R5I4L3", false);
+        avatarMap.put("R6I4L3", false);
+        avatarMap.put("R7I4L3", false);
+        avatarMap.put("R8I4L3", false);
+        avatarMap.put("R9I4L3", false);
+        avatarMap.put("R10I4L3", false);
+
+        // Guardar el documento en la colección "UsuarioAvatar"
+        mFirestore.collection("UsuarioCuarta").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar cuarta: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioQuinta"
+    private void createUsuarioQuinta(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 5 nivel 1
+        avatarMap.put("R1I5L1", false);
+        avatarMap.put("R2I5L1", false);
+        avatarMap.put("R3I5L1", false);
+        avatarMap.put("R4I5L1", false);
+        avatarMap.put("R5I5L1", false);
+        avatarMap.put("R6I5L1", false);
+        avatarMap.put("R7I5L1", false);
+        avatarMap.put("R8I5L1", false);
+        avatarMap.put("R9I5L1", false);
+        avatarMap.put("R10I5L1", false);
+
+        // Isla 5 nivel 2
+        avatarMap.put("R1I5L2", false);
+        avatarMap.put("R2I5L2", false);
+        avatarMap.put("R3I5L2", false);
+        avatarMap.put("R4I5L2", false);
+        avatarMap.put("R5I5L2", false);
+        avatarMap.put("R6I5L2", false);
+        avatarMap.put("R7I5L2", false);
+        avatarMap.put("R8I5L2", false);
+        avatarMap.put("R9I5L2", false);
+        avatarMap.put("R10I5L2", false);
+
+        // Isla 5 nivel 3
+        avatarMap.put("R1I5L3", false);
+        avatarMap.put("R2I5L3", false);
+        avatarMap.put("R3I5L3", false);
+        avatarMap.put("R4I5L3", false);
+        avatarMap.put("R5I5L3", false);
+        avatarMap.put("R6I5L3", false);
+        avatarMap.put("R7I5L3", false);
+        avatarMap.put("R8I5L3", false);
+        avatarMap.put("R9I5L3", false);
+        avatarMap.put("R10I5L3", false);
+
+        // Guardar el documento en la colección "UsuarioQuinta"
+        mFirestore.collection("UsuarioQuinta").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar quinta: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioSexta"
+    private void createUsuarioSexta(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 6 nivel 1
+        avatarMap.put("R1I6L1", false);
+        avatarMap.put("R2I6L1", false);
+        avatarMap.put("R3I6L1", false);
+        avatarMap.put("R4I6L1", false);
+        avatarMap.put("R5I6L1", false);
+        avatarMap.put("R6I6L1", false);
+        avatarMap.put("R7I6L1", false);
+        avatarMap.put("R8I6L1", false);
+        avatarMap.put("R9I6L1", false);
+        avatarMap.put("R10I6L1", false);
+
+        // Isla 6 nivel 2
+        avatarMap.put("R1I6L2", false);
+        avatarMap.put("R2I6L2", false);
+        avatarMap.put("R3I6L2", false);
+        avatarMap.put("R4I6L2", false);
+        avatarMap.put("R5I6L2", false);
+        avatarMap.put("R6I6L2", false);
+        avatarMap.put("R7I6L2", false);
+        avatarMap.put("R8I6L2", false);
+        avatarMap.put("R9I6L2", false);
+        avatarMap.put("R10I6L2", false);
+
+        // Isla 6 nivel 3
+        avatarMap.put("R1I6L3", false);
+        avatarMap.put("R2I6L3", false);
+        avatarMap.put("R3I6L3", false);
+        avatarMap.put("R4I6L3", false);
+        avatarMap.put("R5I6L3", false);
+        avatarMap.put("R6I6L3", false);
+        avatarMap.put("R7I6L3", false);
+        avatarMap.put("R8I6L3", false);
+        avatarMap.put("R9I6L3", false);
+        avatarMap.put("R10I6L3", false);
+
+        // Guardar el documento en la colección "UsuarioSexta"
+        mFirestore.collection("UsuarioSexta").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar sexta: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioSeptima"
+    private void createUsuarioSeptima(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 7 nivel 1
+        avatarMap.put("R1I7L1", false);
+        avatarMap.put("R2I7L1", false);
+        avatarMap.put("R3I7L1", false);
+        avatarMap.put("R4I7L1", false);
+        avatarMap.put("R5I7L1", false);
+        avatarMap.put("R6I7L1", false);
+        avatarMap.put("R7I7L1", false);
+        avatarMap.put("R8I7L1", false);
+        avatarMap.put("R9I7L1", false);
+        avatarMap.put("R10I7L1", false);
+
+        // Isla 7 nivel 2
+        avatarMap.put("R1I7L2", false);
+        avatarMap.put("R2I7L2", false);
+        avatarMap.put("R3I7L2", false);
+        avatarMap.put("R4I7L2", false);
+        avatarMap.put("R5I7L2", false);
+        avatarMap.put("R6I7L2", false);
+        avatarMap.put("R7I7L2", false);
+        avatarMap.put("R8I7L2", false);
+        avatarMap.put("R9I7L2", false);
+        avatarMap.put("R10I7L2", false);
+
+        // Isla 7 nivel 3
+        avatarMap.put("R1I7L3", false);
+        avatarMap.put("R2I7L3", false);
+        avatarMap.put("R3I7L3", false);
+        avatarMap.put("R4I7L3", false);
+        avatarMap.put("R5I7L3", false);
+        avatarMap.put("R6I7L3", false);
+        avatarMap.put("R7I7L3", false);
+        avatarMap.put("R8I7L3", false);
+        avatarMap.put("R9I7L3", false);
+        avatarMap.put("R10I7L3", false);
+
+        // Guardar el documento en la colección "UsuarioSeptima"
+        mFirestore.collection("UsuarioSeptima").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar septima: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioOctava"
+    private void createUsuarioOctava(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 8 nivel 1
+        avatarMap.put("R1I8L1", false);
+        avatarMap.put("R2I8L1", false);
+        avatarMap.put("R3I8L1", false);
+        avatarMap.put("R4I8L1", false);
+        avatarMap.put("R5I8L1", false);
+        avatarMap.put("R6I8L1", false);
+        avatarMap.put("R7I8L1", false);
+        avatarMap.put("R8I8L1", false);
+        avatarMap.put("R9I8L1", false);
+        avatarMap.put("R10I8L1", false);
+
+        // Isla 8 nivel 2
+        avatarMap.put("R1I8L2", false);
+        avatarMap.put("R2I8L2", false);
+        avatarMap.put("R3I8L2", false);
+        avatarMap.put("R4I8L2", false);
+        avatarMap.put("R5I8L2", false);
+        avatarMap.put("R6I8L2", false);
+        avatarMap.put("R7I8L2", false);
+        avatarMap.put("R8I8L2", false);
+        avatarMap.put("R9I8L2", false);
+        avatarMap.put("R10I8L2", false);
+
+        // Isla 8 nivel 3
+        avatarMap.put("R1I8L3", false);
+        avatarMap.put("R2I8L3", false);
+        avatarMap.put("R3I8L3", false);
+        avatarMap.put("R4I8L3", false);
+        avatarMap.put("R5I8L3", false);
+        avatarMap.put("R6I8L3", false);
+        avatarMap.put("R7I8L3", false);
+        avatarMap.put("R8I8L3", false);
+        avatarMap.put("R9I8L3", false);
+        avatarMap.put("R10I8L3", false);
+
+        // Guardar el documento en la colección "UsuarioOctava"
+        mFirestore.collection("UsuarioOctava").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar octava: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioNovena"
+    private void createUsuarioNovena(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 9 nivel 1
+        avatarMap.put("R1I9L1", false);
+        avatarMap.put("R2I9L1", false);
+        avatarMap.put("R3I9L1", false);
+        avatarMap.put("R4I9L1", false);
+        avatarMap.put("R5I9L1", false);
+        avatarMap.put("R6I9L1", false);
+        avatarMap.put("R7I9L1", false);
+        avatarMap.put("R8I9L1", false);
+        avatarMap.put("R9I9L1", false);
+        avatarMap.put("R10I9L1", false);
+
+        // Isla 9 nivel 2
+        avatarMap.put("R1I9L2", false);
+        avatarMap.put("R2I9L2", false);
+        avatarMap.put("R3I9L2", false);
+        avatarMap.put("R4I9L2", false);
+        avatarMap.put("R5I9L2", false);
+        avatarMap.put("R6I9L2", false);
+        avatarMap.put("R7I9L2", false);
+        avatarMap.put("R8I9L2", false);
+        avatarMap.put("R9I9L2", false);
+        avatarMap.put("R10I9L2", false);
+
+        // Isla 9 nivel 3
+        avatarMap.put("R1I9L3", false);
+        avatarMap.put("R2I9L3", false);
+        avatarMap.put("R3I9L3", false);
+        avatarMap.put("R4I9L3", false);
+        avatarMap.put("R5I9L3", false);
+        avatarMap.put("R6I9L3", false);
+        avatarMap.put("R7I9L3", false);
+        avatarMap.put("R8I9L3", false);
+        avatarMap.put("R9I9L3", false);
+        avatarMap.put("R10I9L3", false);
+
+        // Guardar el documento en la colección "UsuarioNovena"
+        mFirestore.collection("UsuarioNovena").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar novena: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Crear documento en "UsuarioDecima"
+    private void createUsuarioDecima(String userId) {
+
+        Map<String, Object> avatarMap = new HashMap<>();
+        // Isla 10 nivel 1
+        avatarMap.put("R1I10L1", false);
+        avatarMap.put("R2I10L1", false);
+        avatarMap.put("R3I10L1", false);
+        avatarMap.put("R4I10L1", false);
+        avatarMap.put("R5I10L1", false);
+        avatarMap.put("R6I10L1", false);
+        avatarMap.put("R7I10L1", false);
+        avatarMap.put("R8I10L1", false);
+        avatarMap.put("R9I10L1", false);
+        avatarMap.put("R10I10L1", false);
+
+        // Isla 10 nivel 2
+        avatarMap.put("R1I10L2", false);
+        avatarMap.put("R2I10L2", false);
+        avatarMap.put("R3I10L2", false);
+        avatarMap.put("R4I10L2", false);
+        avatarMap.put("R5I10L2", false);
+        avatarMap.put("R6I10L2", false);
+        avatarMap.put("R7I10L2", false);
+        avatarMap.put("R8I10L2", false);
+        avatarMap.put("R9I10L2", false);
+        avatarMap.put("R10I10L2", false);
+
+        // Isla 10 nivel 3
+        avatarMap.put("R1I10L3", false);
+        avatarMap.put("R2I10L3", false);
+        avatarMap.put("R3I10L3", false);
+        avatarMap.put("R4I10L3", false);
+        avatarMap.put("R5I10L3", false);
+        avatarMap.put("R6I10L3", false);
+        avatarMap.put("R7I10L3", false);
+        avatarMap.put("R8I10L3", false);
+        avatarMap.put("R9I10L3", false);
+        avatarMap.put("R10I10L3", false);
+
+        // Guardar el documento en la colección "UsuarioDecima"
+        mFirestore.collection("UsuarioDecima").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                finish();
+                startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+                Toast.makeText(RegistroActivity.this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistroActivity.this, "Error al guardar decima: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

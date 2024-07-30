@@ -69,8 +69,8 @@
 
     <Button
         android:id="@+id/buttonSafe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="Guardar"
@@ -130,12 +130,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="230dp"
+        android:layout_marginBottom="220dp"
+        android:src="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/feet1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/faceEdit"
@@ -147,7 +147,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/face1" />
+        android:src="@null" />
 
     <ImageView
         android:id="@+id/headEdit"
@@ -159,7 +159,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/head1" />
+        android:src="@null" />
 
     <ImageView
         android:id="@+id/neckEdit"
@@ -167,13 +167,13 @@
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="230dp"
+        android:src="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/duck"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/neck2" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <!-- Wrap LinearLayout "things" inside a HorizontalScrollView -->
     <HorizontalScrollView
