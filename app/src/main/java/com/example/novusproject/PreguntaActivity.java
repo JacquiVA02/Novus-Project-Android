@@ -35,7 +35,7 @@ import android.media.MediaPlayer;
 
 public class PreguntaActivity extends AppCompatActivity {
 
-    ImageView btn_back, question, response1, response2, response3, response4, coffee, eraser, candy;
+    ImageView btn_back, question, response1, response2, response3, response4, coffee, eraser, candy, emotions;
     private List<ImageView> responseViews;
     String correctText;
     TextView coins, coffeeUser, eraserUser, candyUser;
@@ -89,6 +89,8 @@ public class PreguntaActivity extends AppCompatActivity {
         coffeeUser = findViewById(R.id.coffeeUser);
         eraserUser = findViewById(R.id.eraserUser);
         candyUser = findViewById(R.id.candyUser);
+
+        emotions = findViewById(R.id.duckEmotion);
 
         // Inicialización de Firebase
         db = FirebaseFirestore.getInstance();
@@ -414,6 +416,8 @@ public class PreguntaActivity extends AppCompatActivity {
             updatePoints();
             updateOpC2();
 
+            emotions.setImageResource(R.drawable.happy);
+
             // Reproducir sonido de respuesta correcta
             if (mediaPlayer != null) {
                 mediaPlayer.start();
@@ -430,6 +434,8 @@ public class PreguntaActivity extends AppCompatActivity {
                     .centerInside()
                     .into(imageView);
             updateWrongOpC2();
+
+            emotions.setImageResource(R.drawable.sad);
 
             // Reproducir sonido de respuesta incorrecta
             if (incorrectMediaPlayer != null) {
@@ -487,6 +493,9 @@ public class PreguntaActivity extends AppCompatActivity {
     }
 
     private void resetResponseButtons(String correctText, String video) {
+
+        emotions.setImageDrawable(null);
+
         // Restaurar el fondo original de los botones de respuesta
         response1.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
         response2.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
