@@ -212,32 +212,6 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             }
         });
 
-        /*
-        btn_map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstIslandActivity.this, MapaActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btn_avatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstIslandActivity.this, AvatarActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btn_shop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstIslandActivity.this, TiendaActivity.class);
-                startActivity(intent);
-            }
-        });
-        */
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -269,34 +243,38 @@ public class FirstIslandL1Activity extends AppCompatActivity {
 
         for (int i = 1; i <= 10; i++) {
             String preguntaKey = "R" + i + isla + nivel;
+            Log.d(TAG, "Verificando preguntaKey: " + preguntaKey);
 
             if (buttonToImageViewMap.containsKey(preguntaKey)) {
-                int preguntaId = getResources().getIdentifier(preguntaKey, "id", getPackageName());
+                int preguntaId = buttonToImageViewMap.get(preguntaKey);
                 ImageView pregunta = findViewById(preguntaId);
 
                 if (pregunta != null) {
                     if (userData.containsKey(preguntaKey) && userData.get(preguntaKey) instanceof Boolean) {
                         boolean estado = (Boolean) userData.get(preguntaKey);
+                        Log.d(TAG, "Estado de " + preguntaKey + ": " + estado);
                         pregunta.setEnabled(estadoAnterior); // Habilitar/deshabilitar el botón según el estado anterior
                         estadoAnterior = estado; // Actualizar el estado anterior
                     } else {
                         pregunta.setEnabled(false); // Deshabilitar el botón si no hay datos
                     }
+                } else {
+                    Log.d(TAG, "ImageView no encontrado para preguntaKey: " + preguntaKey);
                 }
+            } else {
+                Log.d(TAG, "preguntaKey no encontrada en buttonToImageViewMap: " + preguntaKey);
             }
         }
     }
 
+
     private void verificarAvance() {
-        // Se obtiene al usuario actual
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
 
-            // Referenciar al documento de UsuarioIsla
             DocumentReference userDocRef = db.collection(base).document(userId);
 
-            // Escuchar cambios en el documento en tiempo real
             userDocRef.addSnapshotListener((documentSnapshot, e) -> {
                 if (e != null) {
                     Log.d(TAG, "Error al obtener el documento", e);
@@ -304,23 +282,21 @@ public class FirstIslandL1Activity extends AppCompatActivity {
                 }
 
                 if (documentSnapshot != null && documentSnapshot.exists()) {
-                    // El documento existe, obtener sus datos
                     Map<String, Object> userData = documentSnapshot.getData();
                     if (userData != null) {
+                        Log.d(TAG, "Datos del usuario: " + userData);
                         actualizarEstadoBotones(userData);
 
                         for (Map.Entry<String, Object> entry : userData.entrySet()) {
                             String key = entry.getKey();
                             Object value = entry.getValue();
 
-                            // Verificar si el valor es true
                             if (value instanceof Boolean && (Boolean) value) {
                                 if (buttonToImageViewMap.containsKey(key)) {
                                     int imageViewId = buttonToImageViewMap.get(key);
                                     ImageView imageView = findViewById(imageViewId);
                                     if (imageView != null) {
-                                        // Cambiar la imagen del ImageView
-                                        imageView.setImageResource(R.drawable.green); // new_image es el nombre de la nueva imagen
+                                        imageView.setImageResource(R.drawable.green);
                                     }
                                 }
                             }
@@ -334,6 +310,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             Log.d(TAG, "Usuario no autenticado");
         }
     }
+
 
 
 
