@@ -243,7 +243,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
 
         for (int i = 1; i <= 10; i++) {
             String preguntaKey = "R" + i + isla + nivel;
-            Log.d(TAG, "Verificando preguntaKey: " + preguntaKey);
+            //Log.d(TAG, "Verificando preguntaKey: " + preguntaKey);
 
             if (buttonToImageViewMap.containsKey(preguntaKey)) {
                 int preguntaId = buttonToImageViewMap.get(preguntaKey);
@@ -252,7 +252,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
                 if (pregunta != null) {
                     if (userData.containsKey(preguntaKey) && userData.get(preguntaKey) instanceof Boolean) {
                         boolean estado = (Boolean) userData.get(preguntaKey);
-                        Log.d(TAG, "Estado de " + preguntaKey + ": " + estado);
+                        //Log.d(TAG, "Estado de " + preguntaKey + ": " + estado);
                         pregunta.setEnabled(estadoAnterior); // Habilitar/deshabilitar el botón según el estado anterior
                         estadoAnterior = estado; // Actualizar el estado anterior
                     } else {
@@ -284,7 +284,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
                 if (documentSnapshot != null && documentSnapshot.exists()) {
                     Map<String, Object> userData = documentSnapshot.getData();
                     if (userData != null) {
-                        Log.d(TAG, "Datos del usuario: " + userData);
+                        //Log.d(TAG, "Datos del usuario: " + userData);
                         actualizarEstadoBotones(userData);
 
                         for (Map.Entry<String, Object> entry : userData.entrySet()) {

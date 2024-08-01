@@ -566,40 +566,40 @@ public class RegistroActivity extends AppCompatActivity {
 
         Map<String, Object> avatarMap = new HashMap<>();
         // Isla 8 nivel 1
-        avatarMap.put("R1I8L1", false);
-        avatarMap.put("R2I8L1", false);
-        avatarMap.put("R3I8L1", false);
-        avatarMap.put("R4I8L1", false);
-        avatarMap.put("R5I8L1", false);
-        avatarMap.put("R6I8L1", false);
-        avatarMap.put("R7I8L1", false);
-        avatarMap.put("R8I8L1", false);
-        avatarMap.put("R9I8L1", false);
-        avatarMap.put("R10I8L1", false);
+        avatarMap.put("R1I81L1", false);
+        avatarMap.put("R2I81L1", false);
+        avatarMap.put("R3I81L1", false);
+        avatarMap.put("R4I81L1", false);
+        avatarMap.put("R5I81L1", false);
+        avatarMap.put("R6I81L1", false);
+        avatarMap.put("R7I81L1", false);
+        avatarMap.put("R8I81L1", false);
+        avatarMap.put("R9I81L1", false);
+        avatarMap.put("R10I81L1", false);
 
         // Isla 8 nivel 2
-        avatarMap.put("R1I8L2", false);
-        avatarMap.put("R2I8L2", false);
-        avatarMap.put("R3I8L2", false);
-        avatarMap.put("R4I8L2", false);
-        avatarMap.put("R5I8L2", false);
-        avatarMap.put("R6I8L2", false);
-        avatarMap.put("R7I8L2", false);
-        avatarMap.put("R8I8L2", false);
-        avatarMap.put("R9I8L2", false);
-        avatarMap.put("R10I8L2", false);
+        avatarMap.put("R1I81L2", false);
+        avatarMap.put("R2I81L2", false);
+        avatarMap.put("R3I81L2", false);
+        avatarMap.put("R4I81L2", false);
+        avatarMap.put("R5I81L2", false);
+        avatarMap.put("R6I81L2", false);
+        avatarMap.put("R7I81L2", false);
+        avatarMap.put("R8I81L2", false);
+        avatarMap.put("R9I81L2", false);
+        avatarMap.put("R10I81L2", false);
 
         // Isla 8 nivel 3
-        avatarMap.put("R1I8L3", false);
-        avatarMap.put("R2I8L3", false);
-        avatarMap.put("R3I8L3", false);
-        avatarMap.put("R4I8L3", false);
-        avatarMap.put("R5I8L3", false);
-        avatarMap.put("R6I8L3", false);
-        avatarMap.put("R7I8L3", false);
-        avatarMap.put("R8I8L3", false);
-        avatarMap.put("R9I8L3", false);
-        avatarMap.put("R10I8L3", false);
+        avatarMap.put("R1I81L3", false);
+        avatarMap.put("R2I81L3", false);
+        avatarMap.put("R3I81L3", false);
+        avatarMap.put("R4I81L3", false);
+        avatarMap.put("R5I81L3", false);
+        avatarMap.put("R6I81L3", false);
+        avatarMap.put("R7I81L3", false);
+        avatarMap.put("R8I81L3", false);
+        avatarMap.put("R9I81L3", false);
+        avatarMap.put("R10I81L3", false);
 
         // Guardar el documento en la colección "UsuarioOctava"
         mFirestore.collection("UsuarioOctava").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -622,40 +622,40 @@ public class RegistroActivity extends AppCompatActivity {
 
         Map<String, Object> avatarMap = new HashMap<>();
         // Isla 9 nivel 1
-        avatarMap.put("R1I9L1", false);
-        avatarMap.put("R2I9L1", false);
-        avatarMap.put("R3I9L1", false);
-        avatarMap.put("R4I9L1", false);
-        avatarMap.put("R5I9L1", false);
-        avatarMap.put("R6I9L1", false);
-        avatarMap.put("R7I9L1", false);
-        avatarMap.put("R8I9L1", false);
-        avatarMap.put("R9I9L1", false);
-        avatarMap.put("R10I9L1", false);
+        avatarMap.put("R1I91L1", false);
+        avatarMap.put("R2I91L1", false);
+        avatarMap.put("R3I91L1", false);
+        avatarMap.put("R4I91L1", false);
+        avatarMap.put("R5I91L1", false);
+        avatarMap.put("R6I91L1", false);
+        avatarMap.put("R7I91L1", false);
+        avatarMap.put("R8I91L1", false);
+        avatarMap.put("R9I91L1", false);
+        avatarMap.put("R10I91L1", false);
 
         // Isla 9 nivel 2
-        avatarMap.put("R1I9L2", false);
-        avatarMap.put("R2I9L2", false);
-        avatarMap.put("R3I9L2", false);
-        avatarMap.put("R4I9L2", false);
-        avatarMap.put("R5I9L2", false);
-        avatarMap.put("R6I9L2", false);
-        avatarMap.put("R7I9L2", false);
-        avatarMap.put("R8I9L2", false);
-        avatarMap.put("R9I9L2", false);
-        avatarMap.put("R10I9L2", false);
+        avatarMap.put("R1I91L2", false);
+        avatarMap.put("R2I91L2", false);
+        avatarMap.put("R3I91L2", false);
+        avatarMap.put("R4I91L2", false);
+        avatarMap.put("R5I91L2", false);
+        avatarMap.put("R6I91L2", false);
+        avatarMap.put("R7I91L2", false);
+        avatarMap.put("R8I91L2", false);
+        avatarMap.put("R9I91L2", false);
+        avatarMap.put("R10I91L2", false);
 
         // Isla 9 nivel 3
-        avatarMap.put("R1I9L3", false);
-        avatarMap.put("R2I9L3", false);
-        avatarMap.put("R3I9L3", false);
-        avatarMap.put("R4I9L3", false);
-        avatarMap.put("R5I9L3", false);
-        avatarMap.put("R6I9L3", false);
-        avatarMap.put("R7I9L3", false);
-        avatarMap.put("R8I9L3", false);
-        avatarMap.put("R9I9L3", false);
-        avatarMap.put("R10I9L3", false);
+        avatarMap.put("R1I91L3", false);
+        avatarMap.put("R2I91L3", false);
+        avatarMap.put("R3I91L3", false);
+        avatarMap.put("R4I91L3", false);
+        avatarMap.put("R5I91L3", false);
+        avatarMap.put("R6I91L3", false);
+        avatarMap.put("R7I91L3", false);
+        avatarMap.put("R8I91L3", false);
+        avatarMap.put("R9I91L3", false);
+        avatarMap.put("R10I91L3", false);
 
         // Guardar el documento en la colección "UsuarioNovena"
         mFirestore.collection("UsuarioNovena").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -678,40 +678,40 @@ public class RegistroActivity extends AppCompatActivity {
 
         Map<String, Object> avatarMap = new HashMap<>();
         // Isla 10 nivel 1
-        avatarMap.put("R1I10L1", false);
-        avatarMap.put("R2I10L1", false);
-        avatarMap.put("R3I10L1", false);
-        avatarMap.put("R4I10L1", false);
-        avatarMap.put("R5I10L1", false);
-        avatarMap.put("R6I10L1", false);
-        avatarMap.put("R7I10L1", false);
-        avatarMap.put("R8I10L1", false);
-        avatarMap.put("R9I10L1", false);
-        avatarMap.put("R10I10L1", false);
+        avatarMap.put("R1I101L1", false);
+        avatarMap.put("R2I101L1", false);
+        avatarMap.put("R3I101L1", false);
+        avatarMap.put("R4I101L1", false);
+        avatarMap.put("R5I101L1", false);
+        avatarMap.put("R6I101L1", false);
+        avatarMap.put("R7I101L1", false);
+        avatarMap.put("R8I101L1", false);
+        avatarMap.put("R9I101L1", false);
+        avatarMap.put("R10I101L1", false);
 
         // Isla 10 nivel 2
-        avatarMap.put("R1I10L2", false);
-        avatarMap.put("R2I10L2", false);
-        avatarMap.put("R3I10L2", false);
-        avatarMap.put("R4I10L2", false);
-        avatarMap.put("R5I10L2", false);
-        avatarMap.put("R6I10L2", false);
-        avatarMap.put("R7I10L2", false);
-        avatarMap.put("R8I10L2", false);
-        avatarMap.put("R9I10L2", false);
-        avatarMap.put("R10I10L2", false);
+        avatarMap.put("R1I101L2", false);
+        avatarMap.put("R2I101L2", false);
+        avatarMap.put("R3I101L2", false);
+        avatarMap.put("R4I101L2", false);
+        avatarMap.put("R5I101L2", false);
+        avatarMap.put("R6I101L2", false);
+        avatarMap.put("R7I101L2", false);
+        avatarMap.put("R8I101L2", false);
+        avatarMap.put("R9I101L2", false);
+        avatarMap.put("R10I101L2", false);
 
         // Isla 10 nivel 3
-        avatarMap.put("R1I10L3", false);
-        avatarMap.put("R2I10L3", false);
-        avatarMap.put("R3I10L3", false);
-        avatarMap.put("R4I10L3", false);
-        avatarMap.put("R5I10L3", false);
-        avatarMap.put("R6I10L3", false);
-        avatarMap.put("R7I10L3", false);
-        avatarMap.put("R8I10L3", false);
-        avatarMap.put("R9I10L3", false);
-        avatarMap.put("R10I10L3", false);
+        avatarMap.put("R1I101L3", false);
+        avatarMap.put("R2I101L3", false);
+        avatarMap.put("R3I101L3", false);
+        avatarMap.put("R4I101L3", false);
+        avatarMap.put("R5I101L3", false);
+        avatarMap.put("R6I101L3", false);
+        avatarMap.put("R7I101L3", false);
+        avatarMap.put("R8I101L3", false);
+        avatarMap.put("R9I101L3", false);
+        avatarMap.put("R10I101L3", false);
 
         // Guardar el documento en la colección "UsuarioDecima"
         mFirestore.collection("UsuarioDecima").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
