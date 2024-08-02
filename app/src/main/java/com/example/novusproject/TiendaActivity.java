@@ -3,6 +3,7 @@ package com.example.novusproject;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -157,6 +158,11 @@ public class TiendaActivity extends AppCompatActivity {
 
                     imageButton.setLayoutParams(buttonParams);
                     imageButton.setScaleType(ImageView.ScaleType.CENTER_CROP); // Ajusta esto según sea necesario
+
+                    // Configurar el color de fondo con opacidad
+                    int colorWithOpacity = Color.argb(179, 204, 204, 204); // 179 es el valor de opacidad (B3 en hexadecimal)
+                    imageButton.setBackgroundColor(colorWithOpacity);
+
                     imageButton.setOnClickListener(v -> {
                         // Mostrar el popup al hacer clic en el botón
                         String description = document.getString("descripcion");
@@ -172,6 +178,7 @@ public class TiendaActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void createButtonsForAvatarItems(Map<String, Object> avatarItems) {
         int count = 0;
