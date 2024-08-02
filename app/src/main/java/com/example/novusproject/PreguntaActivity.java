@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -382,24 +383,7 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
-    private void getElements(){
-        db.collection("Elementos").document("elementos")
-                .addSnapshotListener((value, error) -> {
-                    if (error != null) {
-                        Log.w(TAG, "Listen failed.", error);
-                        return;
-                    }
 
-                    if(value != null && value.exists()) {
-                        Log.d(TAG, "Current data: " + value.getData());
-                        // Asignar los valores a las variables de clase
-                        imgCorrect = value.getString("correct");
-                        imgIncorrect = value.getString("incorrect");
-                    } else {
-                        Log.d(TAG, "Current data: null");
-                    }
-                });
-    }
 
     private void checkAnswer(View view, String correctText, String video) {
         String selectedAnswer = (String) view.getTag();
@@ -422,6 +406,27 @@ public class PreguntaActivity extends AppCompatActivity {
             if (mediaPlayer != null) {
                 mediaPlayer.start();
             }
+
+            if (param2.startsWith("R10")) {
+                checkParam2(param2, param3, new OnParam2CheckedListener() {
+                    @Override
+                    public void onResult(boolean isParam2False) {
+                        // Verificar si el resultado es falso
+                        if (isParam2False) {
+                            incrementC1();
+                            // El resultado de checkParam2 es verdadero (es decir, el campo es falso)
+                            // Lógica específica cuando param2 es falso
+                            //Log.d(TAG, "El campo param2 es falso. Ejecutar lógica específica.");
+                        }
+                        //else {
+                            // El resultado de checkParam2 es falso (es decir, el campo no es falso)
+                            // Lógica específica cuando param2 no es falso
+                           // Log.d(TAG, "El campo param2 no es falso. Ejecutar lógica alternativa.");
+                        //}
+                    }
+                });
+            }
+
 
             // Finalizar la actividad actual
             finish();
@@ -451,6 +456,83 @@ public class PreguntaActivity extends AppCompatActivity {
         response3.setOnClickListener(null);
         response4.setOnClickListener(null);
     }
+
+    public interface OnParam2CheckedListener {
+        void onResult(boolean isParam2False);
+    }
+
+
+    private void checkParam2(String param2, String param3, OnParam2CheckedListener listener) {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            Log.d(TAG, "Usuario ID: " + userId);
+
+            // Referencia al documento del usuario en la colección param3
+            DocumentReference userDocRef = db.collection(param3).document(userId);
+
+            // Obtener el dato param2 del documento del usuario
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Verificar si el campo param2 es falso
+                        Boolean isParam2False = document.getBoolean(param2);
+                        if (isParam2False != null && !isParam2False) {
+                            // El campo param2 es falso
+                            Log.d(TAG, "El campo " + param2 + " es falso.");
+                            listener.onResult(true);
+                        } else {
+                            // El campo param2 no es falso o no existe
+                            Log.d(TAG, "El campo " + param2 + " no es falso o no existe.");
+                            listener.onResult(false);
+                        }
+                    } else {
+                        Log.d(TAG, "El documento no existe.");
+                        listener.onResult(false);
+                    }
+                } else {
+                    Log.d(TAG, "Error al obtener el documento.", task.getException());
+                    listener.onResult(false);
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+            startActivity(new Intent(PreguntaActivity.this, SesionActivity.class));
+            finish();
+            listener.onResult(false);
+        }
+    }
+
+    private void incrementC1() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            Log.d(TAG, "Usuario ID: " + userId);
+
+            // Referencia al documento del usuario en la colección "Usuario"
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Incrementar el campo "c1" en el documento
+            userDocRef.update("c1", FieldValue.increment(1))
+                    .addOnSuccessListener(aVoid -> {
+                        // Operación exitosa
+                        Log.d(TAG, "Campo c1 incrementado exitosamente.");
+                    })
+                    .addOnFailureListener(e -> {
+                        // Manejo del error
+                        Log.d(TAG, "Error al incrementar el campo c1.", e);
+                    });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+            startActivity(new Intent(PreguntaActivity.this, SesionActivity.class));
+            finish();
+        }
+    }
+
+
 
     @Override
     protected void onDestroy() {
@@ -492,27 +574,6 @@ public class PreguntaActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void resetResponseButtons(String correctText, String video) {
-
-        emotions.setImageDrawable(null);
-
-        // Restaurar el fondo original de los botones de respuesta
-        response1.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
-        response2.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
-        response3.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
-        response4.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
-
-        // Cargar la imagen original en cada ImageView correspondiente
-        loadImageIntoView(response1.getTag().toString(), response1, response1.getTag().toString());
-        loadImageIntoView(response2.getTag().toString(), response2, response2.getTag().toString());
-        loadImageIntoView(response3.getTag().toString(), response3, response3.getTag().toString());
-        loadImageIntoView(response4.getTag().toString(), response4, response4.getTag().toString());
-
-        response1.setOnClickListener(view -> checkAnswer(view, correctText, video));
-        response2.setOnClickListener(view -> checkAnswer(view, correctText, video));
-        response3.setOnClickListener(view -> checkAnswer(view, correctText, video));
-        response4.setOnClickListener(view -> checkAnswer(view, correctText, video));
-    }
 
     private void updateQuestionState(){
         // Se obtiene al usuario actual
@@ -855,6 +916,46 @@ public class PreguntaActivity extends AppCompatActivity {
                     .into(imageView);
             imageView.setTag(tag);
         }
+    }
+
+    private void resetResponseButtons(String correctText, String video) {
+        emotions.setImageDrawable(null);
+
+        // Restaurar el fondo original de los botones de respuesta
+        response1.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+        response2.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+        response3.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+        response4.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_answer));
+
+        // Cargar la imagen original en cada ImageView correspondiente
+        loadImageIntoView(response1.getTag().toString(), response1, response1.getTag().toString());
+        loadImageIntoView(response2.getTag().toString(), response2, response2.getTag().toString());
+        loadImageIntoView(response3.getTag().toString(), response3, response3.getTag().toString());
+        loadImageIntoView(response4.getTag().toString(), response4, response4.getTag().toString());
+
+        response1.setOnClickListener(view -> checkAnswer(view, correctText, video));
+        response2.setOnClickListener(view -> checkAnswer(view, correctText, video));
+        response3.setOnClickListener(view -> checkAnswer(view, correctText, video));
+        response4.setOnClickListener(view -> checkAnswer(view, correctText, video));
+    }
+
+    private void getElements(){
+        db.collection("Elementos").document("elementos")
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        Log.w(TAG, "Listen failed.", error);
+                        return;
+                    }
+
+                    if(value != null && value.exists()) {
+                        Log.d(TAG, "Current data: " + value.getData());
+                        // Asignar los valores a las variables de clase
+                        imgCorrect = value.getString("correct");
+                        imgIncorrect = value.getString("incorrect");
+                    } else {
+                        Log.d(TAG, "Current data: null");
+                    }
+                });
     }
 }
 
