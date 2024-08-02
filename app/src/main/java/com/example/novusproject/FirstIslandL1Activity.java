@@ -224,6 +224,8 @@ public class FirstIslandL1Activity extends AppCompatActivity {
 
         verificarAvance();
         getData();
+        Log.d("NivelTag", nivel);
+        setBackground(nivel);
     }
 
     private void initializeButtonToImageViewMap() {
@@ -315,15 +317,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         }
     }
 
-    private void setBackground(String nivel){
-        if (nivel == "L1"){
-            mainView.setBackgroundResource(R.drawable.backl1);
-        } else if (nivel == "L2") {
-            mainView.setBackgroundResource(R.drawable.backl2);
-        } else {
-            mainView.setBackgroundResource(R.drawable.backl3);
-        }
-    }
+
 
     private void getData() {
         FirebaseUser user = mAuth.getCurrentUser();
@@ -374,5 +368,14 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         }
     }
 
+    private void setBackground(String nivel) {
+        if (nivel.equals("L1")) {
+            mainView.setBackgroundResource(R.drawable.backl1);
+        } else if (nivel.equals("L2")) {
+            mainView.setBackgroundResource(R.drawable.backl2);
+        } else {
+            mainView.setBackgroundResource(R.drawable.backl3);
+        }
+    }
 
 }
