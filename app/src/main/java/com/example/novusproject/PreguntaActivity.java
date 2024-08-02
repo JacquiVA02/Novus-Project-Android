@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -18,6 +19,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -187,7 +190,14 @@ public class PreguntaActivity extends AppCompatActivity {
                     });
 
         // Configurar el botón de retroceso
-        btn_back.setOnClickListener(v -> finish());
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actualizarMenosOpc3();
+                finish();
+            }
+        });
+
 
         // USAR COMODIN DE CAFE
         eraser.setOnClickListener(new View.OnClickListener() {
@@ -398,7 +408,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     .into(imageView);
             updateQuestionState();
             updatePoints();
-            updateOpC2();
+            //actualizarMasOpc3();
 
             emotions.setImageResource(R.drawable.happy);
 
@@ -408,27 +418,42 @@ public class PreguntaActivity extends AppCompatActivity {
             }
 
             if (param2.startsWith("R10")) {
-                checkParam2(param2, param3, new OnParam2CheckedListener() {
-                    @Override
-                    public void onResult(boolean isParam2False) {
-                        // Verificar si el resultado es falso
-                        if (isParam2False) {
-                            incrementC1();
-                            // El resultado de checkParam2 es verdadero (es decir, el campo es falso)
-                            // Lógica específica cuando param2 es falso
-                            //Log.d(TAG, "El campo param2 es falso. Ejecutar lógica específica.");
+                // Obtener el valor de opc2 y luego llamar a checkParam2
+                FirebaseUser user = mAuth.getCurrentUser();
+                if (user != null) {
+                    String userId = user.getUid();
+                    DocumentReference userRef = db.collection("Usuario").document(userId);
+                    userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Long opc2Value = document.getLong("opc2");
+                                    if (opc2Value != null && opc2Value == 0) {
+                                        checkParam2(param2, param3, new OnParam2CheckedListener() {
+                                            @Override
+                                            public void onResult(boolean isParam2False) {
+                                                if (isParam2False) {
+                                                    incrementC1();
+                                                    incrementC3(); // Llama a incrementC3 si opc2 == 0 y param2 es falso
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            } else {
+                                Log.w(TAG, "Error al obtener el documento", task.getException());
+                            }
                         }
-                        //else {
-                            // El resultado de checkParam2 es falso (es decir, el campo no es falso)
-                            // Lógica específica cuando param2 no es falso
-                           // Log.d(TAG, "El campo param2 no es falso. Ejecutar lógica alternativa.");
-                        //}
-                    }
-                });
+                    });
+                } else {
+                    Log.d(TAG, "Usuario no autenticado");
+                }
             }
 
-
             // Finalizar la actividad actual
+            actualizarMenosOpc3();
             finish();
 
         } else {
@@ -438,7 +463,6 @@ public class PreguntaActivity extends AppCompatActivity {
                     .fitCenter()
                     .centerInside()
                     .into(imageView);
-            updateWrongOpC2();
 
             emotions.setImageResource(R.drawable.sad);
 
@@ -447,6 +471,7 @@ public class PreguntaActivity extends AppCompatActivity {
                 incorrectMediaPlayer.start();
             }
 
+            actualizarMasOpc3();
             showIncorrectAnswerDialog(correctText, video);
         }
 
@@ -456,6 +481,7 @@ public class PreguntaActivity extends AppCompatActivity {
         response3.setOnClickListener(null);
         response4.setOnClickListener(null);
     }
+
 
     public interface OnParam2CheckedListener {
         void onResult(boolean isParam2False);
@@ -532,7 +558,84 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
+    private void incrementC3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            Log.d(TAG, "Usuario ID: " + userId);
 
+            // Referencia al documento del usuario en la colección "Usuario"
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Incrementar el campo "c3" en el documento
+            userDocRef.update("c3", FieldValue.increment(1))
+                    .addOnSuccessListener(aVoid -> {
+                        // Operación exitosa
+                        Log.d(TAG, "Campo c3 incrementado exitosamente.");
+                    })
+                    .addOnFailureListener(e -> {
+                        // Manejo del error
+                        Log.d(TAG, "Error al incrementar el campo c3.", e);
+                    });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+            startActivity(new Intent(PreguntaActivity.this, SesionActivity.class));
+            finish();
+        }
+    }
+
+    public void actualizarMasOpc3() {
+        // Se obtiene al usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null){
+            String userId = user.getUid();
+
+        DocumentReference userRef = db.collection("Usuario").document(userId);
+
+        userRef.update("opc2", 1)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Actualización exitosa
+                            Log.d("Firestore", "DocumentSnapshot successfully updated!");
+                        } else {
+                            // Error al actualizar
+                            Log.w("Firestore", "Error updating document", task.getException());
+                        }
+                    }
+                });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    public void actualizarMenosOpc3() {
+        // Se obtiene al usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null){
+            String userId = user.getUid();
+
+            DocumentReference userRef = db.collection("Usuario").document(userId);
+
+            userRef.update("opc2", 0)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                // Actualización exitosa
+                                Log.d("Firestore", "DocumentSnapshot successfully updated!");
+                            } else {
+                                // Error al actualizar
+                                Log.w("Firestore", "Error updating document", task.getException());
+                            }
+                        }
+                    });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
 
     @Override
     protected void onDestroy() {
