@@ -407,6 +407,7 @@ public class PreguntaActivity extends AppCompatActivity {
                 mediaPlayer.start();
             }
 
+            // Comodin de Café
             if (param2.startsWith("R10")) {
                 checkParam2(param2, param3, new OnParam2CheckedListener() {
                     @Override
@@ -427,8 +428,31 @@ public class PreguntaActivity extends AppCompatActivity {
                 });
             }
 
+            // Comodin de Dulce
+            verificarOpc3(opc3 -> {
+                if (opc3 != null && opc3 == 0) {
+                    checkParam2(param2, param3, new OnParam2CheckedListener() {
+                        @Override
+                        public void onResult(boolean isParam2False) {
+                            if (isParam2False) {
+                                incrementC3();
+                                // Lógica específica cuando param2 es falso
+                                // Log.d(TAG, "El campo param2 es falso. Ejecutar lógica específica.");
+                            } else {
+                                // Lógica específica cuando param2 no es falso
+                                // Log.d(TAG, "El campo param2 no es falso. Ejecutar lógica alternativa.");
+                            }
+                        }
+                    });
+                } else {
+                    // Opcional: Manejar el caso en que opc3 no sea 0
+                    // Log.d(TAG, "El valor de opc3 no es 0.");
+                }
+            });
+
 
             // Finalizar la actividad actual
+            updateMenosOpC3();
             finish();
 
         } else {
@@ -447,6 +471,7 @@ public class PreguntaActivity extends AppCompatActivity {
                 incorrectMediaPlayer.start();
             }
 
+            updateMasOpC3();
             showIncorrectAnswerDialog(correctText, video);
         }
 
@@ -532,7 +557,33 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
+    // Comodin del dulce
+    private void incrementC3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            Log.d(TAG, "Usuario ID: " + userId);
 
+            // Referencia al documento del usuario en la colección "Usuario"
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Incrementar el campo "c1" en el documento
+            userDocRef.update("c3", FieldValue.increment(1))
+                    .addOnSuccessListener(aVoid -> {
+                        // Operación exitosa
+                        Log.d(TAG, "Campo c3 incrementado exitosamente.");
+                    })
+                    .addOnFailureListener(e -> {
+                        // Manejo del error
+                        Log.d(TAG, "Error al incrementar el campo c3.", e);
+                    });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+            startActivity(new Intent(PreguntaActivity.this, SesionActivity.class));
+            finish();
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -816,6 +867,120 @@ public class PreguntaActivity extends AppCompatActivity {
         }
     }
 
+    public interface Opc3Callback {
+        void onCallback(Double opc3);
+    }
+
+    private void verificarOpc3(Opc3Callback callback) {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los valores actuales de opc3
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double opc3 = document.getDouble("opc3");
+                        if (callback != null) {
+                            callback.onCallback(opc3);
+                        }
+                    } else {
+                        Log.d(TAG, "No such document");
+                        if (callback != null) {
+                            callback.onCallback(null);
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                    if (callback != null) {
+                        callback.onCallback(null);
+                    }
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+            if (callback != null) {
+                callback.onCallback(null);
+            }
+        }
+    }
+
+
+
+    private void updateMenosOpC3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los valores actuales de opc2 y actualizar a 0
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentOpC2 = document.getDouble("opc2");
+                        if (currentOpC2 == null) {
+                            currentOpC2 = 0.0;
+                        }
+
+                        // Poner a opc2 en 0
+                        Double newOpC2 = 0.0;
+                        userDocRef.update("opc2", newOpC2);
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+    private void updateMasOpC3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los valores actuales de opc2 y actualizar a 0
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Double currentOpC2 = document.getDouble("opc2");
+                        if (currentOpC2 == null) {
+                            currentOpC2 = 0.0;
+                        }
+
+                        // Poner a opc2 en 0
+                        Double newOpC2 = 1.0;
+                        userDocRef.update("opc2", newOpC2);
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
 
     private void updatePoints() {
         // Obtener el usuario actual
@@ -958,4 +1123,3 @@ public class PreguntaActivity extends AppCompatActivity {
                 });
     }
 }
-
