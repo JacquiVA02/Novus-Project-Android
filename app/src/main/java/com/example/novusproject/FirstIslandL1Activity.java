@@ -31,6 +31,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
     Button btn_map, btn_avatar, btn_shop;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
+    View mainView;
 
     // Mapa para asociar los IDs de los botones con sus correspondientes ImageViews
     private Map<String, Integer> buttonToImageViewMap;
@@ -42,6 +43,9 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_first_island_l1);
+
+        //Fondo de la interfaz
+        mainView = findViewById(R.id.main);
 
         btn_back = findViewById(R.id.buttonBackQuestion);
 
@@ -311,8 +315,15 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         }
     }
 
-
-
+    private void setBackground(String nivel){
+        if (nivel == "L1"){
+            mainView.setBackgroundResource(R.drawable.backl1);
+        } else if (nivel == "L2") {
+            mainView.setBackgroundResource(R.drawable.backl2);
+        } else {
+            mainView.setBackgroundResource(R.drawable.backl3);
+        }
+    }
 
     private void getData() {
         FirebaseUser user = mAuth.getCurrentUser();
