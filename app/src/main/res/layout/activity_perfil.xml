@@ -32,7 +32,8 @@
         app:layout_constraintHorizontal_bias="0.002"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView10"
@@ -46,7 +47,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/text0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/nameUser"
@@ -58,7 +60,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfileProfile"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/imageViewProfileProfile"
@@ -71,7 +74,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
 
     <TextView
@@ -85,7 +89,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameUser" />
+        app:layout_constraintTop_toBottomOf="@+id/nameUser"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView11"
@@ -96,7 +101,8 @@
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -122,6 +128,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewProfileProfile"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         app:layout_constraintVertical_bias="0.49"
-        app:srcCompat="@drawable/pen" />
+        app:srcCompat="@drawable/pen"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

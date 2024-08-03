@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="DuplicateIds,VisualLintBounds" />
+        tools:ignore="DuplicateIds,VisualLintBounds,VisualLintOverlap" />
 
     <LinearLayout
         android:layout_width="100dp"
@@ -32,7 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -40,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/coin" />
+            app:srcCompat="@drawable/coin"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <TextView
             android:id="@+id/CoinQuestion"
@@ -52,7 +54,8 @@
             android:paddingTop="1sp"
             android:text="000"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
     </LinearLayout>
 
     <TextView
@@ -134,7 +137,7 @@
         app:layout_constraintStart_toStartOf="@+id/text0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,VisualLintOverlap" />
 
     <Space
         android:layout_width="wrap_content"
@@ -153,10 +156,9 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="135dp">
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="130dp">
 
         <LinearLayout
             android:id="@+id/accesorios"
