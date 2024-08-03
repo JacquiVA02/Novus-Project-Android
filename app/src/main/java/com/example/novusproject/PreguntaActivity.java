@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -18,6 +19,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -187,7 +191,14 @@ public class PreguntaActivity extends AppCompatActivity {
                     });
 
         // Configurar el botón de retroceso
-        btn_back.setOnClickListener(v -> finish());
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actualizarMenosOpc3();
+                finish();
+            }
+        });
+
 
         // USAR COMODIN DE CAFE
         eraser.setOnClickListener(new View.OnClickListener() {
@@ -389,73 +400,195 @@ public class PreguntaActivity extends AppCompatActivity {
         String selectedAnswer = (String) view.getTag();
         ImageView imageView = (ImageView) view;
 
-        if (selectedAnswer != null && selectedAnswer.equals(correctText)) {
-            view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_correct));
-            Glide.with(getApplicationContext())
-                    .load(imgCorrect)
-                    .fitCenter()
-                    .centerInside()
-                    .into(imageView);
-            updateQuestionState();
-            updatePoints();
-            updateOpC2();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
 
-            emotions.setImageResource(R.drawable.happy);
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Long opc2 = document.getLong("opc2");
 
-            // Reproducir sonido de respuesta correcta
-            if (mediaPlayer != null) {
-                mediaPlayer.start();
-            }
+                        if (selectedAnswer != null && selectedAnswer.equals(correctText)) {
+                            view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_correct));
+                            Glide.with(getApplicationContext())
+                                    .load(imgCorrect)
+                                    .fitCenter()
+                                    .centerInside()
+                                    .into(imageView);
+                            updateQuestionState();
+                            updatePoints();
+                            updateOpC2();
 
-            if (param2.startsWith("R10")) {
-                checkParam2(param2, param3, new OnParam2CheckedListener() {
-                    @Override
-                    public void onResult(boolean isParam2False) {
-                        // Verificar si el resultado es falso
-                        if (isParam2False) {
-                            incrementC1();
-                            // El resultado de checkParam2 es verdadero (es decir, el campo es falso)
-                            // Lógica específica cuando param2 es falso
-                            //Log.d(TAG, "El campo param2 es falso. Ejecutar lógica específica.");
+                            emotions.setImageResource(R.drawable.happy);
+
+                            // Reproducir sonido de respuesta correcta
+                            if (mediaPlayer != null) {
+                                mediaPlayer.start();
+                            }
+
+                            if (param2.startsWith("R10")) {
+                                checkParam2(param2, param3, new OnParam2CheckedListener() {
+                                    @Override
+                                    public void onResult(boolean isParam2False) {
+                                        if (isParam2False) {
+                                            incrementC1();
+                                        }
+                                    }
+                                });
+                            }
+
+                            if (opc2 != null && opc2 == 0) {
+                                checkParam2(param2, param3, new OnParam2CheckedListener() {
+                                    @Override
+                                    public void onResult(boolean isParam2False) {
+                                        if (isParam2False) {
+                                            incrementC3();
+                                        }
+                                    }
+                                });
+                            }
+
+                            actualizarMenosOpc3();
+                            finish();
+
+                        } else {
+                            view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_incorrect));
+                            Glide.with(getApplicationContext())
+                                    .load(imgIncorrect)
+                                    .fitCenter()
+                                    .centerInside()
+                                    .into(imageView);
+                            updateWrongOpC2();
+
+                            actualizarMasOpc3();
+
+                            emotions.setImageResource(R.drawable.sad);
+
+                            // Reproducir sonido de respuesta incorrecta
+                            if (incorrectMediaPlayer != null) {
+                                incorrectMediaPlayer.start();
+                            }
+
+                            showIncorrectAnswerDialog(correctText, video);
                         }
-                        //else {
-                            // El resultado de checkParam2 es falso (es decir, el campo no es falso)
-                            // Lógica específica cuando param2 no es falso
-                           // Log.d(TAG, "El campo param2 no es falso. Ejecutar lógica alternativa.");
-                        //}
+
+                        // Desactivar los otros botones
+                        response1.setOnClickListener(null);
+                        response2.setOnClickListener(null);
+                        response3.setOnClickListener(null);
+                        response4.setOnClickListener(null);
+
+                    } else {
+                        Log.d(TAG, "No such document");
                     }
-                });
-            }
-
-
-            // Finalizar la actividad actual
-            finish();
-
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
         } else {
-            view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_incorrect));
-            Glide.with(getApplicationContext())
-                    .load(imgIncorrect)
-                    .fitCenter()
-                    .centerInside()
-                    .into(imageView);
-            updateWrongOpC2();
-
-            emotions.setImageResource(R.drawable.sad);
-
-            // Reproducir sonido de respuesta incorrecta
-            if (incorrectMediaPlayer != null) {
-                incorrectMediaPlayer.start();
-            }
-
-            showIncorrectAnswerDialog(correctText, video);
+            Log.d(TAG, "Usuario no autenticado");
         }
-
-        // Desactivar los otros botones
-        response1.setOnClickListener(null);
-        response2.setOnClickListener(null);
-        response3.setOnClickListener(null);
-        response4.setOnClickListener(null);
     }
+
+
+
+    // COMODIN DULCE
+    private void incrementC3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            Log.d(TAG, "Usuario ID: " + userId);
+
+            // Referencia al documento del usuario en la colección "Usuario"
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Incrementar el campo "c3" en el documento
+            userDocRef.update("c3", FieldValue.increment(1))
+                    .addOnSuccessListener(aVoid -> {
+                        // Operación exitosa
+                        Log.d(TAG, "Campo c3 incrementado exitosamente.");
+                    })
+                    .addOnFailureListener(e -> {
+                        // Manejo del error
+                        Log.d(TAG, "Error al incrementar el campo c3.", e);
+                    });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+            startActivity(new Intent(PreguntaActivity.this, SesionActivity.class));
+            finish();
+        }
+    }
+
+    public void actualizarMasOpc3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            Log.d(TAG, "Usuario ID: " + userId);
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los valores actuales de opc2 y actualizar
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "Documento encontrado: " + document.getData());
+
+                        userDocRef.update("opc2", 1.0)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "opc2 actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar opc2", e));
+                    } else {
+                        Log.d(TAG, "Documento no encontrado");
+                    }
+                } else {
+                    Log.d(TAG, "Fallo al obtener documento", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+
+    public void actualizarMenosOpc3() {
+        // Obtener el usuario actual
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            Log.d(TAG, "Usuario ID: " + userId);
+
+            // Referencia al documento del usuario
+            DocumentReference userDocRef = db.collection("Usuario").document(userId);
+
+            // Obtener los valores actuales de opc2 y actualizar
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "Documento encontrado: " + document.getData());
+
+                        userDocRef.update("opc2", 0.0)
+                                .addOnSuccessListener(aVoid -> Log.d(TAG, "opc2 actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.w(TAG, "Error al actualizar opc2", e));
+                    } else {
+                        Log.d(TAG, "Documento no encontrado");
+                    }
+                } else {
+                    Log.d(TAG, "Fallo al obtener documento", task.getException());
+                }
+            });
+        } else {
+            Log.d(TAG, "Usuario no autenticado");
+        }
+    }
+
+
 
     public interface OnParam2CheckedListener {
         void onResult(boolean isParam2False);
