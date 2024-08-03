@@ -19,7 +19,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonIsland9"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/text0"
@@ -48,7 +49,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/text0"
@@ -60,17 +62,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="DuplicateIds,VisualLintOverlap" />
 
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2" />
+        android:layout_weight="0.2"
+        tools:ignore="MissingConstraints" />
 
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2" />
+        android:layout_weight="0.2"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -92,7 +97,8 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
-            android:text="Mapa" />
+            android:text="Mapa"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         <Space
             android:layout_width="wrap_content"
@@ -105,7 +111,8 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
-            android:text="Avatar" />
+            android:text="Avatar"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         <Space
             android:layout_width="wrap_content"
@@ -118,7 +125,8 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
-            android:text="Tienda" />
+            android:text="Tienda"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
     </LinearLayout>
 
     <ImageView
@@ -132,7 +140,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:layout_width="100dp"
@@ -145,7 +154,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextSizeCheck">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -153,7 +163,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/coin" />
+            app:srcCompat="@drawable/coin"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <TextView
             android:id="@+id/CoinQuestion"
@@ -165,7 +176,8 @@
             android:paddingTop="1sp"
             android:text="000"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
     </LinearLayout>
 
     <LinearLayout
@@ -191,7 +203,8 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/coffee" />
+            app:srcCompat="@drawable/coffee"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/Ac1FI"
@@ -202,7 +215,8 @@
             android:paddingTop="1sp"
             android:text="00"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -210,7 +224,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="2sp"
-            app:srcCompat="@drawable/eraser" />
+            app:srcCompat="@drawable/eraser"
+            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
         <TextView
             android:id="@+id/Ac2FI"
@@ -221,7 +236,8 @@
             android:paddingTop="1sp"
             android:text="00"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -229,7 +245,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="2sp"
-            app:srcCompat="@drawable/candy" />
+            app:srcCompat="@drawable/candy"
+            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
         <TextView
             android:id="@+id/Ac3FI"
@@ -240,7 +257,8 @@
             android:paddingTop="1sp"
             android:text="00"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
     </LinearLayout>
 
     <Button
@@ -254,7 +272,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland2"
@@ -265,7 +284,8 @@
         android:text="Segunda Isla"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland1" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland1"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland3"
@@ -276,7 +296,8 @@
         android:text="Tercera Isla"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland2" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland2"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland4"
@@ -287,7 +308,8 @@
         android:text="Cuarta Isla"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland3" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland3"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland5"
@@ -300,7 +322,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonIsland4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland6"
@@ -313,7 +336,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland7"
@@ -324,7 +348,8 @@
         android:text="Séptima Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland6" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland6"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland8"
@@ -335,7 +360,8 @@
         android:text="Octava Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland7" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland7"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonIsland9"
@@ -346,6 +372,7 @@
         android:text="Novena Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIsland8" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland8"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,7 +36,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/text0"
@@ -49,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:ignore="DuplicateIds" />
+        tools:ignore="DuplicateIds,VisualLintOverlap" />
 
     <LinearLayout
         android:layout_width="100dp"
@@ -62,7 +63,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextSizeCheck">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -70,7 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/coin" />
+            app:srcCompat="@drawable/coin"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <TextView
             android:id="@+id/CoinQuestion"
@@ -82,7 +85,8 @@
             android:paddingTop="1sp"
             android:text="000"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
     </LinearLayout>
 
     <LinearLayout
@@ -114,7 +118,8 @@
             android:paddingTop="10sp"
             android:paddingRight="5sp"
             android:paddingBottom="10sp"
-            app:srcCompat="@drawable/coffee" />
+            app:srcCompat="@drawable/coffee"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
         <TextView
             android:id="@+id/coffeeUser"
@@ -124,7 +129,7 @@
             android:text="0"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            tools:ignore="DuplicateIds" />
+            tools:ignore="DuplicateIds,HardcodedText" />
 
         <ImageView
             android:id="@+id/EraserComodin"
@@ -142,7 +147,8 @@
             android:paddingBottom="10sp"
             android:rotationX="2"
             android:rotationY="-181"
-            app:srcCompat="@drawable/eraser" />
+            app:srcCompat="@drawable/eraser"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
         <TextView
             android:id="@+id/eraserUser"
@@ -151,7 +157,8 @@
             android:layout_marginTop="50sp"
             android:text="0"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
 
         <ImageView
             android:id="@+id/CandyComodin"
@@ -167,7 +174,8 @@
             android:paddingTop="10sp"
             android:paddingRight="5sp"
             android:paddingBottom="10sp"
-            app:srcCompat="@drawable/candy" />
+            app:srcCompat="@drawable/candy"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
         <TextView
             android:id="@+id/candyUser"
@@ -176,7 +184,8 @@
             android:layout_marginTop="50sp"
             android:text="0"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
@@ -194,7 +203,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="VisualLintOverlap" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
@@ -215,6 +225,7 @@
             android:layout_marginRight="10sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_answer"
+            tools:ignore="ContentDescription,ImageContrastCheck,RtlHardcoded"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
@@ -224,7 +235,8 @@
             android:layout_marginLeft="10sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_answer"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </LinearLayout>
 
     <LinearLayout
@@ -246,6 +258,7 @@
             android:layout_marginRight="10sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_answer"
+            tools:ignore="ContentDescription,ImageContrastCheck,RtlHardcoded"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
@@ -255,6 +268,7 @@
             android:layout_marginLeft="10sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_answer"
+            tools:ignore="ContentDescription,RtlHardcoded,ImageContrastCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
     </LinearLayout>
@@ -271,7 +285,8 @@
         app:layout_constraintEnd_toEndOf="@+id/imageViewQuestion"
         app:layout_constraintStart_toStartOf="@+id/imageViewQuestion"
         app:layout_constraintTop_toTopOf="@+id/imageViewQuestion"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/duckEmotion"
@@ -285,7 +300,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@null"  />
+        android:src="@null"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView12"
@@ -302,6 +318,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

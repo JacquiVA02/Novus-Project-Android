@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:ignore="DuplicateIds" />
+        tools:ignore="DuplicateIds,VisualLintOverlap" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -55,7 +55,7 @@
             android:backgroundTint="#0B1741"
             android:text="Mapa"
             android:textColorLink="#0B1741"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         <Space
             android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
             android:text="Avatar"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         <Space
             android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
             android:text="Tienda"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
     </LinearLayout>
 
     <TextView
@@ -99,7 +99,8 @@
         app:layout_constraintEnd_toEndOf="@+id/text0"
         app:layout_constraintStart_toStartOf="@+id/text0"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
 
     <Space
         android:layout_width="wrap_content"
@@ -130,7 +131,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duck"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
     <ImageView
         android:id="@+id/duck"
@@ -138,6 +139,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="220dp"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -156,7 +158,8 @@
         app:layout_constraintEnd_toEndOf="@+id/duck"
         app:layout_constraintStart_toStartOf="@+id/duck"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@null" />
+        android:src="@null"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/feet"
@@ -168,7 +171,8 @@
         app:layout_constraintEnd_toEndOf="@+id/duck"
         app:layout_constraintStart_toStartOf="@+id/duck"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@null" />
+        android:src="@null"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/face"
@@ -180,7 +184,8 @@
         app:layout_constraintEnd_toEndOf="@+id/duck"
         app:layout_constraintStart_toStartOf="@+id/duck"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@null" />
+        android:src="@null"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/neck"
@@ -192,6 +197,7 @@
         app:layout_constraintEnd_toEndOf="@+id/duck"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@null" />
+        android:src="@null"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

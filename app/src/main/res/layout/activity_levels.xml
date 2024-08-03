@@ -29,7 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="TextSizeCheck">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -37,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/coin" />
+            app:srcCompat="@drawable/coin"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <TextView
             android:id="@+id/CoinQuestion"
@@ -49,7 +51,8 @@
             android:paddingTop="1sp"
             android:text="000"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
     </LinearLayout>
 
     <LinearLayout
@@ -69,7 +72,8 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/coffee" />
+            app:srcCompat="@drawable/coffee"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/Ac1FI"
@@ -80,7 +84,8 @@
             android:paddingTop="1sp"
             android:text="00"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -88,7 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="2sp"
-            app:srcCompat="@drawable/eraser" />
+            app:srcCompat="@drawable/eraser"
+            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
         <TextView
             android:id="@+id/Ac2FI"
@@ -99,7 +105,8 @@
             android:paddingTop="1sp"
             android:text="00"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -107,7 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="2sp"
-            app:srcCompat="@drawable/candy" />
+            app:srcCompat="@drawable/candy"
+            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
         <TextView
             android:id="@+id/Ac3FI"
@@ -118,7 +126,8 @@
             android:paddingTop="1sp"
             android:text="00"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
     </LinearLayout>
 
     <ImageView
@@ -134,7 +143,8 @@
         app:layout_constraintHorizontal_bias="0.002"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -142,7 +152,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="Orientation" />
 
     <Button
         android:id="@+id/nivel1"
@@ -154,7 +165,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text0" />
+        app:layout_constraintTop_toBottomOf="@+id/text0"
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
     <Button
         android:id="@+id/nivel2"
@@ -166,7 +178,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nivel1" />
+        app:layout_constraintTop_toBottomOf="@+id/nivel1"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/nivel3"
@@ -180,6 +193,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nivel2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

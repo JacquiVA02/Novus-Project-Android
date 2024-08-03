@@ -35,13 +35,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:contentDescription="TODO"
         android:text="EDITAR AVATAR"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
@@ -51,7 +53,8 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/duck"
@@ -65,7 +68,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/duck" />
+        app:srcCompat="@drawable/duck"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/buttonSafe"
@@ -81,7 +85,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text0"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText,VisualLintOverlap" />
 
     <LinearLayout
         android:id="@+id/linearLayout8"
@@ -100,7 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#FFFFFF"
-            app:srcCompat="@drawable/hat" />
+            app:srcCompat="@drawable/hat"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/imageViewGlasses"
@@ -108,23 +114,26 @@
             android:background="#FFFFFF"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/glasses" />
+            app:srcCompat="@drawable/glasses"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/imageViewShirt"
-            android:background="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/collar" />
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/collar"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/imageViewShoe"
-            android:background="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/shoe" />
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/shoe"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
     </LinearLayout>
 
     <ImageView
@@ -137,7 +146,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/faceEdit"
@@ -149,7 +159,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@null" />
+        android:src="@null"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/headEdit"
@@ -161,7 +172,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@null" />
+        android:src="@null"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/neckEdit"
@@ -175,7 +187,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
 
     <!-- Wrap LinearLayout "things" inside a HorizontalScrollView -->
     <HorizontalScrollView
@@ -185,7 +198,8 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duck">
+        app:layout_constraintTop_toBottomOf="@+id/duck"
+        tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
             android:id="@+id/things"
