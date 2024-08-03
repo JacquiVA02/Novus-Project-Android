@@ -38,7 +38,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public class PerfilActivity extends AppCompatActivity {
 
     ImageView btn_back, btn_editPhoto, profile;
-    Button btn_map, btn_shop, btn_avatar;
     TextView nombreUsuario;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
