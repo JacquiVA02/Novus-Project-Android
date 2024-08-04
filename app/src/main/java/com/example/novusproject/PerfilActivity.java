@@ -38,7 +38,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public class PerfilActivity extends AppCompatActivity {
 
     ImageView btn_back, btn_editPhoto, profile;
-    TextView nombreUsuario;
+    TextView nombreUsuario, points, title, level;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
@@ -72,6 +72,9 @@ public class PerfilActivity extends AppCompatActivity {
         }
 
         nombreUsuario = findViewById(R.id.nameUser);
+        points = findViewById(R.id.puntosPerfil);
+        title = findViewById(R.id.tituloPerfil);
+        level = findViewById(R.id.nivelPerfil);
 
         btn_back = findViewById(R.id.buttonBackQuestion);
         btn_editPhoto = findViewById(R.id.imageViewEditProfile);
@@ -117,7 +120,43 @@ public class PerfilActivity extends AppCompatActivity {
 
                             if (snapshot != null && snapshot.exists()) {
                                 String value = snapshot.getString("nombre");
+                                Object pointsValue = snapshot.get("puntos");
+
                                 nombreUsuario.setText(value);
+                                int pointsInt = ((Number) pointsValue).intValue();
+                                points.setText(String.valueOf(pointsInt));
+
+                                if (pointsInt <= 500) {
+                                    level.setText("1");
+                                    title.setText("Principiante");
+                                } else if (pointsInt > 501 && pointsInt <= 1000) {
+                                    level.setText("2");
+                                    title.setText("Aprendiz");
+                                } else if (pointsInt > 1001 && pointsInt <= 2000) {
+                                    level.setText("3");
+                                    title.setText("Intermedio");
+                                } else if (pointsInt > 2001 && pointsInt <= 3500) {
+                                    level.setText("4");
+                                    title.setText("Avanzado");
+                                } else if (pointsInt > 3501 && pointsInt <= 5000) {
+                                    level.setText("5");
+                                    title.setText("Experto");
+                                } else if (pointsInt > 5001 && pointsInt <= 7000) {
+                                    level.setText("6");
+                                    title.setText("Maestro");
+                                } else if (pointsInt > 7001 && pointsInt <= 9000) {
+                                    level.setText("7");
+                                    title.setText("Gran Maestro");
+                                } else if (pointsInt > 9001 && pointsInt <= 12000) {
+                                    level.setText("8");
+                                    title.setText("Sabio");
+                                } else if (pointsInt > 12001 && pointsInt <= 15000) {
+                                    level.setText("9");
+                                    title.setText("Gurú de las Matemáticas");
+                                } else {
+                                    level.setText("10");
+                                    title.setText("Leyenda Matemática");
+                                }
 
                                 String profileImageUrl = snapshot.getString("profileImageUrl");
                                 if (profileImageUrl != null) {
