@@ -396,7 +396,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
     <LinearLayout
         android:id="@+id/nuevosNiveles"
@@ -417,7 +418,8 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="#C63C1A"
             android:text="Octava Isla 2"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/buttonIsland83"
@@ -426,7 +428,8 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="#C63C1A"
             android:text="Octava Isla 3"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/buttonIsland92"
@@ -435,7 +438,8 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="#C63C1A"
             android:text="Novena Isla 2"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/buttonIsland102"
@@ -444,7 +448,8 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="#C63C1A"
             android:text="Decima Isla 2"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
