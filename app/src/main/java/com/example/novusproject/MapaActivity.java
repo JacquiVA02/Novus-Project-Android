@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -26,9 +27,10 @@ public class MapaActivity extends AppCompatActivity {
 
     ImageView btn_profile, btn_back;
     TextView coins, Ac1, Ac2, Ac3;
-    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4, btnIsland5, btnIsland6, btnIsland7, btnIsland8, btnIsland9, btnIsland10;
+    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4, btnIsland5, btnIsland6, btnIsland7, btnIsland8, btnIsland9, btnIsland10, btnIsland82, btnIsland83, btnIsland92, btnIsland102, btnExtras;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
+    LinearLayout nivelesExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MapaActivity extends AppCompatActivity {
         btn_map = findViewById(R.id.buttonMapFIrst);
         btn_avatar = findViewById(R.id.buttonAvatarFirst);
         btn_shop = findViewById(R.id.buttonShopFirst);
+        btnExtras = findViewById(R.id.extraLevels);
 
         btnIsland1 = findViewById(R.id.buttonIsland1);
         btnIsland2 = findViewById(R.id.buttonIsland2);
@@ -67,6 +70,14 @@ public class MapaActivity extends AppCompatActivity {
         btnIsland8 = findViewById(R.id.buttonIsland8);
         btnIsland9 = findViewById(R.id.buttonIsland9);
         btnIsland10 = findViewById(R.id.buttonIsland10);
+
+        // Niveles Extra
+        btnIsland82 = findViewById(R.id.buttonIsland82);
+        btnIsland83 = findViewById(R.id.buttonIsland83);
+        btnIsland92 = findViewById(R.id.buttonIsland92);
+        btnIsland102 = findViewById(R.id.buttonIsland102);
+
+        nivelesExtra = findViewById(R.id.nuevosNiveles);
 
         coins = findViewById(R.id.CoinQuestion);
         Ac1 = findViewById(R.id.Ac1FI);
@@ -116,8 +127,6 @@ public class MapaActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
         btnIsland2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,6 +236,91 @@ public class MapaActivity extends AppCompatActivity {
             }
         });
 
+        btnIsland82.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I82");
+                intent.putExtra("base", "UsuarioOctava");
+                intent.putExtra("baseP", "Octava2");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland83.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I83");
+                intent.putExtra("base", "UsuarioOctava");
+                intent.putExtra("baseP", "Octava3");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland92.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I92");
+                intent.putExtra("base", "UsuarioNovena");
+                intent.putExtra("baseP", "Novena2");
+                startActivity(intent);
+            }
+        });
+
+        btnIsland102.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
+                // Agregar parámetros al Intent
+                intent.putExtra("isla", "I102");
+                intent.putExtra("base", "UsuarioDecima");
+                intent.putExtra("baseP", "Decima2");
+                startActivity(intent);
+            }
+        });
+
+        // Listener para btnExtras
+        btnExtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nivelesExtra.getVisibility() == View.VISIBLE) {
+                    // Si el layout de niveles extra está visible, lo ocultamos y mostramos los botones de las islas
+                    nivelesExtra.setVisibility(View.GONE);
+                    btnIsland1.setVisibility(View.VISIBLE);
+                    btnIsland2.setVisibility(View.VISIBLE);
+                    btnIsland3.setVisibility(View.VISIBLE);
+                    btnIsland4.setVisibility(View.VISIBLE);
+                    btnIsland5.setVisibility(View.VISIBLE);
+                    btnIsland6.setVisibility(View.VISIBLE);
+                    btnIsland7.setVisibility(View.VISIBLE);
+                    btnIsland8.setVisibility(View.VISIBLE);
+                    btnIsland9.setVisibility(View.VISIBLE);
+                    btnIsland10.setVisibility(View.VISIBLE);
+                    btnExtras.setText("Niveles Extra");
+                } else {
+                    // Si el layout de niveles extra está oculto, lo mostramos y ocultamos los botones de las islas
+                    nivelesExtra.setVisibility(View.VISIBLE);
+                    btnIsland1.setVisibility(View.GONE);
+                    btnIsland2.setVisibility(View.GONE);
+                    btnIsland3.setVisibility(View.GONE);
+                    btnIsland4.setVisibility(View.GONE);
+                    btnIsland5.setVisibility(View.GONE);
+                    btnIsland6.setVisibility(View.GONE);
+                    btnIsland7.setVisibility(View.GONE);
+                    btnIsland8.setVisibility(View.GONE);
+                    btnIsland9.setVisibility(View.GONE);
+                    btnIsland10.setVisibility(View.GONE);
+                    btnExtras.setText("Volver");
+                }
+            }
+        });
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -300,6 +394,4 @@ public class MapaActivity extends AppCompatActivity {
                     });
         }
     }
-
-
 }

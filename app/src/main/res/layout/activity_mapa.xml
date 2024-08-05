@@ -14,6 +14,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="45dp"
+        android:backgroundTint="#A61C3D"
         android:text="Décima Isla"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -267,6 +268,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="25dp"
+        android:backgroundTint="#A61C3D"
         android:text="Primera Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -281,6 +283,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#A61C3D"
         android:text="Segunda Isla"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -293,6 +296,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#A61C3D"
         android:text="Tercera Isla"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -305,6 +309,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#A61C3D"
         android:text="Cuarta Isla"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -317,6 +322,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#A61C3D"
         android:text="Quinta Isla"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -331,6 +337,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="45dp"
+        android:backgroundTint="#A61C3D"
         android:text="Sexta Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -345,6 +352,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="45dp"
+        android:backgroundTint="#A61C3D"
         android:text="Séptima Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -357,6 +365,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="45dp"
+        android:backgroundTint="#A61C3D"
         android:text="Octava Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -369,10 +378,74 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="45dp"
+        android:backgroundTint="#A61C3D"
         android:text="Novena Isla"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonIsland8"
         tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/extraLevels"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="475dp"
+        android:backgroundTint="#BFA213"
+        android:text="Niveles Extra"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/nuevosNiveles"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/text0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile">
+
+        <Button
+            android:id="@+id/buttonIsland82"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#C63C1A"
+            android:text="Octava Isla 2"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonIsland83"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#C63C1A"
+            android:text="Octava Isla 3"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonIsland92"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#C63C1A"
+            android:text="Novena Isla 2"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonIsland102"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#C63C1A"
+            android:text="Decima Isla 2"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
