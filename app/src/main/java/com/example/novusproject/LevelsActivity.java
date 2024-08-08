@@ -100,6 +100,10 @@ public class LevelsActivity extends AppCompatActivity {
             }
         });
 
+        if (isla.equals("I1")){
+            btn_nivel3.setVisibility(View.GONE);
+        }
+
         btn_nivel3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
