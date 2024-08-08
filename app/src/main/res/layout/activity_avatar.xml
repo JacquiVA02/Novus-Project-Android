@@ -50,9 +50,10 @@
         <Button
             android:id="@+id/buttonMapFIrst"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
+            android:paddingTop="40dp"
             android:text="Mapa"
             android:textColorLink="#0B1741"
             tools:ignore="HardcodedText,VisualLintButtonSize" />
@@ -65,9 +66,10 @@
         <Button
             android:id="@+id/buttonAvatarFirst"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
+            android:paddingTop="40dp"
             android:text="Avatar"
             tools:ignore="HardcodedText,VisualLintButtonSize" />
 
@@ -79,9 +81,10 @@
         <Button
             android:id="@+id/buttonShopFirst"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
+            android:paddingTop="40dp"
             android:text="Tienda"
             tools:ignore="HardcodedText,VisualLintButtonSize" />
     </LinearLayout>
@@ -199,5 +202,44 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@null"
         tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text0"
+        app:layout_constraintEnd_toEndOf="@+id/text0"
+        app:layout_constraintStart_toStartOf="@+id/text0"
+        app:layout_constraintTop_toTopOf="@+id/text0"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/map"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="8dp"
+            app:srcCompat="@drawable/avatar"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="15dp"
+            app:srcCompat="@drawable/shop"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
