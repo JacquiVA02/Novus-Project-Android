@@ -67,13 +67,19 @@ public class RegistroActivity extends AppCompatActivity {
                 String emailUser = email.getText().toString().trim();
                 String passUser = contrasena.getText().toString().trim();
 
-                if (nameUser.isEmpty() && usernameUser.isEmpty() && emailUser.isEmpty() && passUser.isEmpty()){
-                    Toast.makeText(RegistroActivity.this, "Porfavor, llene todos los campos", Toast.LENGTH_SHORT).show();
+                // Expresión regular para validar el formato del correo electrónico
+                String emailPattern = "^a\\d{8}@tec\\.mx$";
+
+                if (nameUser.isEmpty() || usernameUser.isEmpty() || emailUser.isEmpty() || passUser.isEmpty()) {
+                    Toast.makeText(RegistroActivity.this, "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show();
+                } else if (!emailUser.matches(emailPattern)) {
+                    Toast.makeText(RegistroActivity.this, "El correo debe ser en el formato aXXXXXXXX@tec.mx", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser(nameUser, usernameUser, emailUser, passUser);
                 }
             }
         });
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

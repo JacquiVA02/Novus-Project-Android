@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SesionActivity extends AppCompatActivity {
 
     ImageView botonAtras;
-    Button btn_iniciar;
+    Button btn_iniciar, btn_olvido_contrasena;
     EditText email, password;
     FirebaseAuth mAuth;
 
@@ -39,6 +39,7 @@ public class SesionActivity extends AppCompatActivity {
 
         botonAtras = findViewById(R.id.buttonBackQuestion);
         btn_iniciar = findViewById(R.id.buttonIniciar);
+        btn_olvido_contrasena = findViewById(R.id.bottonRestaurar);
         email = findViewById(R.id.emailSesion);
         password = findViewById(R.id.passwordSesion);
 
@@ -64,6 +65,19 @@ public class SesionActivity extends AppCompatActivity {
             }
         });
 
+        btn_olvido_contrasena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailUser = email.getText().toString().trim();
+
+                if (emailUser.isEmpty()) {
+                    Toast.makeText(SesionActivity.this, "Ingrese su correo electrónico", Toast.LENGTH_SHORT).show();
+                } else {
+                    resetPassword(emailUser);
+                }
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -76,7 +90,6 @@ public class SesionActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    // Usuario autenticado correctamente
                     finish();
                     startActivity(new Intent(SesionActivity.this, MainActivity.class));
                     Toast.makeText(SesionActivity.this, "Bienvenid@", Toast.LENGTH_SHORT).show();
@@ -88,6 +101,24 @@ public class SesionActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(SesionActivity.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void resetPassword(String emailUser) {
+        mAuth.sendPasswordResetEmail(emailUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(SesionActivity.this, "Correo de restablecimiento enviado", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SesionActivity.this, "Error al enviar el correo de restablecimiento", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SesionActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

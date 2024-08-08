@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="301dp"
-        android:layout_height="330dp"
+        android:layout_height="360dp"
         android:background="#EDEBEB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +125,7 @@
         android:id="@+id/buttonIniciar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="17dp"
         android:backgroundTint="#C63C1A"
         android:text="Iniciar Sesion"
         android:textSize="18sp"
@@ -135,4 +135,18 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordSesion"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/bottonRestaurar"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:backgroundTint="#EDEBEB"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="#818080"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIniciar"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
