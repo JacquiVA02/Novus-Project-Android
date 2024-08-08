@@ -155,10 +155,11 @@
         tools:ignore="Orientation" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="150dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical"
@@ -247,5 +248,23 @@
             app:srcCompat="@drawable/red"
             tools:ignore="ContentDescription" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="75dp"
+        android:fontFamily="monospace"
+        android:text="¡Inicia Aquí!"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text0"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
