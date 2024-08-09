@@ -1,4 +1,4 @@
-package com.example.novusproject;
+package com.tecMonterrey.novusproject;
 
 import static android.content.ContentValues.TAG;
 

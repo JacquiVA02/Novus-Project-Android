@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.novusproject"
+    namespace = "com.tecMonterrey.novusproject"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.novusproject"
+        applicationId = "com.tecMonterrey.novusproject"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -51,8 +51,6 @@ dependencies {
 
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
-    // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
 
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies

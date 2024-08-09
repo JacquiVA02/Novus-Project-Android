@@ -1,4 +1,4 @@
-package com.example.novusproject;
+package com.tecMonterrey.novusproject;
 
 import static android.content.ContentValues.TAG;
 
@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;

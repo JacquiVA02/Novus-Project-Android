@@ -1,4 +1,4 @@
-package com.example.novusproject;
+package com.tecMonterrey.novusproject;
 
 import static android.content.ContentValues.TAG;
 
@@ -19,7 +19,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 

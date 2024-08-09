@@ -1,4 +1,4 @@
-package com.example.novusproject;
+package com.tecMonterrey.novusproject;
 
 class VestimentaHead {
     String name;

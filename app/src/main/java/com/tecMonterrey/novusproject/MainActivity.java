@@ -1,4 +1,4 @@
-package com.example.novusproject;
+package com.tecMonterrey.novusproject;
 
 import android.content.DialogInterface;
 import android.content.Intent;

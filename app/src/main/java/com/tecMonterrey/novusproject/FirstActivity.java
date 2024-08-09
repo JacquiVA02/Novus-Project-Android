@@ -1,4 +1,4 @@
-package com.example.novusproject;
+package com.tecMonterrey.novusproject;
 
 import android.content.Intent;
 import android.os.Bundle;
