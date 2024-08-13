@@ -2,6 +2,7 @@ package com.tecMonterrey.novusproject;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -57,6 +58,7 @@ public class PreguntaActivity extends AppCompatActivity {
     Double puntosPregunta, monedasPregunta;
     String param1, param2, param3;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
