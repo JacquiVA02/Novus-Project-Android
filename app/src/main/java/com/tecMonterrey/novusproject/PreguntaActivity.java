@@ -39,7 +39,7 @@ public class PreguntaActivity extends AppCompatActivity {
     ImageView btn_back, question, response1, response2, response3, response4, coffee, eraser, candy, emotions;
     private List<ImageView> responseViews;
     String correctText;
-    TextView coins, coffeeUser, eraserUser, candyUser;
+    TextView coins, coffeeUser, eraserUser, candyUser, categoria;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
@@ -90,6 +90,7 @@ public class PreguntaActivity extends AppCompatActivity {
         coffeeUser = findViewById(R.id.coffeeUser);
         eraserUser = findViewById(R.id.eraserUser);
         candyUser = findViewById(R.id.candyUser);
+        categoria = findViewById(R.id.textCategoria);
 
         emotions = findViewById(R.id.duckEmotion);
 
@@ -161,6 +162,43 @@ public class PreguntaActivity extends AppCompatActivity {
         } else {
             Log.d("PreguntaActivity", "No se recibieron los parámetros esperados.");
         }
+
+        // Obtener el índice del comienzo de 'I' y 'L'
+        int indexI = param2.indexOf("I");
+        int indexL = param2.indexOf("L");
+
+// Verificar que ambos índices son válidos
+        if (indexI != -1 && indexL != -1 && indexI < indexL) {
+            // Extraer la parte entre 'I' y 'L'
+            String partIY = param2.substring(indexI, indexL);
+
+            // Comparar la parte extraída
+            if (partIY.equals("I1")) {
+                categoria.setText("Fracciones Numéricas");
+            } else if (partIY.equals("I2")) {
+                categoria.setText("Jerarquía de Operaciones");
+            } else if (partIY.equals("I3")) {
+                categoria.setText("Leyes de Exponentes");
+            } else if (partIY.equals("I4")) {
+                categoria.setText("Expresiones Algebráicas");
+            } else if (partIY.equals("I5")) {
+                categoria.setText("Productos Notables");
+            } else if (partIY.equals("I6")) {
+                categoria.setText("Factorización");
+            } else if (partIY.equals("I7")) {
+                categoria.setText("Fracciones Algebráicas");
+            } else if (partIY.equals("I81") || partIY.equals("I82") || partIY.equals("I83")) {
+                categoria.setText("Solución de Ecuaciones y Desigualdades");
+            } else if (partIY.equals("I91") || partIY.equals("I92")) {
+                categoria.setText("Sistemas de Ecuaciones Lineales");
+            } else if (partIY.equals("I101") || partIY.equals("I102")) {
+                categoria.setText("Logaritmos: Definición y Propiedades");
+            }
+        } else {
+            // Manejar el caso donde no se encuentran 'I' o 'L' de forma válida
+            throw new IllegalArgumentException("El formato de param1 no es válido: " + param1);
+        }
+
 
         // Aplicar márgenes de borde a la vista principal
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -291,7 +329,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     }
 
                     if (value != null && value.exists()) {
-                        Log.d(TAG, "Current data: " + value.getData());
+                        //Log.d(TAG, "Current data: " + value.getData());
                         String questionText = value.getString("pregunta");
                         correctText = value.getString("correcta");
                         String incorrect1Text = value.getString("incorrecta1");
@@ -1077,7 +1115,7 @@ public class PreguntaActivity extends AppCompatActivity {
                     }
 
                     if(value != null && value.exists()) {
-                        Log.d(TAG, "Current data: " + value.getData());
+                        //Log.d(TAG, "Current data: " + value.getData());
                         // Asignar los valores a las variables de clase
                         imgCorrect = value.getString("correct");
                         imgIncorrect = value.getString("incorrect");
