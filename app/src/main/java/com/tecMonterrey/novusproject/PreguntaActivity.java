@@ -182,13 +182,13 @@ public class PreguntaActivity extends AppCompatActivity {
             } else if (partIY.equals("I3")) {
                 categoria.setText("Leyes de Exponentes");
             } else if (partIY.equals("I4")) {
-                categoria.setText("Expresiones Algebráicas");
+                categoria.setText("Expresiones Algebraicas");
             } else if (partIY.equals("I5")) {
                 categoria.setText("Productos Notables");
             } else if (partIY.equals("I6")) {
                 categoria.setText("Factorización");
             } else if (partIY.equals("I7")) {
-                categoria.setText("Fracciones Algebráicas");
+                categoria.setText("Fracciones Algebraicas");
             } else if (partIY.equals("I81") || partIY.equals("I82") || partIY.equals("I83")) {
                 categoria.setText("Solución de Ecuaciones y Desigualdades");
             } else if (partIY.equals("I91") || partIY.equals("I92")) {

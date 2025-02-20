@@ -22,9 +22,10 @@ public class LevelsActivity extends AppCompatActivity {
 
     Button btn_nivel1, btn_nivel2, btn_nivel3;
     ImageView btn_back;
-    TextView coins, Ac1, Ac2, Ac3;
+    TextView coins, Ac1, Ac2, Ac3, islaLevel, categoria;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
+    String param1, param2, param3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class LevelsActivity extends AppCompatActivity {
         Ac1 = findViewById(R.id.Ac1FI);
         Ac2 = findViewById(R.id.Ac2FI);
         Ac3 = findViewById(R.id.Ac3FI);
+        islaLevel = findViewById(R.id.islaLevels);
+        categoria = findViewById(R.id.textCategoriaLevel);
 
         btn_nivel1 = findViewById(R.id.nivel1);
         btn_nivel2 = findViewById(R.id.nivel2);
@@ -75,6 +78,30 @@ public class LevelsActivity extends AppCompatActivity {
         String isla = intent.getStringExtra("isla");
         String base = intent.getStringExtra("base");
         String baseP = intent.getStringExtra("baseP");
+
+        if (isla.equals("I1")) {
+            categoria.setText("Fracciones Numéricas");
+        } else if (isla.equals("I2")) {
+            categoria.setText("Jerarquía de Operaciones");
+        } else if (isla.equals("I3")) {
+            categoria.setText("Leyes de Exponentes");
+        } else if (isla.equals("I4")) {
+            categoria.setText("Expresiones Algebraicas");
+        } else if (isla.equals("I5")) {
+            categoria.setText("Productos Notables");
+        } else if (isla.equals("I6")) {
+            categoria.setText("Factorización");
+        } else if (isla.equals("I7")) {
+            categoria.setText("Fracciones Algebraicas");
+        } else if (isla.equals("I81") || isla.equals("I82") || isla.equals("I83")) {
+            categoria.setText("Solución de Ecuaciones y Desigualdades");
+        } else if (isla.equals("I91") || isla.equals("I92")) {
+            categoria.setText("Sistemas de Ecuaciones Lineales");
+        } else if (isla.equals("I101") || isla.equals("I102")) {
+            categoria.setText("Logaritmos: Definición y Propiedades");
+        }
+
+
 
         btn_nivel1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +131,10 @@ public class LevelsActivity extends AppCompatActivity {
             btn_nivel3.setVisibility(View.GONE);
         }
 
+        if (isla.equals("I91")){
+            btn_nivel3.setVisibility(View.GONE);
+        }
+
         btn_nivel3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +154,8 @@ public class LevelsActivity extends AppCompatActivity {
         setLevelButtonOnClickListener(btn_nivel3, parametro3);
 
          */
+
+
 
         getData();
     }
@@ -189,6 +222,8 @@ public class LevelsActivity extends AppCompatActivity {
                         } else {
                             Log.d("Firestore", "No hay datos actuales (snapshot es null o no existe)");
                         }
+
+
                     });
         }
     }
