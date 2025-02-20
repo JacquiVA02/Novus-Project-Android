@@ -81,24 +81,34 @@ public class LevelsActivity extends AppCompatActivity {
 
         if (isla.equals("I1")) {
             categoria.setText("Fracciones Numéricas");
+            islaLevel.setText("Isla 1");
         } else if (isla.equals("I2")) {
             categoria.setText("Jerarquía de Operaciones");
+            islaLevel.setText("Isla 2");
         } else if (isla.equals("I3")) {
             categoria.setText("Leyes de Exponentes");
+            islaLevel.setText("Isla 3");
         } else if (isla.equals("I4")) {
             categoria.setText("Expresiones Algebraicas");
+            islaLevel.setText("Isla 4");
         } else if (isla.equals("I5")) {
             categoria.setText("Productos Notables");
+            islaLevel.setText("Isla 5");
         } else if (isla.equals("I6")) {
             categoria.setText("Factorización");
+            islaLevel.setText("Isla 6");
         } else if (isla.equals("I7")) {
             categoria.setText("Fracciones Algebraicas");
+            islaLevel.setText("Isla 7");
         } else if (isla.equals("I81") || isla.equals("I82") || isla.equals("I83")) {
             categoria.setText("Solución de Ecuaciones y Desigualdades");
+            islaLevel.setText("Isla 8");
         } else if (isla.equals("I91") || isla.equals("I92")) {
             categoria.setText("Sistemas de Ecuaciones Lineales");
+            islaLevel.setText("Isla 9");
         } else if (isla.equals("I101") || isla.equals("I102")) {
             categoria.setText("Logaritmos: Definición y Propiedades");
+            islaLevel.setText("Isla 10");
         }
 
 

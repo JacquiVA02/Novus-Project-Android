@@ -27,7 +27,7 @@ import java.util.Map;
 public class FirstIslandL1Activity extends AppCompatActivity {
 
     ImageView btn_back, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10;
-    TextView coins, Ac1, Ac2, Ac3;
+    TextView coins, Ac1, Ac2, Ac3, islaB, nivelB;
     Button btn_map, btn_avatar, btn_shop;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -56,10 +56,14 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         baseP = intent.getStringExtra("baseP");
         nivel = intent.getStringExtra("nivel");
 
+
+
         coins = findViewById(R.id.CoinQuestion);
         Ac1 = findViewById(R.id.Ac1FI);
         Ac2 = findViewById(R.id.Ac2FI);
         Ac3 = findViewById(R.id.Ac3FI);
+        islaB = findViewById(R.id.islaButtons);
+        nivelB = findViewById(R.id.nivelButtons);
 
         pregunta1 = findViewById(R.id.R1I1L1);
         pregunta2 = findViewById(R.id.R2I1L1);
@@ -97,6 +101,38 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         btn_avatar = findViewById(R.id.buttonAvatarFirst);
         btn_shop = findViewById(R.id.buttonShopFirst);
          */
+
+
+        if (nivel.equals("L1")){
+            nivelB.setText("-  Nivel 1");
+        } else if (nivel.equals("L2")){
+            nivelB.setText("-  Nivel 2");
+        } else{
+            nivelB.setText("-  Nivel 3");
+        }
+
+
+        if (isla.equals("I1")) {
+            islaB.setText("Isla 1");
+        } else if (isla.equals("I2")) {
+            islaB.setText("Isla 2");
+        } else if (isla.equals("I3")) {
+            islaB.setText("Isla 3");
+        } else if (isla.equals("I4")) {
+            islaB.setText("Isla 4");
+        } else if (isla.equals("I5")) {
+            islaB.setText("Isla 5");
+        } else if (isla.equals("I6")) {
+            islaB.setText("Isla 6");
+        } else if (isla.equals("I7")) {
+            islaB.setText("Isla 7");
+        } else if (isla.equals("I81") || isla.equals("I82") || isla.equals("I83")) {
+            islaB.setText("Isla 8");
+        } else if (isla.equals("I91") || isla.equals("I92")) {
+            islaB.setText("Isla 9");
+        } else if (isla.equals("I101") || isla.equals("I102")) {
+            islaB.setText("Isla 10");
+        }
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
