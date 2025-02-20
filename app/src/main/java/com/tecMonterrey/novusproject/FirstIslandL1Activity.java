@@ -126,12 +126,20 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             islaB.setText("Isla 6");
         } else if (isla.equals("I7")) {
             islaB.setText("Isla 7");
-        } else if (isla.equals("I81") || isla.equals("I82") || isla.equals("I83")) {
+        } else if (isla.equals("I81")) {
             islaB.setText("Isla 8");
-        } else if (isla.equals("I91") || isla.equals("I92")) {
+        } else if (isla.equals("I82")) {
+            islaB.setText("Isla 8.2");
+        } else if (isla.equals("I83")) {
+            islaB.setText("Isla 8.3");
+        } else if (isla.equals("I91")) {
             islaB.setText("Isla 9");
-        } else if (isla.equals("I101") || isla.equals("I102")) {
+        } else if (isla.equals("I92")) {
+            islaB.setText("Isla 9.2");
+        } else if (isla.equals("I101")) {
             islaB.setText("Isla 10");
+        } else if (isla.equals("I102")){
+            islaB.setText("Isla 10.2");
         }
 
         btn_back.setOnClickListener(new View.OnClickListener() {
