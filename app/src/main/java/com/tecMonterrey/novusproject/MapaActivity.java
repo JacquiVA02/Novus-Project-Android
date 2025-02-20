@@ -242,7 +242,7 @@ public class MapaActivity extends AppCompatActivity {
                 Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
                 // Agregar parámetros al Intent
                 intent.putExtra("isla", "I82");
-                intent.putExtra("base", "UsuarioOctava");
+                intent.putExtra("base", "UsuarioOctava2");
                 intent.putExtra("baseP", "Octava2");
                 startActivity(intent);
             }
@@ -254,7 +254,7 @@ public class MapaActivity extends AppCompatActivity {
                 Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
                 // Agregar parámetros al Intent
                 intent.putExtra("isla", "I83");
-                intent.putExtra("base", "UsuarioOctava");
+                intent.putExtra("base", "UsuarioOctava3");
                 intent.putExtra("baseP", "Octava3");
                 startActivity(intent);
             }
@@ -266,7 +266,7 @@ public class MapaActivity extends AppCompatActivity {
                 Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
                 // Agregar parámetros al Intent
                 intent.putExtra("isla", "I92");
-                intent.putExtra("base", "UsuarioNovena");
+                intent.putExtra("base", "UsuarioNovena2");
                 intent.putExtra("baseP", "Novena2");
                 startActivity(intent);
             }
@@ -278,7 +278,7 @@ public class MapaActivity extends AppCompatActivity {
                 Intent intent = new Intent(MapaActivity.this, LevelsActivity.class);
                 // Agregar parámetros al Intent
                 intent.putExtra("isla", "I102");
-                intent.putExtra("base", "UsuarioDecima");
+                intent.putExtra("base", "UsuarioDecima2");
                 intent.putExtra("baseP", "Decima2");
                 startActivity(intent);
             }
