@@ -23,9 +23,9 @@
         tools:ignore="DuplicateIds,VisualLintBounds,VisualLintOverlap" />
 
     <LinearLayout
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
@@ -37,7 +37,7 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
+            android:layout_width="70sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5sp"
             android:layout_weight="1"
@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:paddingLeft="8sp"
             android:paddingTop="1sp"
-            android:text="000"
+            android:text="0000"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
@@ -107,7 +107,7 @@
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
             android:paddingTop="40dp"
-            android:text="Avatar"
+            android:text="TecDuck"
             tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         <Space

@@ -114,7 +114,7 @@
             android:layout_weight="1"
             android:backgroundTint="#0B1741"
             android:paddingTop="40dp"
-            android:text="Avatar"
+            android:text="TecDuck"
             tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         <Space
