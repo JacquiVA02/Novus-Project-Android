@@ -78,47 +78,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="Orientation" />
 
-    <Button
-        android:id="@+id/nivel1"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
-        android:backgroundTint="#BFA213"
-        android:text="NIVEL 1"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text0"
-        tools:ignore="HardcodedText,TextContrastCheck" />
-
-    <Button
-        android:id="@+id/nivel2"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="#C63C1A"
-        android:text="NIVEL 2"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nivel1"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/nivel3"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="65dp"
-        android:backgroundTint="#A61C3D"
-        android:text="NIVEL 3"
-        android:textSize="24sp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nivel2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toBottomOf="@+id/textCategoriaLevel">
+
+        <Button
+            android:id="@+id/nivel1"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:backgroundTint="#BFA213"
+            android:text="NIVEL 1"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText,TextContrastCheck" />
+
+        <Button
+            android:id="@+id/nivel2"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#C63C1A"
+            android:text="NIVEL 2"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/nivel3"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#A61C3D"
+            android:text="NIVEL 3"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/islaLevels"
