@@ -22,10 +22,9 @@ public class LevelsActivity extends AppCompatActivity {
 
     Button btn_nivel1, btn_nivel2, btn_nivel3;
     ImageView btn_back;
-    TextView coins, Ac1, Ac2, Ac3, islaLevel, categoria;
+    TextView coins, Ac1, Ac2, Ac3;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
-    String param1, param2, param3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +51,6 @@ public class LevelsActivity extends AppCompatActivity {
         Ac1 = findViewById(R.id.Ac1FI);
         Ac2 = findViewById(R.id.Ac2FI);
         Ac3 = findViewById(R.id.Ac3FI);
-        islaLevel = findViewById(R.id.islaLevels);
-        categoria = findViewById(R.id.textCategoriaLevel);
 
         btn_nivel1 = findViewById(R.id.nivel1);
         btn_nivel2 = findViewById(R.id.nivel2);
@@ -78,52 +75,6 @@ public class LevelsActivity extends AppCompatActivity {
         String isla = intent.getStringExtra("isla");
         String base = intent.getStringExtra("base");
         String baseP = intent.getStringExtra("baseP");
-
-        if (isla.equals("I1")) {
-            categoria.setText("Fracciones Numéricas");
-            islaLevel.setText("Isla 1");
-        } else if (isla.equals("I2")) {
-            categoria.setText("Jerarquía de Operaciones");
-            islaLevel.setText("Isla 2");
-        } else if (isla.equals("I3")) {
-            categoria.setText("Leyes de Exponentes");
-            islaLevel.setText("Isla 3");
-        } else if (isla.equals("I4")) {
-            categoria.setText("Expresiones Algebraicas");
-            islaLevel.setText("Isla 4");
-        } else if (isla.equals("I5")) {
-            categoria.setText("Productos Notables");
-            islaLevel.setText("Isla 5");
-        } else if (isla.equals("I6")) {
-            categoria.setText("Factorización");
-            islaLevel.setText("Isla 6");
-        } else if (isla.equals("I7")) {
-            categoria.setText("Fracciones Algebraicas");
-            islaLevel.setText("Isla 7");
-        } else if (isla.equals("I81")) {
-            categoria.setText("Solución de Ecuaciones y Desigualdades");
-            islaLevel.setText("Isla 8");
-        } else if (isla.equals("I82")) {
-            categoria.setText("Solución de Ecuaciones y Desigualdades");
-            islaLevel.setText("Isla 8.2");
-        }else if (isla.equals("I83")) {
-            categoria.setText("Solución de Ecuaciones y Desigualdades");
-            islaLevel.setText("Isla 8.3");
-        } else if (isla.equals("I91")) {
-            categoria.setText("Sistemas de Ecuaciones Lineales");
-            islaLevel.setText("Isla 9");
-        } else if (isla.equals("I92")) {
-            categoria.setText("Sistemas de Ecuaciones Lineales");
-            islaLevel.setText("Isla 9.2");
-        } else if (isla.equals("I101")) {
-            categoria.setText("Logaritmos: Definición y Propiedades");
-            islaLevel.setText("Isla 10");
-        } else if (isla.equals("I102")){
-            categoria.setText("Logaritmos: Definición y Propiedades");
-            islaLevel.setText("Isla 10.2");
-        }
-
-
 
         btn_nivel1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,10 +104,6 @@ public class LevelsActivity extends AppCompatActivity {
             btn_nivel3.setVisibility(View.GONE);
         }
 
-        if (isla.equals("I91")){
-            btn_nivel3.setVisibility(View.GONE);
-        }
-
         btn_nivel3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,8 +123,6 @@ public class LevelsActivity extends AppCompatActivity {
         setLevelButtonOnClickListener(btn_nivel3, parametro3);
 
          */
-
-
 
         getData();
     }
@@ -244,8 +189,6 @@ public class LevelsActivity extends AppCompatActivity {
                         } else {
                             Log.d("Firestore", "No hay datos actuales (snapshot es null o no existe)");
                         }
-
-
                     });
         }
     }

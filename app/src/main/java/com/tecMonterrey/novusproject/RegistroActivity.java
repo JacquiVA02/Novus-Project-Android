@@ -72,16 +72,16 @@ public class RegistroActivity extends AppCompatActivity {
 
                 if (nameUser.isEmpty() || usernameUser.isEmpty() || emailUser.isEmpty() || passUser.isEmpty()) {
                     Toast.makeText(RegistroActivity.this, "Por favor, llene todos los campos", Toast.LENGTH_SHORT).show();
-                } else if (!emailUser.matches(emailPattern)) {
+                } /*else if (!emailUser.matches(emailPattern)) {
                     Toast.makeText(RegistroActivity.this, "El correo debe ser en el formato aXXXXXXXX@tec.mx", Toast.LENGTH_SHORT).show();
-                } else {
+                } */else {
                     registerUser(nameUser, usernameUser, emailUser, passUser);
                 }
             }
         });
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.levelname), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -104,11 +104,6 @@ public class RegistroActivity extends AppCompatActivity {
                     userMap.put("password", passUser);
                     userMap.put("puntos", 0);
                     userMap.put("monedas", 100);
-                    userMap.put("c1", 3);
-                    userMap.put("c2", 3);
-                    userMap.put("c3", 3);
-                    userMap.put("opc1", 0);
-                    userMap.put("opc2", 0);
 
                     // Guardar el documento en la colección "Usuario"
                     mFirestore.collection("Usuario").document(id).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -126,6 +121,11 @@ public class RegistroActivity extends AppCompatActivity {
                             createUsuarioOctava(id);
                             createUsuarioNovena(id);
                             createUsuarioDecima(id);
+                            createUsuarioOctava2(id);
+                            createUsuarioOctava3(id);
+                            createUsuarioNovena2(id);
+                            createUsuarioDecima2(id);
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -665,7 +665,7 @@ public class RegistroActivity extends AppCompatActivity {
         avatarMap.put("R10I82L3", false);
 
         // Guardar el documento en la colección "UsuarioOctava"
-        mFirestore.collection("UsuarioOctava").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mFirestore.collection("UsuarioOctava2").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 finish();
@@ -720,7 +720,7 @@ public class RegistroActivity extends AppCompatActivity {
         avatarMap.put("R10I83L3", false);
 
         // Guardar el documento en la colección "UsuarioOctava"
-        mFirestore.collection("UsuarioOctava").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mFirestore.collection("UsuarioOctava3").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 finish();
@@ -831,7 +831,7 @@ public class RegistroActivity extends AppCompatActivity {
         avatarMap.put("R10I92L3", false);
 
         // Guardar el documento en la colección "UsuarioNovena"
-        mFirestore.collection("UsuarioNovena").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mFirestore.collection("UsuarioNovena2").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 finish();
@@ -942,7 +942,7 @@ public class RegistroActivity extends AppCompatActivity {
         avatarMap.put("R10I102L3", false);
 
         // Guardar el documento en la colección "UsuarioDecima"
-        mFirestore.collection("UsuarioDecima").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mFirestore.collection("UsuarioDecima2").document(userId).set(avatarMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 finish();

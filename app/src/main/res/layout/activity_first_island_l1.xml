@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/levelname"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FirstIslandL1Activity">
@@ -23,14 +23,13 @@
         android:id="@+id/linearLayout11"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="TextSizeCheck">
+        tools:ignore="MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteY="65dp">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -53,81 +52,6 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="180dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/coffee"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/Ac1FI"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="2sp"
-            android:paddingTop="1sp"
-            android:text="00"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="2sp"
-            app:srcCompat="@drawable/eraser"
-            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
-
-        <TextView
-            android:id="@+id/Ac2FI"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="2sp"
-            android:paddingTop="1sp"
-            android:text="00"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="2sp"
-            app:srcCompat="@drawable/candy"
-            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
-
-        <TextView
-            android:id="@+id/Ac3FI"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="2sp"
-            android:paddingTop="1sp"
-            android:text="00"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,TextSizeCheck" />
     </LinearLayout>
 
     <ImageView
@@ -160,14 +84,14 @@
         android:layout_width="150dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="45dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text0">
+        app:layout_constraintTop_toBottomOf="@+id/text0"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/R10I1L1"
@@ -252,10 +176,9 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="86dp"
+        android:layout_height="20dp"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="75dp"
         android:fontFamily="monospace"
         android:text="¡Inicia Aquí!"
         android:textColor="#FFFFFF"
@@ -265,7 +188,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text0"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.926"
         tools:ignore="HardcodedText,TextContrastCheck" />
 
     <TextView

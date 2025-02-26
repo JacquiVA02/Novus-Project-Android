@@ -1,3 +1,4 @@
+
 package com.tecMonterrey.novusproject;
 
 import android.content.Intent;
@@ -26,12 +27,11 @@ public class MapaActivity extends AppCompatActivity {
     private static final String TAG = "MapaActivity";
 
     ImageView btn_profile, btn_back;
-    TextView coins, Ac1, Ac2, Ac3;
+    TextView coins;
     Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4, btnIsland5, btnIsland6, btnIsland7, btnIsland8, btnIsland9, btnIsland10, btnIsland82, btnIsland83, btnIsland92, btnIsland102, btnExtras;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
     LinearLayout nivelesExtra;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,9 +80,6 @@ public class MapaActivity extends AppCompatActivity {
         nivelesExtra = findViewById(R.id.nuevosNiveles);
 
         coins = findViewById(R.id.CoinQuestion);
-        Ac1 = findViewById(R.id.Ac1FI);
-        Ac2 = findViewById(R.id.Ac2FI);
-        Ac3 = findViewById(R.id.Ac3FI);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -321,7 +318,7 @@ public class MapaActivity extends AppCompatActivity {
         });
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.levelname), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -348,33 +345,12 @@ public class MapaActivity extends AppCompatActivity {
                         if (snapshot != null && snapshot.exists()) {
                             // Obtiene los valores de los campos numéricos
                             Object coinsValue = snapshot.get("monedas");
-                            Object c1Value = snapshot.get("c1");
-                            Object c2Value = snapshot.get("c2");
-                            Object c3Value = snapshot.get("c3");
 
                             // Muestra los valores numéricos en los TextView
                             if (coinsValue instanceof Number) {
                                 coins.setText(String.valueOf(((Number) coinsValue).intValue()));
                             } else {
                                 Log.d("Firestore", "Valor de 'monedas' no es numérico");
-                            }
-
-                            if (c1Value instanceof Number) {
-                                Ac1.setText(String.valueOf(((Number) c1Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c1' no es numérico");
-                            }
-
-                            if (c2Value instanceof Number) {
-                                Ac2.setText(String.valueOf(((Number) c2Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c2' no es numérico");
-                            }
-
-                            if (c3Value instanceof Number) {
-                                Ac3.setText(String.valueOf(((Number) c3Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c3' no es numérico");
                             }
 
                             // Cargar la imagen de perfil redonda si está disponible
