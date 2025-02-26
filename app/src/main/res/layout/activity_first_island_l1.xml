@@ -25,11 +25,12 @@
         android:layout_height="30dp"
         android:layout_marginEnd="15dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/text0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,TextSizeCheck"
-        tools:layout_editor_absoluteY="65dp">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TextSizeCheck">
 
         <ImageView
             android:id="@+id/imageView2"

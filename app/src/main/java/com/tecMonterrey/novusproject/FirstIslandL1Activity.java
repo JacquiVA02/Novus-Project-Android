@@ -27,7 +27,7 @@ import java.util.Map;
 public class FirstIslandL1Activity extends AppCompatActivity {
 
     ImageView btn_back, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10;
-    TextView coins, Ac1, Ac2, Ac3;
+    TextView coins;
     Button btn_map, btn_avatar, btn_shop;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -45,7 +45,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_first_island_l1);
 
         //Fondo de la interfaz
-        mainView = findViewById(R.id.main);
+        mainView = findViewById(R.id.levelname);
 
         btn_back = findViewById(R.id.buttonBackQuestion);
 
@@ -57,9 +57,6 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         nivel = intent.getStringExtra("nivel");
 
         coins = findViewById(R.id.CoinQuestion);
-        Ac1 = findViewById(R.id.Ac1FI);
-        Ac2 = findViewById(R.id.Ac2FI);
-        Ac3 = findViewById(R.id.Ac3FI);
 
         pregunta1 = findViewById(R.id.R1I1L1);
         pregunta2 = findViewById(R.id.R2I1L1);
@@ -216,14 +213,14 @@ public class FirstIslandL1Activity extends AppCompatActivity {
             }
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        //ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        //    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        //    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+        //    return insets;
+        //});
 
         verificarAvance();
-        getData();
+        //getData();
         Log.d("NivelTag", nivel);
         setBackground(nivel);
     }
@@ -319,6 +316,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
 
 
 
+    /*
     private void getData() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -367,6 +365,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
                     });
         }
     }
+    */
 
     private void setBackground(String nivel) {
         if (nivel.equals("L1")) {

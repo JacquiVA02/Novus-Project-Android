@@ -250,7 +250,7 @@ public class PreguntaActivity extends AppCompatActivity {
                             }
                             finish();
                         } else {
-                            view.setBackground(ContextCompat.getDrawable(this, R.drawable.incorrect));
+                            view.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_incorrect));
                             Glide.with(getApplicationContext())
                                     .load(imgIncorrect)
                                     .fitCenter()
