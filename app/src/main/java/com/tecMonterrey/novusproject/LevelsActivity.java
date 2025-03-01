@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,7 +27,7 @@ public class LevelsActivity extends AppCompatActivity {
 
 
     Button btn_nivel1, btn_nivel2, btn_nivel3;
-    ImageView btn_back;
+    ImageView btn_back, btn_profileL;
     TextView coins, Ac1, Ac2, Ac3, islaLevel, categoria;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -66,6 +67,8 @@ public class LevelsActivity extends AppCompatActivity {
         btn_nivel1 = findViewById(R.id.nivel1);
         btn_nivel2 = findViewById(R.id.nivel2);
         btn_nivel3 = findViewById(R.id.nivel3);
+
+        btn_profileL = findViewById(R.id.buttonProfileLevels);
 
 
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -136,8 +139,13 @@ public class LevelsActivity extends AppCompatActivity {
         }
 
 
-
-
+        btn_profileL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LevelsActivity.this, PerfilActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         btn_nivel1.setOnClickListener(new View.OnClickListener() {
@@ -199,7 +207,7 @@ public class LevelsActivity extends AppCompatActivity {
         */
 
 
-        //getData();
+        getData();
     }
 
 
@@ -236,9 +244,6 @@ public class LevelsActivity extends AppCompatActivity {
                         if (snapshot != null && snapshot.exists()) {
                             // Obtiene el valor del campo y lo muestra en el TextView
                             Object coinsValue = snapshot.get("monedas");
-                            Object c1Value = snapshot.get("c1");
-                            Object c2Value = snapshot.get("c2");
-                            Object c3Value = snapshot.get("c3");
 
 
                             if (coinsValue instanceof Number) {
@@ -247,34 +252,21 @@ public class LevelsActivity extends AppCompatActivity {
                                 Log.d("Firestore", "Valor de 'monedas' no es numérico");
                             }
 
-
-                            if (c1Value instanceof Number) {
-                                Ac1.setText(String.valueOf(((Number) c1Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c1' no es numérico");
-                            }
-
-
-                            if (c2Value instanceof Number) {
-                                Ac2.setText(String.valueOf(((Number) c2Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c2' no es numérico");
-                            }
-
-
-                            if (c3Value instanceof Number) {
-                                Ac3.setText(String.valueOf(((Number) c3Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c3' no es numérico");
+                            // Cargar la imagen de perfil redonda si está disponible
+                            String profileImageUrl = snapshot.getString("profileImageUrl");
+                            if (profileImageUrl != null) {
+                                Glide.with(LevelsActivity.this)
+                                        .load(profileImageUrl)
+                                        .fitCenter()
+                                        .centerInside()
+                                        .circleCrop() // Esta línea hace que la imagen sea redonda
+                                        .into(btn_profileL);
                             }
 
 
                         } else {
                             Log.d("Firestore", "No hay datos actuales (snapshot es null o no existe)");
                         }
-
-
-
 
                     });
         }

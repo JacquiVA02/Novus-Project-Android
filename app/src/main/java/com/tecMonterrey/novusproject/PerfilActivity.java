@@ -81,10 +81,10 @@ public class PerfilActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PerfilActivity.this, MapaActivity.class);
-                startActivity(intent);
+                finish(); // Cierra la actividad actual y regresa a la anterior automáticamente
             }
         });
+
 
         btn_editPhoto.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,15 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mapaprin"
+    android:textAlignment="center"
     tools:context=".MapaActivity">
 
     <Button
         android:id="@+id/buttonIsland10"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="45dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 10"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -186,11 +188,12 @@
 
     <Button
         android:id="@+id/buttonIsland1"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 1"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -201,11 +204,12 @@
 
     <Button
         android:id="@+id/buttonIsland2"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 2"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -214,11 +218,12 @@
 
     <Button
         android:id="@+id/buttonIsland3"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 3"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -227,11 +232,12 @@
 
     <Button
         android:id="@+id/buttonIsland4"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 4"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -240,11 +246,12 @@
 
     <Button
         android:id="@+id/buttonIsland5"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 5"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -255,11 +262,12 @@
 
     <Button
         android:id="@+id/buttonIsland6"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="45dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 6"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -270,11 +278,12 @@
 
     <Button
         android:id="@+id/buttonIsland7"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="45dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 7"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -283,11 +292,12 @@
 
     <Button
         android:id="@+id/buttonIsland8"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="45dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 8"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -296,11 +306,12 @@
 
     <Button
         android:id="@+id/buttonIsland9"
-        android:layout_width="145dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="45dp"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:backgroundTint="#A61C3D"
+        android:paddingBottom="25dp"
         android:text="Isla 9"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -331,13 +342,22 @@
         app:layout_constraintBottom_toTopOf="@+id/text0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonProfile">
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/n823"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Solución de ecuaciones"
+            android:textAlignment="center"
+            android:textColor="#FDFDFD" />
 
         <Button
             android:id="@+id/buttonIsland82"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#C63C1A"
             android:text="Isla 8.2"
             android:textSize="16sp"
@@ -345,29 +365,45 @@
 
         <Button
             android:id="@+id/buttonIsland83"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#C63C1A"
             android:text="Isla 8.3"
             android:textSize="16sp"
             tools:ignore="HardcodedText" />
 
+        <TextView
+            android:id="@+id/n92"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ecuaciones lineales"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF" />
+
         <Button
             android:id="@+id/buttonIsland92"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#C63C1A"
             android:text="Isla 9.2"
             android:textSize="16sp"
             tools:ignore="HardcodedText" />
 
+        <TextView
+            android:id="@+id/n102"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logaritmos"
+            android:textAlignment="center"
+            android:textColor="#FFFDFD" />
+
         <Button
             android:id="@+id/buttonIsland102"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="#C63C1A"
             android:text="Isla 10.2"
             android:textSize="16sp"
@@ -414,5 +450,130 @@
             app:srcCompat="@drawable/shop"
             tools:ignore="ContentDescription" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/n1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Fracciones Numéricas"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland1"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland1"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland1"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland1"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/n2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Jerarquía operaciones"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland2"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland2"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland2"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/n3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Leyes de exponentes"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland3"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland3"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland3"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland3"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/n4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Expresiones algebraicas"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland4"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland4"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland4"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland4" />
+
+    <TextView
+        android:id="@+id/n5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Productos notables"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland5"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland5"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland5"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland5" />
+
+    <TextView
+        android:id="@+id/n6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Factorización"
+        android:textColor="#FFFEFE"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland6"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland6"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland6"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland6" />
+
+    <TextView
+        android:id="@+id/n7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Fracciones algebraicas"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland7"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland7"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland7"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland7" />
+
+    <TextView
+        android:id="@+id/n8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Solucion de ecuaciones"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland8"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland8"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland8"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland8" />
+
+    <TextView
+        android:id="@+id/n9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Ecuaciones lineales"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland9"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland9"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland9"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland9" />
+
+    <TextView
+        android:id="@+id/n10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Logaritmos"
+        android:textColor="#FFFEFE"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland10"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland10"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland10"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
