@@ -351,7 +351,9 @@
             android:layout_height="wrap_content"
             android:text="Solución de ecuaciones"
             android:textAlignment="center"
-            android:textColor="#FDFDFD" />
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonIsland82"
@@ -379,7 +381,8 @@
             android:layout_height="wrap_content"
             android:text="Ecuaciones lineales"
             android:textAlignment="center"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonIsland92"
@@ -397,7 +400,8 @@
             android:layout_height="wrap_content"
             android:text="Logaritmos"
             android:textAlignment="center"
-            android:textColor="#FFFDFD" />
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonIsland102"
