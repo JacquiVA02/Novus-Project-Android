@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -26,7 +27,7 @@ import java.util.Map;
 
 public class FirstIslandL1Activity extends AppCompatActivity {
 
-    ImageView btn_back, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10;
+    ImageView btn_back, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10, btn_profileI;
     TextView coins, islaB, nivelB;
     Button btn_map, btn_avatar, btn_shop;
     FirebaseFirestore db;
@@ -72,6 +73,8 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         pregunta9 = findViewById(R.id.R9I1L1);
         pregunta10 = findViewById(R.id.R10I1L1);
 
+        btn_profileI = findViewById(R.id.buttonProfileIsland);
+
         // Inicializar el mapa de asociaciones
         buttonToImageViewMap = new HashMap<>();
         initializeButtonToImageViewMap();
@@ -93,11 +96,11 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         }
 
         if (nivel.equals("L1")){
-            nivelB.setText("-  Nivel 1");
+            nivelB.setText("Nivel 1");
         } else if (nivel.equals("L2")){
-            nivelB.setText("-  Nivel 2");
+            nivelB.setText("Nivel 2");
         } else{
-            nivelB.setText("-  Nivel 3");
+            nivelB.setText("Nivel 3");
         }
 
 
@@ -140,6 +143,14 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         btn_avatar = findViewById(R.id.buttonAvatarFirst);
         btn_shop = findViewById(R.id.buttonShopFirst);
          */
+
+        btn_profileI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstIslandL1Activity.this, PerfilActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,7 +277,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
         //});
 
         verificarAvance();
-        //getData();
+        getData();
         Log.d("NivelTag", nivel);
         setBackground(nivel);
     }
@@ -362,7 +373,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
 
 
 
-    /*
+
     private void getData() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -377,9 +388,6 @@ public class FirstIslandL1Activity extends AppCompatActivity {
                         if (snapshot != null && snapshot.exists()) {
                             // Obtiene el valor del campo y lo muestra en el TextView
                             Object coinsValue = snapshot.get("monedas");
-                            Object c1Value = snapshot.get("c1");
-                            Object c2Value = snapshot.get("c2");
-                            Object c3Value = snapshot.get("c3");
 
                             if (coinsValue instanceof Number) {
                                 coins.setText(String.valueOf(((Number) coinsValue).intValue()));
@@ -387,23 +395,18 @@ public class FirstIslandL1Activity extends AppCompatActivity {
                                 Log.d("Firestore", "Valor de 'monedas' no es numérico");
                             }
 
-                            if (c1Value instanceof Number) {
-                                Ac1.setText(String.valueOf(((Number) c1Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c1' no es numérico");
+                            // Cargar la imagen de perfil redonda si está disponible
+                            String profileImageUrl = snapshot.getString("profileImageUrl");
+                            if (profileImageUrl != null) {
+                                Glide.with(FirstIslandL1Activity.this)
+                                        .load(profileImageUrl)
+                                        .fitCenter()
+                                        .centerInside()
+                                        .circleCrop() // Esta línea hace que la imagen sea redonda
+                                        .into(btn_profileI);
                             }
 
-                            if (c2Value instanceof Number) {
-                                Ac2.setText(String.valueOf(((Number) c2Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c2' no es numérico");
-                            }
 
-                            if (c3Value instanceof Number) {
-                                Ac3.setText(String.valueOf(((Number) c3Value).intValue()));
-                            } else {
-                                Log.d("Firestore", "Valor de 'c3' no es numérico");
-                            }
 
                         } else {
                             Log.d("Firestore", "No hay datos actuales (snapshot es null o no existe)");
@@ -411,7 +414,7 @@ public class FirstIslandL1Activity extends AppCompatActivity {
                     });
         }
     }
-    */
+
 
     private void setBackground(String nivel) {
         if (nivel.equals("L1")) {
