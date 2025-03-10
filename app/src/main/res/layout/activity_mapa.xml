@@ -609,4 +609,18 @@
         app:layout_constraintStart_toStartOf="@+id/buttonIsland102"
         app:layout_constraintTop_toTopOf="@+id/buttonIsland102" />
 
+    <Button
+        android:id="@+id/aboutButton"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="475dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="#03A9F4"
+        android:text="+"
+        android:textColorLink="#FBFBFB"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

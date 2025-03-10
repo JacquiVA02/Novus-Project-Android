@@ -28,7 +28,7 @@ public class MapaActivity extends AppCompatActivity {
 
     ImageView btn_profile, btn_back;
     TextView coins, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N82, N83, N92, N102;
-    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4, btnIsland5, btnIsland6, btnIsland7, btnIsland8, btnIsland9, btnIsland10, btnIsland82, btnIsland83, btnIsland92, btnIsland102, btnExtras;
+    Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4, btnIsland5, btnIsland6, btnIsland7, btnIsland8, btnIsland9, btnIsland10, btnIsland82, btnIsland83, btnIsland92, btnIsland102, btnExtras, btnAbout;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
     LinearLayout nivelesExtra;
@@ -59,6 +59,8 @@ public class MapaActivity extends AppCompatActivity {
         btn_avatar = findViewById(R.id.buttonAvatarFirst);
         btn_shop = findViewById(R.id.buttonShopFirst);
         btnExtras = findViewById(R.id.extraLevels);
+
+        btnAbout = findViewById(R.id.aboutButton);
 
         btnIsland1 = findViewById(R.id.buttonIsland1);
         btnIsland2 = findViewById(R.id.buttonIsland2);
@@ -100,6 +102,14 @@ public class MapaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapaActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapaActivity.this, AboutActivity.class);
                 startActivity(intent);
             }
         });
