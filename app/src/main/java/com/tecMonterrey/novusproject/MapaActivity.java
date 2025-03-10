@@ -27,7 +27,7 @@ public class MapaActivity extends AppCompatActivity {
     private static final String TAG = "MapaActivity";
 
     ImageView btn_profile, btn_back;
-    TextView coins, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10;
+    TextView coins, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N82, N83, N92, N102;
     Button btn_map, btn_avatar, btn_shop, btnIsland1, btnIsland2, btnIsland3, btnIsland4, btnIsland5, btnIsland6, btnIsland7, btnIsland8, btnIsland9, btnIsland10, btnIsland82, btnIsland83, btnIsland92, btnIsland102, btnExtras;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -77,7 +77,7 @@ public class MapaActivity extends AppCompatActivity {
         btnIsland92 = findViewById(R.id.buttonIsland92);
         btnIsland102 = findViewById(R.id.buttonIsland102);
 
-        nivelesExtra = findViewById(R.id.nuevosNiveles);
+        //nivelesExtra = findViewById(R.id.nuevosNiveles);
 
         coins = findViewById(R.id.CoinQuestion);
 
@@ -91,6 +91,10 @@ public class MapaActivity extends AppCompatActivity {
         N8 = findViewById(R.id.n8);
         N9 = findViewById(R.id.n9);
         N10 = findViewById(R.id.n10);
+        N82 = findViewById(R.id.n82);
+        N83 = findViewById(R.id.n83);
+        N92 = findViewById(R.id.n92);
+        N102 = findViewById(R.id.n102);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -296,9 +300,14 @@ public class MapaActivity extends AppCompatActivity {
         btnExtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nivelesExtra.getVisibility() == View.VISIBLE) {
+                if (btnIsland82.getVisibility() == View.VISIBLE && btnIsland83.getVisibility() == View.VISIBLE && btnIsland92.getVisibility() == View.VISIBLE && btnIsland102.getVisibility() == View.VISIBLE) {
                     // Si el layout de niveles extra está visible, lo ocultamos y mostramos los botones de las islas
-                    nivelesExtra.setVisibility(View.GONE);
+                    //nivelesExtra.setVisibility(View.GONE);
+                    btnIsland82.setVisibility(View.GONE);
+                    btnIsland83.setVisibility(View.GONE);
+                    btnIsland92.setVisibility(View.GONE);
+                    btnIsland102.setVisibility(View.GONE);
+
                     btnIsland1.setVisibility(View.VISIBLE);
                     btnIsland2.setVisibility(View.VISIBLE);
                     btnIsland3.setVisibility(View.VISIBLE);
@@ -309,6 +318,7 @@ public class MapaActivity extends AppCompatActivity {
                     btnIsland8.setVisibility(View.VISIBLE);
                     btnIsland9.setVisibility(View.VISIBLE);
                     btnIsland10.setVisibility(View.VISIBLE);
+
                     N1.setVisibility(View.VISIBLE);
                     N2.setVisibility(View.VISIBLE);
                     N3.setVisibility(View.VISIBLE);
@@ -319,10 +329,22 @@ public class MapaActivity extends AppCompatActivity {
                     N8.setVisibility(View.VISIBLE);
                     N9.setVisibility(View.VISIBLE);
                     N10.setVisibility(View.VISIBLE);
+
+                    N82.setVisibility(View.GONE);
+                    N83.setVisibility(View.GONE);
+                    N92.setVisibility(View.GONE);
+                    N102.setVisibility(View.GONE);
+
                     btnExtras.setText("Niveles Extra");
                 } else {
                     // Si el layout de niveles extra está oculto, lo mostramos y ocultamos los botones de las islas
-                    nivelesExtra.setVisibility(View.VISIBLE);
+                    //nivelesExtra.setVisibility(View.VISIBLE);
+
+                    btnIsland82.setVisibility(View.VISIBLE);
+                    btnIsland83.setVisibility(View.VISIBLE);
+                    btnIsland92.setVisibility(View.VISIBLE);
+                    btnIsland102.setVisibility(View.VISIBLE);
+
                     btnIsland1.setVisibility(View.GONE);
                     btnIsland2.setVisibility(View.GONE);
                     btnIsland3.setVisibility(View.GONE);
@@ -333,6 +355,7 @@ public class MapaActivity extends AppCompatActivity {
                     btnIsland8.setVisibility(View.GONE);
                     btnIsland9.setVisibility(View.GONE);
                     btnIsland10.setVisibility(View.GONE);
+
                     N1.setVisibility(View.GONE);
                     N2.setVisibility(View.GONE);
                     N3.setVisibility(View.GONE);
@@ -343,6 +366,11 @@ public class MapaActivity extends AppCompatActivity {
                     N8.setVisibility(View.GONE);
                     N9.setVisibility(View.GONE);
                     N10.setVisibility(View.GONE);
+
+                    N82.setVisibility(View.VISIBLE);
+                    N83.setVisibility(View.VISIBLE);
+                    N92.setVisibility(View.VISIBLE);
+                    N102.setVisibility(View.VISIBLE);
                     btnExtras.setText("Volver");
                 }
             }

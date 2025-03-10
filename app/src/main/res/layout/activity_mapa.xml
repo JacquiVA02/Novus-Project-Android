@@ -332,88 +332,65 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,TextContrastCheck" />
 
-    <LinearLayout
-        android:id="@+id/nuevosNiveles"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="25dp"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/text0"
+    <Button
+        android:id="@+id/buttonIsland82"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#C63C1A"
+        android:paddingBottom="25dp"
+        android:text="Isla 8.2"
+        android:textSize="16sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
-        tools:visibility="visible">
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/n823"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Solución de ecuaciones"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/buttonIsland83"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#C63C1A"
+        android:paddingBottom="25dp"
+        android:text="Isla 8.3"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland82"
+        tools:ignore="HardcodedText" />
 
-        <Button
-            android:id="@+id/buttonIsland82"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#C63C1A"
-            android:text="Isla 8.2"
-            android:textSize="16sp"
-            tools:ignore="HardcodedText" />
+    <Button
+        android:id="@+id/buttonIsland92"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#C63C1A"
+        android:paddingBottom="25dp"
+        android:text="Isla 9.2"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland83"
+        tools:ignore="HardcodedText" />
 
-        <Button
-            android:id="@+id/buttonIsland83"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#C63C1A"
-            android:text="Isla 8.3"
-            android:textSize="16sp"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/n92"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ecuaciones lineales"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/buttonIsland92"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#C63C1A"
-            android:text="Isla 9.2"
-            android:textSize="16sp"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/n102"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Logaritmos"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/buttonIsland102"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#C63C1A"
-            android:text="Isla 10.2"
-            android:textSize="16sp"
-            tools:ignore="HardcodedText" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/buttonIsland102"
+        android:layout_width="175dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#C63C1A"
+        android:paddingBottom="25dp"
+        android:text="Isla 10.2"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIsland92"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -579,5 +556,57 @@
         app:layout_constraintEnd_toEndOf="@+id/buttonIsland10"
         app:layout_constraintStart_toStartOf="@+id/buttonIsland10"
         app:layout_constraintTop_toTopOf="@+id/buttonIsland10" />
+
+    <TextView
+        android:id="@+id/n82"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Solucion de ecuaciones"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland82"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland82"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland82"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland82" />
+
+    <TextView
+        android:id="@+id/n83"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Solucion de ecuaciones"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland83"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland83"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland83"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland83" />
+
+    <TextView
+        android:id="@+id/n92"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Ecuaciones lineales"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland92"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland92"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland92"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland92" />
+
+    <TextView
+        android:id="@+id/n102"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Logaritmos"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonIsland102"
+        app:layout_constraintEnd_toEndOf="@+id/buttonIsland102"
+        app:layout_constraintStart_toStartOf="@+id/buttonIsland102"
+        app:layout_constraintTop_toTopOf="@+id/buttonIsland102" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
