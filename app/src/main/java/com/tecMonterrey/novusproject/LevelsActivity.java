@@ -174,12 +174,7 @@ public class LevelsActivity extends AppCompatActivity {
         });
 
 
-        if (isla.equals("I1")){
-            btn_nivel3.setVisibility(View.GONE);
-        }
-
-
-        if (isla.equals("I91")){
+        if (isla.equals("I1") || isla.equals("I5") || isla.equals("I6") || isla.equals("I83") || isla.equals("I91")) {
             btn_nivel3.setVisibility(View.GONE);
         }
 
